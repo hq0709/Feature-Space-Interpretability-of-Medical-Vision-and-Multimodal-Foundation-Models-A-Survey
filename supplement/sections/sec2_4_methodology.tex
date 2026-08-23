@@ -12,6 +12,27 @@ papers and counted as preprints. Frozen-feature benchmarks are admitted only whe
 representation-level property beyond task accuracy; accuracy leaderboards, and four parameter-editing
 benchmarks that report only output-level reliability, locality and generality, are contextual.
 
+\textbf{Search and screening.} The literature was searched between 15 and 18 August 2026 in Semantic
+Scholar, OpenAlex and arXiv, for work published from January 2018 to the cutoff of 16 August 2026, and
+MEDLINE (PubMed) was searched on 21 August 2026. Each query combined the vocabulary of one method family
+(probing and concept decoding, concept bottlenecks, dictionaries and dissection, attention and
+attribution, steering, patching and editing, embedding geometry, adaptation, evaluation) with
+medical-domain and foundation-model terms, in twelve query groups. The database searches were followed
+by backward and forward citation chaining~\cite{wohlin2014guidelines} in five rounds, seeded from
+\Nmodelseeds{} model papers, among them every model of Table~\ref{tab:models}, and from every included
+study; chaining contributed \Nstagechain{} of the \Ncore{} core studies, whereas the MEDLINE search,
+which indexes few of the preprints, retrieved \pmRecall{} of them and added none. Records were
+de-duplicated across sources by identifier and normalised title. In all, about 13,600 records were
+screened on title and abstract, \Nretained{} were retained for full-text assessment, and \Ncore{} met
+the criteria above as core studies; four of these, whose full text is closed access, were coded from the
+abstract and the openly available figures, tables and supplementary material. The article cites
+\Ncited{} references in all: the core studies and \Ncontext{} contextual references, drawn from the
+retained records and from \Ncitedhand{} documents added by hand (regulatory guidance and technical
+reports that no database returns). Screening and coding were done by one reviewer, so no inter-rater
+agreement is reported; borderline eligibility decisions were recorded as such (\S\ref{sec:models}), and
+the query strings, the counts of every stage and the decision recorded for every screened record are in
+the online supplement.
+
 \textbf{Coding.} Two units are used throughout. A \emph{record} is one result of one study: one study,
 one method family, one evidence type and one locus, so that outcomes sharing all four form a single
 record, which may still span several concepts, models, datasets or end-points. A \emph{statement} is a
@@ -20,11 +41,6 @@ Each record was coded for its family and sub-group, locus, concept provenance, e
 modality, whether it compares a medical with a general model on the same data, whether it evaluates more
 than one model or dataset, and, for interventional claims, the control used (\S\ref{sec:taxonomy}).
 Every count in this article is a count of records or of studies in this corpus.
-
-\textbf{Corpus.} The corpus holds \Ncore{} core studies and \Nclaims{} records. The article cites
-\Ncited{} references: the \Ncore{} core studies, coded and tabulated, and \Ncontext{} contextual
-references. Of the core studies, \Nrecent{} (\Pctrecent\%) appeared in 2025--2026, and 2026 is a partial
-year (Fig.~\ref{fig:corpus}a).
 
 \begin{figure*}[!tbp]
 \centering
@@ -42,7 +58,9 @@ with the other families. Proportions describe the assembled corpus, not the lite
 \label{fig:corpus}
 \end{figure*}
 
-\textbf{Where the evidence sits.} Fig.~\ref{fig:corpus} shows the shape of the corpus. Observational
+\textbf{Where the evidence sits.} The corpus holds \Ncore{} core studies and \Nclaims{} records;
+\Nrecent{} of the studies (\Pctrecent\%) appeared in 2025--2026, and 2026 is a partial year
+(Fig.~\ref{fig:corpus}a). Fig.~\ref{fig:corpus} shows the shape of the corpus. Observational
 claims at the vision encoder and in the projected joint space dominate, pathology and chest radiography
 supply nearly two thirds of the records, and the few interventional claims divide between the decoder
 residual stream and post-hoc operations on stored embeddings. Only one record repeats a probe at
