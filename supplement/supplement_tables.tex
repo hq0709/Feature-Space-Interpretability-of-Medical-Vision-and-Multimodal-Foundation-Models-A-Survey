@@ -25,7 +25,7 @@
 \title{Supplementary evidence tables: Feature-Space Interpretability of Medical Vision and Multimodal Foundation Models: A Survey}
 \end{frontmatter}
 \section*{Per-record evidence tables}
-Tables~S1--S6 list every core claim record of the five method families and the intrinsic-design tag (one row per record; identifiers match \texttt{coding.csv}). Each study cell gives the citation number in this document's own reference list and, beneath it, the record identifier (the citation key) used in \texttt{coding.csv} and every other sheet, so that any row can be traced to its coded record. Column conventions are those of the article (Sec.~3): Loc.\ locus, Prov.\ concept provenance, Ev.\ evidence type (O observational, I interventional), Base.\ same-data comparison with a general foundation model, Multi.\ more than one model or dataset, 2nd secondary family, Ctrl matched control (interventional records).
+Tables~S1--S6 list every core claim record of the five method families and the intrinsic-design tag (one row per record). Each study cell gives the citation number in this document's own reference list and, beneath it, the record identifier (the citation key) used throughout the coded corpus, so that any row can be traced to its record. Column conventions are those of the article (Sec.~3): Loc.\ locus, Prov.\ concept provenance, Ev.\ evidence type (O observational, I interventional), Base.\ same-data comparison with a general foundation model, Multi.\ more than one model or dataset, 2nd secondary family, Ctrl matched control (interventional records).
 % One number per family; a family that spans several floats keeps its number and the captions say "table i of n".
 \renewcommand{\thetable}{S1}\input{tables/app_tab_geometry}
 \renewcommand{\thetable}{S2}\input{tables/app_tab_decoding}\input{tables/app_tab_decodingb}\input{tables/app_tab_decodingc}
@@ -35,25 +35,18 @@ Tables~S1--S6 list every core claim record of the five method families and the i
 \renewcommand{\thetable}{S6}\input{tables/app_tab_intrinsic}
 \FloatBarrier
 
-\section*{Retrieval tables}
-The two retrieval tables of supplement S1i, moved here from the article's appendix: the five logged
-citation-chaining waves (Table~S7) and the frozen replayable search protocol per query family (Table~S8).
-\renewcommand{\thetable}{S7}\input{tables/tab_chaining}
-\renewcommand{\thetable}{S8}\input{tables/tab_frozen}
-\FloatBarrier
-
 \section*{Evidence profiles and the audit workflow}
-The per-finding evidence profiles moved here from the article's appendix (Tables~S9--S11), and the minimum
-audit workflow of the open-problems section (Table~S12). The article reports each finding's proposition,
+The per-finding evidence profiles (Tables~S7--S9), and the minimum
+audit workflow of the open-problems section (Table~S10). The article reports each finding's proposition,
 coverage status, records, direction and qualification; these tables give the underlying fractions. They are
 set landscape, three parts with identical columns; the conventions common to all three follow.
 
 \input{tables/tab_profile_note}
 
-\renewcommand{\thetable}{S9}\input{tables/tab_profile}
-\renewcommand{\thetable}{S10}\input{tables/tab_profileb}
-\renewcommand{\thetable}{S11}\input{tables/tab_profilec}
-\renewcommand{\thetable}{S12}\input{tables/tab_workflow}
+\renewcommand{\thetable}{S7}\input{tables/tab_profile}
+\renewcommand{\thetable}{S8}\input{tables/tab_profileb}
+\renewcommand{\thetable}{S9}\input{tables/tab_profilec}
+\renewcommand{\thetable}{S10}\input{tables/tab_workflow}
 \FloatBarrier
 
 \section*{S7c. The evidence statements in full}
@@ -88,30 +81,28 @@ ordered level.}
 \end{figure*}
 \FloatBarrier
 
-\section*{Screening flow and the validity-test rubric}
-The screening flow of the frozen protocol, from retrieved hits to core studies (Table~S13), and the full
-validity-test rubric (Table~S14): for each of the \Vnclasses{} classes, what the design already supports
-without it, and what the class adds and does not add; and the defect screen (Table~S15), the five recorded
-result-invalidating defect kinds behind the flagged records, which the article marks rather than removes
-(the screen as a sensitivity is in S6). The article's Table~\ref{tab:vcov} carries the
-one-clause version with the record counts; the per-record codes are in \texttt{notes/validity\_control.csv}.
-\renewcommand{\thetable}{S13}\input{tables/tab_searchflow}
-\renewcommand{\thetable}{S14}\input{tables/tab_rubric}
-\renewcommand{\thetable}{S15}\input{tables/tab_defects}
+\section*{The validity-test rubric and the defect screen}
+The full validity-test rubric (Table~S11): for each of the \Vnclasses{} classes, what the design already
+supports without it, and what the class adds and does not add; and the defect screen (Table~S12), the five
+recorded result-invalidating defect kinds behind the flagged records, which the article marks rather than
+removes (the screen as a sensitivity is in S6). The article's Table~\ref{tab:vcov} carries the one-clause
+version with the record counts.
+\renewcommand{\thetable}{S11}\input{tables/tab_rubric}
+\renewcommand{\thetable}{S12}\input{tables/tab_defects}
 \FloatBarrier
 
 \section*{Design of the dictionary-learning studies}
-The design of every dictionary-learning study in the corpus (Table~S16), extracted from the full texts: the
+The design of every dictionary-learning study in the corpus (Table~S13), extracted from the full texts: the
 model and locus, the token and layer decomposed, the method and width, how features were named, how the
 names were validated, whether reproducibility was checked, and the reconstruction quality reported.
-\renewcommand{\thetable}{S16}\input{tables/tab_saedesign}
+\renewcommand{\thetable}{S13}\input{tables/tab_saedesign}
 \FloatBarrier
 
 \section*{Sub-types of the decoding and intervention families}
-The sub-types that article Table~\ref{tab:families} folds into their families (Table~S17): zero-shot
+The sub-types that article Table~\ref{tab:families} folds into their families (Table~S14): zero-shot
 scoring, concept activation vectors and labelled similarity for decoding; post-hoc transformation of stored
 embeddings and parameter editing or unlearning for intervention.
-\renewcommand{\thetable}{S17}\input{tables/tab_families_sub}
+\renewcommand{\thetable}{S14}\input{tables/tab_families_sub}
 % flush every table before the reference list: tables must not interleave with it
 \FloatBarrier
 \clearpage

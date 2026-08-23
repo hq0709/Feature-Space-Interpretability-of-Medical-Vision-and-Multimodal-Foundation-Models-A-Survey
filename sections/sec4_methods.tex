@@ -6,7 +6,7 @@ studies, tabulates the medical evidence and summarises its claims and limits; st
 in two families appear in both. Here ``medical'' means analysing a medical foundation model
 (\S\ref{sec:models}); cited general-domain studies supply methods or mechanisms used by medical work. Table~\ref{tab:families} summarises what each family
 shows and the tests that strengthen it, and Fig.~\ref{fig:families} draws the ladder of evidence from
-observation to concept-specific causal contribution that the formal view below defines. Core studies whose quality note records a defect that undermines the representation-level result (\S\ref{sec:findings}; the judgement is recorded per record in the supplement and counted per finding in supplementary Tables~S9--S11) are marked $^{\dagger}$ where cited singly in this section (a group citation is not marked), so that their results are read with that qualification.
+observation to concept-specific causal contribution that the formal view below defines. Core studies whose quality note records a defect that undermines the representation-level result (\S\ref{sec:findings}; the judgement is recorded per record in the supplement and counted per finding in supplementary Tables~S7--S9) are marked $^{\dagger}$ where cited singly in this section (a group citation is not marked), so that their results are read with that qualification.
 
 
 \textbf{Formal view.} In the notation of \S\ref{sec:prelim}, each family can be read as characterising a
@@ -54,14 +54,13 @@ Eq.~(\ref{eq:probe}) is the canonical decoding case; prompt-similarity scoring r
 intervention whose effect exceeds its uncertainty over inputs establishes it. \emph{Direction-selective sensitivity}
 means that the effect of $v_c$ exceeds that of matched controls (the screening diagnostic proposed in \S\ref{sec:future}). \emph{Concept-specific causal contribution} means that the effect is attributable to the model's representation of $c$ rather than to a merely correlated direction. Necessary but not sufficient conditions for it, beyond matched controls, are validation of $v_c$ through
 agreement among several independently constructed directions for the same concept, a
-correlated-concept hard-negative control, and an intervention that stays within the empirical activation distribution (the layer's range of activation norms and its principal subspace --- a proximity check, not a test of manifold membership).
+correlated-concept hard-negative control, and an intervention that stays within the empirical activation distribution (the layer's range of activation norms and its principal subspace, which is a proximity check rather than a test of manifold membership).
 Edits far from that distribution can change behaviour for reasons unrelated to $c$; together these checks falsify the simplest alternatives and establish stronger direction-selective sensitivity, consistent with rather than proof of a concept-specific contribution. Identifying it takes a mediation design with a defined exposure, mediator and outcome and the sequential-ignorability assumptions that identify a natural indirect effect~\cite{pearl2001direct,imai2010mediation}, a causal-concept effect estimated under an intervention on the concept itself~\cite{goyal2019cace}, or a causal-abstraction mapping between concept and representation~\cite{geiger2021causal,geiger2023causal}; no medical study in this corpus reaches any of the three. The gap between structure that a representation merely exhibits, structure that an intervention can move, and factors that are causally meaningful is the one Sch\"olkopf \emph{et al.}~\cite{scholkopf2021causal} draw for representation learning generally; the three inferential levels of this review are its measurement-side counterpart. Table~\ref{tab:families} (\S\ref{sec:comparison}) restates this view family by family.
 
 \begin{figure*}[!tbp]
 \centering
 \includegraphics[width=0.95\linewidth]{fig6.png}
-\caption{From what is encoded to what is used. Observational evidence --- structure, decodability,
-discovered features, localisation --- characterises $z_\lambda(x)$ and shows availability, not use. Use
+\caption{From what is encoded to what is used. Observational evidence (structure, decodability, discovered features, localisation) characterises $z_\lambda(x)$ and shows availability, not use. Use
 requires an intervention $z_\lambda\to\tilde z_\lambda$ with a pre-specified behavioural end-point
 $\Delta B$, and the interventional evidence then climbs three rungs of increasing inferential strength:
 \emph{causal sensitivity} ($\Delta B\neq 0$ on held-out inputs; the edited direction may still be

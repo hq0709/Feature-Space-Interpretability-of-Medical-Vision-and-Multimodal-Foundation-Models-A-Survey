@@ -13,8 +13,7 @@
 \textbf{Terminology.} \emph{Feature space}, \emph{representation} and \emph{internal representation}
 are synonyms here, and \emph{feature-space interpretability} means measuring or intervening on them.
 Beyond that the words \emph{interpretability} and \emph{explainability} are not distinguished, as in
-several surveys~\cite{wan2025survey}; the properties they are sometimes used to separate --- faithfulness,
-plausibility and intrinsic transparency --- are distinguished explicitly where they matter
+several surveys~\cite{wan2025survey}; the properties they are sometimes used to separate, faithfulness, plausibility and intrinsic transparency, are distinguished explicitly where they matter
 (\S\ref{sec:evaluation})~\cite{lipton2016mythos,rudin2018stop,rudin2021interpretable}.
 \emph{Post-hoc} methods analyse an unchanged trained model; \emph{intrinsic} designs make part of its
 computation interpretable by construction~\cite{rudin2018stop,rudin2021interpretable}.
@@ -64,10 +63,7 @@ Fig.~\ref{fig:overview} places the six loci on the three architectural templates
 encoder and the projected joint space, where zero-shot classification and retrieval take place; a
 multimodal LLM adds the connector output and a residual stream at each layer and token position,
 written into by attention heads and MLP blocks. The pre-readout representation is the final
-hidden state before the unembedding; its logits and tokens are end-points, not loci. A locus is
-therefore a coordinate $\lambda=(\text{stage},\ell,p,\text{pooling})$ --- the stage of the path, the
-layer, the token or patch position, and the pooling applied --- and the six labels are its stage-level
-bins, not disjoint sets of states: the pre-readout representation is the decoder residual stream at its
+hidden state before the unembedding; its logits and tokens are end-points, not loci. A locus is therefore a coordinate $\lambda=(\text{stage},\ell,p,\text{pooling})$, consisting of the stage of the path, the layer, the token or patch position and the pooling applied, and the six labels are its stage-level bins, not disjoint sets of states: the pre-readout representation is the decoder residual stream at its
 final layer and target position, and it is kept as a label because the studies that measure it treat it
 as a distinct object. Within the vision encoder the coding records the pooling coordinate as a
 \emph{sublocus} (pooled or class token, tile, patch, slide aggregate, volume pool), which

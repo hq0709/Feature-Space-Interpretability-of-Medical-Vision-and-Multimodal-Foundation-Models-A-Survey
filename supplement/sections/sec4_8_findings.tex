@@ -19,35 +19,23 @@ The rows are a curated evidence map~\cite{miakelye2016evidencemap}, not an outpu
 finding statements of at least one record assert, split where records assert strictly different claims
 (F1b, F1b$'$ and F1b$''$ separate held-out recovery, gradient association and labelled correspondence;
 F8a, F8a$'$ and F8a$''$ separate an instrumented failure, a disagreement and an implausibility), and the
-released selection function of supplement S7 assigns every record to its rows, and the labels F1a to F11
-index the rows in the released sheets. For every row, supplementary section S7c states what the studies
-report --- as ranges and, where the records disagree, with the disagreement stated rather than averaged
---- and the limit that most restricts it; the synthesis is descriptive, and no direction of effect is
+supplement S7 states the rule that assigns every record to its rows, and the labels F1a to F11 index the rows in the released corpus. For every row, supplementary section S7c states what the studies report, as ranges and, where the records disagree, with the disagreement stated rather than averaged, and the limit that most restricts it; the synthesis is descriptive, and no direction of effect is
 counted across records.
 
 Three conventions govern every number. A record is one study $\times$ family $\times$ evidence type
 $\times$ locus (\S\ref{sec:method}) and can bundle several concepts, models, datasets or end-points.
-Counts are taken on all \Nclaims{} records. \Fflagrec{} of them, from \Fdefstud{} studies, carry a
-recorded defect of one of five result-invalidating kinds --- resubstitution, leakage across split units,
-circular estimation, selection on the reported metric, single-case fitting (supplement S5e; the first two
-are the commonest leakage errors of machine-learning-based science~\cite{kapoor2023leakage}) --- and are
-marked wherever they appear rather than removed; setting them aside changes the corpus-breadth tier of
+Counts are taken on all \Nclaims{} records. \Fflagrec{} of them, from \Fdefstud{} studies, carry a recorded defect of one of five result-invalidating kinds, namely resubstitution, leakage across split units, circular estimation, selection on the reported metric and single-case fitting (supplement S5e; the first two are the commonest leakage errors of machine-learning-based science~\cite{kapoor2023leakage}), and are marked wherever they appear rather than removed; setting them aside changes the corpus-breadth tier of
 \Fscrtier{} rows (supplement S6). And the counts weight neither
-sample size nor effect size, so they estimate neither prevalence nor certainty; datasets and lineages
-recur --- CheXpert, MIMIC-CXR and TCGA run through F1a, F2, F2b and F3a alone. Fig.~\ref{fig:findings}
+sample size nor effect size, so they estimate neither prevalence nor certainty; datasets and lineages recur, CheXpert, MIMIC-CXR and TCGA running through F1a, F2, F2b and F3a alone. Fig.~\ref{fig:findings}
 gives, for every row, the validity tests its records report, as $k/n$; the full profiles, with the
-corpus-breadth tier of each row, are in supplementary Tables~S9--S11.
+corpus-breadth tier of each row, are in supplementary Tables~S7--S9.
 
-How well safeguarded a row's evidence is, is a separate question from how much of it there is, and no
-grade combines the two. Table~\ref{tab:vcov} pairs each of the \Vnclasses{} test classes with the
-statement it licenses beyond the base reading its design already supports --- held-out performance above
-the study-stated reference --- and with what it does not license. A test validates the measurement, not
+How well a row's evidence is safeguarded is a separate question from how much of it there is, and no
+grade combines the two. Table~\ref{tab:vcov} pairs each of the \Vnclasses{} test classes with the statement it licenses beyond the base reading its design already supports (held-out performance above the study-stated reference) and with what it does not license. A test validates the measurement, not
 the proposition, so two tested records are not a replication of the finding, and a share is comparable
 within a class, never across classes.
 
-Counted that way the corpus is thinner than any pooled figure suggests. Capacity and
-representation-attribution controls on probes are rare --- a permutation null in \Vperm{} of \Vpermn{}
-records, a randomly initialised encoder in \Vlrn{} of \Vlrnn{} --- and the randomized control task of
+On these counts the corpus is thinner than any pooled figure suggests. Capacity and representation-attribution controls on probes are rare, a permutation null appearing in \Vperm{} of \Vpermn{} records and a randomly initialised encoder in \Vlrn{} of \Vlrnn{}, and the randomized control task of
 Hewitt and Liang~\cite{hewitt2019designing} is reported in no record (its construction needs repeated
 input types that medical images seldom have, so no applicability denominator is given,
 \S\ref{sec:future}). \Vspca{}--\Vspc{} of \Vspcn{} targeted interventions report a matched control (the
@@ -55,10 +43,7 @@ strict all-outcome count and the any-outcome bound), and a comparison model appe
 \Vcompn{} geometry records. A test recorded on a record need not cover every outcome inside it: in
 \Voutall{} of the \Voutcred{} credited records it covers every outcome the statement
 asserts, in \Voutpartial{} a proper subset, and Table~\ref{tab:vcov} and Fig.~\ref{fig:findings} print
-the strict and the upper-bound count wherever the two differ. The sensitivity analyses of supplement S6
---- peer-reviewed records only, full texts only, the eligibility boundary, the benchmark tier, the
-replayable stratum, and one record per study, per last-author group and per model lineage --- are
-asserted at build time and change the corpus-breadth tier (\emph{broad}:
+the strict and the upper-bound count wherever the two differ. The sensitivity analyses of supplement S6 (peer-reviewed records only, full texts only, the eligibility boundary, the benchmark tier, and one record per study, per last-author group and per model lineage) change the corpus-breadth tier (\emph{broad}:
 at least five distinct first authors, two modalities and three peer-reviewed records; \emph{moderate}: at
 least two groups and either three groups or two modalities; \emph{narrow}: otherwise) of at most
 \Fsensrefn{} rows (the peer-reviewed restriction, in a corpus \Pctpreprint\% preprints) and of at most
@@ -104,19 +89,16 @@ F9b) are the only interventions with more than a handful of records.
 
 \emph{Acquisition and site structure.} Centre, scanner and device are recoverable from pathology and
 brain-MRI embeddings in every record of F2b and F3c and in all but one of F3a's, by 11, 16 and 3
-distinct first authors, and centre rivals or exceeds biological structure where both are measured. What removing it buys is
-operation-specific: among the records of F3b, affine harmonisation raises cross-scanner retrieval
+distinct first authors, and centre rivals or exceeds biological structure where both are measured. The benefit of removing it is operation-specific: among the records of F3b, affine harmonisation raises cross-scanner retrieval
 and centre removal raises a robustness index without improving downstream generalisation, and no record
 reports the downstream end-point after harmonisation on a held-out site.
 
 \emph{Meaning of discovered features.} Naming and validation are separate steps, and an automatically
-named feature can still be validated. What the \Nsaeval{} dictionaries with a reported semantic check
-share is the locus: all read encoder-side pooled, tile or patch representations, and none of the three
+named feature can still be validated. The \Nsaeval{} dictionaries with a reported semantic check share one property, the locus: all read encoder-side pooled, tile or patch representations, and none of the three
 trained on decoder residual streams is checked against clinicians or structured labels. The two sides
-also report different feature types, which we state as a hypothesis --- that residual-stream dictionaries
-of report generators surface report-level rather than image-level concepts --- confounded by model, layer,
+also report different feature types, which we state as a hypothesis, that residual-stream dictionaries of report generators surface report-level rather than image-level concepts, confounded by model, layer,
 dictionary design and naming, and testable by the matched design of \S\ref{sec:future}. Supplementary
-Table~S16 gives the naming and validation route of every dictionary in the corpus. Of the \Nsaeval{} with a
+Table~S13 gives the naming and validation route of every dictionary in the corpus. Of the \Nsaeval{} with a
 clinician- or label-based check, \Nsaemanual{} are named manually, \Nsaelabmatch{} by label matching,
 \Nsaellm{} by a language model and \Nsaetext{} by text matching, so an automatic naming route does not
 prevent validation and a manual one does not supply it. \Nsaestab{} of the \Nsae{} report any

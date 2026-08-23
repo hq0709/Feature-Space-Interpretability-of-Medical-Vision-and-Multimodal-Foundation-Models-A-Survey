@@ -18,7 +18,7 @@ units~\cite{salahuddin2025mammoclip,gong2025concepts,yousefzadeh2023lava,vankada
 Superposition and non-axis-aligned concepts limit unit
 analysis~\cite{elhage2022toy,park2023linear}, a concept is in general carried by a combination of
 filters rather than by one~\cite{fong2018net2vec}, and unsupervised factors are not identifiable without
-inductive bias or supervision~\cite{locatello2019challenging}, so medical work benchmarks dictionaries (Table~S16).
+inductive bias or supervision~\cite{locatello2019challenging}, so medical work benchmarks dictionaries (Table~S13).
 
 \subsubsection{Factorisation directions}
 
@@ -52,7 +52,7 @@ where $(W_d)_{:,j}$ is the $j$th column of the decoder, the direction of feature
 Equation~(\ref{eq:sae}) is the canonical $\ell_1$ objective; the reviewed medical dictionaries replace the
 penalty by a fixed active-code count (top-$k$, batch-top-$k$), a gated or jump activation or a matched-pair
 crosscoder loss, changing what is held fixed rather than the estimand. Unit norm removes scale degeneracy,
-and each $W_d$ column is a feature named from its highest-code inputs --- a naming route that need not identify what the feature does, since in vision the maximally activating patches of a dictionary feature can fail a causal test of the same feature~\cite{han2025causal}. Scaling~\cite{gao2024scaling}, better
+and each $W_d$ column is a feature named from its highest-code inputs, a naming route that need not identify what the feature does, since in vision the maximally activating patches of a dictionary feature can fail a causal test of the same feature~\cite{han2025causal}. Scaling~\cite{gao2024scaling}, better
 activations~\cite{rajamanoharan2024jumping} and open dictionaries~\cite{lieberum2024gemma} made SAEs
 portable; medical adoption has two waves. Dictionaries that decompose an image--text space jointly, rather than one tower at a time, are a general-domain development the medical corpus has not taken up: group-sparse autoencoders over paired embeddings~\cite{kaushik2026decomposing} and canonical correlation between sparse concept sets~\cite{gordon2026scocca} both address the cross-modal case that the modality gap of \S\ref{sec:geometry} makes hard, and no reviewed medical study uses either.
 
@@ -66,7 +66,7 @@ regions or an automated
 labeller~\cite{abdulaal2024an,le2024learning,kim2026dissecting,zhao2026compositional,redlich2026explainable,nakka2025mammosae,renzulli2025medsae},
 and they compress: ten features recover most downstream CT and MRI performance~\cite{wesp2026sparse} and
 a geometry-guided dictionary predicts Alzheimer's conversion~\cite{nerrise2026geosae}. Further variants
-appear in Table~S16~\cite{tang2025cxrlanic,sun2025prototypebased,dasdelen2025cytosae,yan2026a,huang2026classguided,chhetri2026when}.
+appear in Table~S13~\cite{tang2025cxrlanic,sun2025prototypebased,dasdelen2025cytosae,yan2026a,huang2026classguided,chhetri2026when}.
 The second wave trains on \emph{residual streams of medical multimodal LLMs}, recovering device,
 pathology and longitudinal-change features from a report generator~\cite{bouzid2025insights}, steering
 directions on three radiology models (\S\ref{sec:intervention})~\cite{nooralahzadeh2026universal} and a
@@ -81,7 +81,7 @@ general-vision dictionaries that steer or segment through the visual
 stream~\cite{joseph2025steering,pach2025sparse,stevens2025interpretable}, the designs \S\ref{sec:future}
 points to.
 
-Across the \Nsae{} core dictionary studies (supplementary Table~S16 lists every
+Across the \Nsae{} core dictionary studies (supplementary Table~S13 lists every
 dictionary study in the corpus), every axis that fixes a feature varies:
 token, layer, expansion and sparsity. Features are therefore not commensurable, and naming is as
 uneven.

@@ -7,13 +7,13 @@
 Study & Model(s) & Modality & Locus & Prov. & Ev. & Base. & Multi. & 2nd & Main finding \\
 \midrule
 \multicolumn{10}{@{}l}{\emph{Sparse autoencoders and dictionaries}} \\
-\cite{abdulaal2024an} (2024) \newline {\tiny\texttt{abdulaal2024an}~[SP]} & CXR ViT (SAE-Rad) & CXR & Enc & none & O & \xmark & \xmark & -- & ViT latents decomposed into features distilled into per-feature radiological descriptions used for report generation \\
-\cite{le2024learning} (2024) \newline {\tiny\texttt{le2024learning}~[SP]} & pathology FM (ViT) & pathology & Enc & none & O & \xmark & \xmark & -- & SAE features correspond to biologically relevant tissue structures \\
-\cite{bouzid2025insights} (2025) \newline {\tiny\texttt{bouzid2025insights}~[SP]} & MAIRA-2 & CXR & Dec & none & O & \xmark & \xmark & int & Matryoshka SAE recovers devices; pathology; longitudinal change; textual features \\
-\cite{dasdelen2025cytosae} (2025) \newline {\tiny\texttt{dasdelen2025cytosae}~[SP]} & haematology cell FM & cytology & Enc & none & O & \xmark & \pmark & -- & SAE on >40k single-cell images generalises to bone-marrow cytology \\
-\cite{nakka2025mammosae} (2025) \newline {\tiny\texttt{nakka2025mammosae}~[SP]} & Mammo-CLIP & mammography & Enc & none & O & \xmark & \xmark & -- & Patch-level SAE; top features align with radiologist regions; confounders exposed \\
-\cite{renzulli2025medsae} (2025) \newline {\tiny\texttt{renzulli2025medsae}~[SP]} & MedCLIP & CXR & Enc & none & O & \xmark & \xmark & -- & SAE on MedCLIP latents with automated neuron naming and interpretability metrics \\
-\cite{sun2025prototypebased} (2025) \newline {\tiny\texttt{sun2025prototypebased}~[SP]} & WSI patch encoder + MIL & pathology & Enc & none & O & \xmark & \xmark & -- & SAE concepts feed a prototype-based MIL predictor \\
+\cite{abdulaal2024an} (2024) \newline {\tiny\texttt{abdulaal2024an}} & CXR ViT (SAE-Rad) & CXR & Enc & none & O & \xmark & \xmark & -- & ViT latents decomposed into features distilled into per-feature radiological descriptions used for report generation \\
+\cite{le2024learning} (2024) \newline {\tiny\texttt{le2024learning}} & pathology FM (ViT) & pathology & Enc & none & O & \xmark & \xmark & -- & SAE features correspond to biologically relevant tissue structures \\
+\cite{bouzid2025insights} (2025) \newline {\tiny\texttt{bouzid2025insights}} & MAIRA-2 & CXR & Dec & none & O & \xmark & \xmark & int & Matryoshka SAE recovers devices; pathology; longitudinal change; textual features \\
+\cite{dasdelen2025cytosae} (2025) \newline {\tiny\texttt{dasdelen2025cytosae}} & haematology cell FM & cytology & Enc & none & O & \xmark & \pmark & -- & SAE on >40k single-cell images generalises to bone-marrow cytology \\
+\cite{nakka2025mammosae} (2025) \newline {\tiny\texttt{nakka2025mammosae}} & Mammo-CLIP & mammography & Enc & none & O & \xmark & \xmark & -- & Patch-level SAE; top features align with radiologist regions; confounders exposed \\
+\cite{renzulli2025medsae} (2025) \newline {\tiny\texttt{renzulli2025medsae}} & MedCLIP & CXR & Enc & none & O & \xmark & \xmark & -- & SAE on MedCLIP latents with automated neuron naming and interpretability metrics \\
+\cite{sun2025prototypebased} (2025) \newline {\tiny\texttt{sun2025prototypebased}} & WSI patch encoder + MIL & pathology & Enc & none & O & \xmark & \xmark & -- & SAE concepts feed a prototype-based MIL predictor \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -27,13 +27,13 @@ Study & Model(s) & Modality & Locus & Prov. & Ev. & Base. & Multi. & 2nd & Main 
 Study & Model(s) & Modality & Locus & Prov. & Ev. & Base. & Multi. & 2nd & Main finding \\
 \midrule
 \multicolumn{10}{@{}l}{\emph{Sparse autoencoders and dictionaries}} \\
-\cite{tang2025cxrlanic} (2025) \newline {\tiny\texttt{tang2025cxrlanic}~[SP]} & BiomedCLIP CXR classifier & CXR & Enc & none & O & \xmark & \xmark & -- & Ensemble of 100 transcoders discovers ~5,000 monosemantic features \\
-\cite{bisson2026unsupervised} (2026) \newline {\tiny\texttt{bisson2026unsupervised}~[SP]} & CONCH v1.5 & pathology & Enc & none & O & \xmark & \xmark & -- & SAE on CONCH v1.5 patch embeddings (2,545 sarcoma TMA cases): 768 concepts, 41 pathologist-curated; concept classifier 73.7\% vs 77.4\% raw ABMIL; curated-only 67.0\% \\
-\cite{kim2026dissecting} (2026) \newline {\tiny\texttt{kim2026dissecting}~[SP]} & pathology FMs (PICASSO) & pathology & Enc & none & O & \xmark & \pmark & -- & Concept atlas from SAE on >120M tiles; features can direct the model \\
-\cite{nerrise2026geosae} (2026) \newline {\tiny\texttt{nerrise2026geosae}~[SP]} & brain-MRI FMs & MRI & Enc & none & O & \xmark & \cmark & -- & Geometry-guided SAE avoids deep-layer collapse; MCI-to-AD prediction from 2\% of features transfers ADNI to AIBL \\
-\cite{nooralahzadeh2026universal} (2026) \newline {\tiny\texttt{nooralahzadeh2026universal}~[SP]} & RadVLM; LLaVA-Rad; CheXOne & CXR & Dec & none & O & \xmark & \cmark & int & Per-token TopK SAEs on late layers supply steering directions \\
-\cite{redlich2026explainable} (2026) \newline {\tiny\texttt{redlich2026explainable}~[SP]} & Virchow2 & pathology & Enc & none & O & \xmark & \pmark & -- & TopK-SAE on 21.2M Virchow2 tile embeddings maps MIL-selected prognostic tiles to patterns; neuropathologists sort them into 7 histomorphological groups; survival MIL AUC 0.67 \\
-\cite{sadanandan2026mechanistically} (2026) \newline {\tiny\texttt{sadanandan2026mechanistically}~[SP]} & MedGemma & CXR & Dec & none & O & \xmark & \xmark & int & Gemma Scope SAEs transfer to MedGemma activations (R2 ~0.997) \\
+\cite{tang2025cxrlanic} (2025) \newline {\tiny\texttt{tang2025cxrlanic}} & BiomedCLIP CXR classifier & CXR & Enc & none & O & \xmark & \xmark & -- & Ensemble of 100 transcoders discovers ~5,000 monosemantic features \\
+\cite{bisson2026unsupervised} (2026) \newline {\tiny\texttt{bisson2026unsupervised}} & CONCH v1.5 & pathology & Enc & none & O & \xmark & \xmark & -- & SAE on CONCH v1.5 patch embeddings (2,545 sarcoma TMA cases): 768 concepts, 41 pathologist-curated; concept classifier 73.7\% vs 77.4\% raw ABMIL; curated-only 67.0\% \\
+\cite{kim2026dissecting} (2026) \newline {\tiny\texttt{kim2026dissecting}} & pathology FMs (PICASSO) & pathology & Enc & none & O & \xmark & \pmark & -- & Concept atlas from SAE on >120M tiles; features can direct the model \\
+\cite{nerrise2026geosae} (2026) \newline {\tiny\texttt{nerrise2026geosae}} & brain-MRI FMs & MRI & Enc & none & O & \xmark & \cmark & -- & Geometry-guided SAE avoids deep-layer collapse; MCI-to-AD prediction from 2\% of features transfers ADNI to AIBL \\
+\cite{nooralahzadeh2026universal} (2026) \newline {\tiny\texttt{nooralahzadeh2026universal}} & RadVLM; LLaVA-Rad; CheXOne & CXR & Dec & none & O & \xmark & \cmark & int & Per-token TopK SAEs on late layers supply steering directions \\
+\cite{redlich2026explainable} (2026) \newline {\tiny\texttt{redlich2026explainable}} & Virchow2 & pathology & Enc & none & O & \xmark & \pmark & -- & TopK-SAE on 21.2M Virchow2 tile embeddings maps MIL-selected prognostic tiles to patterns; neuropathologists sort them into 7 histomorphological groups; survival MIL AUC 0.67 \\
+\cite{sadanandan2026mechanistically} (2026) \newline {\tiny\texttt{sadanandan2026mechanistically}} & MedGemma & CXR & Dec & none & O & \xmark & \xmark & int & Gemma Scope SAEs transfer to MedGemma activations (R2 ~0.997) \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -47,15 +47,15 @@ Study & Model(s) & Modality & Locus & Prov. & Ev. & Base. & Multi. & 2nd & Main 
 Study & Model(s) & Modality & Locus & Prov. & Ev. & Base. & Multi. & 2nd & Main finding \\
 \midrule
 \multicolumn{10}{@{}l}{\emph{Sparse autoencoders and dictionaries}} \\
-\cite{wesp2026sparse} (2026) \newline {\tiny\texttt{wesp2026sparse}~[SP]} & BiomedParse; DINOv3 & CT; MRI & Enc & none & O & \cmark & \pmark & -- & SAE on 909,873 slices: R2 up to 0.941; 10 features recover 87.8\% of downstream performance \\
-\cite{yan2026a} (2026) \newline {\tiny\texttt{yan2026a}~[SP]} & DermFM-Zero & derm & Enc & none & O & \xmark & \xmark & -- & Dermatology VLM FM with SAE-based analysis of representations \\
-\cite{zhao2026compositional} (2026) \newline {\tiny\texttt{zhao2026compositional}~[SP]} & UNI & pathology & Enc & none & O & \xmark & \pmark & -- & ReLU SAE on UNI patch embeddings: 361 active features, 356 (99\%) mapped by pathologists to 28 histopathology categories; validated against CyCIF; transfers to NSCLC/sarcoidosis \\
+\cite{wesp2026sparse} (2026) \newline {\tiny\texttt{wesp2026sparse}} & BiomedParse; DINOv3 & CT; MRI & Enc & none & O & \cmark & \pmark & -- & SAE on 909,873 slices: R2 up to 0.941; 10 features recover 87.8\% of downstream performance \\
+\cite{yan2026a} (2026) \newline {\tiny\texttt{yan2026a}} & DermFM-Zero & derm & Enc & none & O & \xmark & \xmark & -- & Dermatology VLM FM with SAE-based analysis of representations \\
+\cite{zhao2026compositional} (2026) \newline {\tiny\texttt{zhao2026compositional}} & UNI & pathology & Enc & none & O & \xmark & \pmark & -- & ReLU SAE on UNI patch embeddings: 361 active features, 356 (99\%) mapped by pathologists to 28 histopathology categories; validated against CyCIF; transfers to NSCLC/sarcoidosis \\
 \multicolumn{10}{@{}l}{\emph{Automated interpretation and validation}} \\
-\cite{haque2026medconcept} (2026) \newline {\tiny\texttt{haque2026medconcept}~[SP]} & Merlin (3D CT VLM) & CT & Enc & none & O & \xmark & \xmark & -- & Concepts discovered unsupervised and verified against reports by an independent medical LM \\
+\cite{haque2026medconcept} (2026) \newline {\tiny\texttt{haque2026medconcept}} & Merlin (3D CT VLM) & CT & Enc & none & O & \xmark & \xmark & -- & Concepts discovered unsupervised and verified against reports by an independent medical LM \\
 \multicolumn{10}{@{}l}{\emph{Factorisation directions}} \\
-\cite{gildenblat2024segmentation} (2024) \newline {\tiny\texttt{gildenblat2024segmentation}~[SP]} & UNI; Prov-GigaPath (vs ImageNet ResNet50) & pathology & Enc & none & O & \pmark & \cmark & -- & NMF of spatial FM features against TCGA k-means concept banks (F-SEG) yields unsupervised segmentation; pathology FMs consistently beat ResNet50, with the large gap on WSSS4LUAD \\
-\cite{howard2024generative} (2024) \newline {\tiny\texttt{howard2024generative}~[CP]} & CTransPath; RetCCL; UNI & pathology & Enc & none & O & \xmark & \pmark & dec & PCA of prediction gradients in CTransPath feature space, named by inverting components: one stain-colour direction carries 54-69\% of the tissue-source-site gradient (at most 20\% for any grade component); CycleGAN normalisation removes the dependence, Reinhard leaves 37\% \\
-\cite{song2024morphological} (2024) \newline {\tiny\texttt{song2024morphological}~[SP]} & pathology FM patch embeddings (PANTHER) & pathology & Enc & none & O & \cmark & \cmark & -- & Morphological prototypes summarise a slide's patch embeddings \\
+\cite{gildenblat2024segmentation} (2024) \newline {\tiny\texttt{gildenblat2024segmentation}} & UNI; Prov-GigaPath (vs ImageNet ResNet50) & pathology & Enc & none & O & \pmark & \cmark & -- & NMF of spatial FM features against TCGA k-means concept banks (F-SEG) yields unsupervised segmentation; pathology FMs consistently beat ResNet50, with the large gap on WSSS4LUAD \\
+\cite{howard2024generative} (2024) \newline {\tiny\texttt{howard2024generative}} & CTransPath; RetCCL; UNI & pathology & Enc & none & O & \xmark & \pmark & dec & PCA of prediction gradients in CTransPath feature space, named by inverting components: one stain-colour direction carries 54-69\% of the tissue-source-site gradient (at most 20\% for any grade component); CycleGAN normalisation removes the dependence, Reinhard leaves 37\% \\
+\cite{song2024morphological} (2024) \newline {\tiny\texttt{song2024morphological}} & pathology FM patch embeddings (PANTHER) & pathology & Enc & none & O & \cmark & \cmark & -- & Morphological prototypes summarise a slide's patch embeddings \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -69,11 +69,11 @@ Study & Model(s) & Modality & Locus & Prov. & Ev. & Base. & Multi. & 2nd & Main 
 Study & Model(s) & Modality & Locus & Prov. & Ev. & Base. & Multi. & 2nd & Main finding \\
 \midrule
 \multicolumn{10}{@{}l}{\emph{Factorisation directions}} \\
-\cite{hieromnimon2025analysis} (2025) \newline {\tiny\texttt{hieromnimon2025analysis}~[SP]} & UNI (+HistoXGAN for visualisation) & pathology & Enc & none & O & \xmark & \pmark & dec & PCA and k-means (k=3) on HPV-positive tile encodings give three overlapping subtypes, named border, inflamed and stroma after pathologist review of synthetic images \\
-\cite{fournier2026prognostic} (2026) \newline {\tiny\texttt{fournier2026prognostic}~[CP]} & UNI/T-UNI; UNI2-h; Virchow2; Prov-GigaPath; CTransPath & pathology & Enc & none & O & \xmark & \cmark & geo & Clustering invasive-tumour patch embeddings of a tumour-specialised UNI gives 5 HER2 and 6 TNBC archetypes recurring across patients with distinct transcriptomic pathways; splicing archetypes predict poorer survival (p<0.001) \\
+\cite{hieromnimon2025analysis} (2025) \newline {\tiny\texttt{hieromnimon2025analysis}} & UNI (+HistoXGAN for visualisation) & pathology & Enc & none & O & \xmark & \pmark & dec & PCA and k-means (k=3) on HPV-positive tile encodings give three overlapping subtypes, named border, inflamed and stroma after pathologist review of synthetic images \\
+\cite{fournier2026prognostic} (2026) \newline {\tiny\texttt{fournier2026prognostic}} & UNI/T-UNI; UNI2-h; Virchow2; Prov-GigaPath; CTransPath & pathology & Enc & none & O & \xmark & \cmark & geo & Clustering invasive-tumour patch embeddings of a tumour-specialised UNI gives 5 HER2 and 6 TNBC archetypes recurring across patients with distinct transcriptomic pathways; splicing archetypes predict poorer survival (p<0.001) \\
 \multicolumn{10}{@{}l}{\emph{Neuron-level analysis and dissection}} \\
-\cite{beyeler2024comparing} (2024) \newline {\tiny\texttt{beyeler2024comparing}~[CP]} & RETFound & retina & Enc & none & O & \xmark & \pmark & dec & Per-latent GWAS over RETFound's 1,024 latents: 63 genome-wide SNPs, h2<0.1 for 77.5\%, top hit HERC2/OCA2 p=3.8e-293; gene overlap with measured vascular features 12.4\% and the pathway sets disjoint (pigmentation vs vascular) \\
-\cite{gustav2026class} (2026) \newline {\tiny\texttt{gustav2026class}~[SP]} & UNI (frozen) + linear heads & pathology & Enc & none & O & \xmark & \pmark & -- & Activation atlases of UNI layer-14 CLS activations (NCT-CRC; TCGA): coherent tissue concepts, dispersed subclasses; pathologist agreement kappa 0.58 tissue, 0.82 coarse, 0.11 subclass \\
+\cite{beyeler2024comparing} (2024) \newline {\tiny\texttt{beyeler2024comparing}} & RETFound & retina & Enc & none & O & \xmark & \pmark & dec & Per-latent GWAS over RETFound's 1,024 latents: 63 genome-wide SNPs, h2<0.1 for 77.5\%, top hit HERC2/OCA2 p=3.8e-293; gene overlap with measured vascular features 12.4\% and the pathway sets disjoint (pigmentation vs vascular) \\
+\cite{gustav2026class} (2026) \newline {\tiny\texttt{gustav2026class}} & UNI (frozen) + linear heads & pathology & Enc & none & O & \xmark & \pmark & -- & Activation atlases of UNI layer-14 CLS activations (NCT-CRC; TCGA): coherent tissue concepts, dispersed subclasses; pathologist agreement kappa 0.58 tissue, 0.82 coarse, 0.11 subclass \\
 \bottomrule
 \end{tabular}
 \end{table*}

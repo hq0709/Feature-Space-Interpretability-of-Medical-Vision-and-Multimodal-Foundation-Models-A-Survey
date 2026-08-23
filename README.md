@@ -1,4 +1,4 @@
-# Feature-space interpretability of medical vision and multimodal foundation models: a survey (v7.36)
+# Feature-space interpretability of medical vision and multimodal foundation models: a survey (v7.39)
 
 Overleaf-linked copy of the article. Main document: `main.tex` (elsarticle, pdflatex + bibtex).
 Supplementary tables: `supplement/supplement_tables.tex`.
