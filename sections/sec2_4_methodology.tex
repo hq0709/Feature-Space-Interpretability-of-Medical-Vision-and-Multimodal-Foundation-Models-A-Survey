@@ -18,28 +18,18 @@ proposition: one record can span several concepts, models, datasets or end-point
 need not cover every outcome inside it, which \S\ref{sec:findings} bounds outcome by outcome. Record counts
 are counts of coded rows; the study and distinct-first-author counts beside them are the less aggregated
 quantities. Full texts were read for all but four core studies, which are coded from abstracts and counted
-per finding in supplementary Tables~S9--S11. Publication status is not an eligibility criterion: preprints,
+per finding in supplementary Tables~S7--S9. Publication status is not an eligibility criterion: preprints,
 theses and repository deposits with a retrievable full text are coded like refereed papers, counted as
 preprints, and separated in the refereed-only sensitivity of \S\ref{sec:findings}. Four parameter-editing
 and unlearning benchmarks that report only output-level reliability, locality and generality are contextual,
 since they identify no representation-level mediator. Frozen-feature benchmarks form a second eligibility
 stratum, admitted only when they report a representation-level property beyond task accuracy (supplement
-S2); accuracy leaderboards are contextual. The initial searches recorded no exclusion reason per record, one of the two shortcomings that the repeated search under a fixed protocol (Fig.~\ref{fig:flow}) was designed to remove.
+S2); accuracy leaderboards are contextual.
 
-\begin{figure*}[!t]
-\centering
-\includegraphics[width=\linewidth]{fig8_flow.pdf}
-\caption{How the corpus was assembled. Each stage gives what it searched and how many core studies it added; the last two added none. The analysis set is the whole corpus; the lower boxes record how much of it the documented searches retrieve. Per-stage counts and screening decisions are in supplement S1.}
-\label{fig:flow}
-\end{figure*}
 
-\textbf{Search strategy.} The literature was searched between 15 and 18 August 2026 (publication cutoff 16 August) in the stages of Fig.~\ref{fig:flow}. Semantic Scholar, OpenAlex and arXiv were searched first with family-specific query terms, and forward citation tracking from method papers added further candidates. Five rounds of citation chaining (backward and forward snowballing~\cite{wohlin2014guidelines}), seeded from the model papers of Table~\ref{tab:models} and from the studies already included, examined \chainFetchedAll{} records, screened \chainScreenedAll{} and added \chainStudiesAdded{} core studies (\Nstagechain{} after the later benchmark-tier recode). Because the query strings of several initial searches and the reasons for exclusion had not been kept, the searches were repeated under a fixed protocol whose query strings are listed in supplement S1g, which added \frozenCoreCoded{} more studies. A final search of MEDLINE/PubMed, specified before it was run on 21 August 2026, retrieved \pmRecall{} of the \pmCoreTotal{} core studies (MEDLINE indexes few of the preprints) and added none (supplement S1j). Supplement S1 gives the per-stage counts and the decision and reason for every screened record.
-
-\textbf{Coverage.} The analysis set is the whole corpus, \Ncore{} studies and \Nclaims{} records, and every count in this article refers to it. \Nrepstudies{} of the \Ncore{} studies are retrieved by the documented searches of supplement S1, \Nfrozenret{} by the fixed-protocol search and \Nchainrec{} more by citation chaining from the \Nmodelseeds{} model papers of Table~\ref{tab:models} or from studies so retrieved; the remaining \Nlegacystudies{} were identified only in the initial exploratory searches. Restricting the analysis to those \Nrepstudies{} studies drops a record from \Frepdrop{} of the \Fnrows{} evidence statements and changes \Freptierw{} corpus-breadth tier (supplement S6). Retrieval by the documented searches describes the provenance of the assembled corpus, not recall against the eligible literature: the fixed-protocol search does not return \Nfrozenmissed{} studies already known to us, of which \Fnokw{} contain no term of any of the eight family query groups, being benchmarks and audits eligible for the property they report rather than for a method they name, and \Fcapped{} match a group but fall outside the retrieval cap (supplement S1k), and nothing here estimates how many eligible studies no search reached.
-
-Screening retained \Nretained{} candidate references (study flow in S0). The article cites \Ncited{}:
-\Ncore{} core studies, coded and tabulated, and \Ncontext{} contextual references. \Ncitedcorpus{} of
-those citations come from the screened set; the remaining \Ncitedhand{} are entries added by hand (regulatory documents and technical reports that no database search returns), so \Ncited{} is not a subset of \Nretained{}. Of the core studies,
+\textbf{Corpus.} The corpus holds \Ncore{} core studies and \Nclaims{} records, and every count in this
+article refers to it. The article cites \Ncited{} references: the \Ncore{} core studies, coded and
+tabulated, and \Ncontext{} contextual references. Of the core studies,
 \Nrecent{} (\Pctrecent\%) appeared in 2025--2026, and 2026 is a partial year (Fig.~\ref{fig:corpus}a).
 
 \begin{figure*}[!tbp]
@@ -64,21 +54,14 @@ chest radiography supply nearly two thirds of the records, and the few intervent
 the decoder residual stream and post-hoc operations on encoder or joint-space embeddings. Only one record
 repeats a probe at successive loci~\cite{zhu2026lost} and one is taken at the text
 encoder~\cite{tayebiarasteh2026self}; none is taken at the connector output alone or at the pre-readout
-representation, a sparseness taken up in \S\ref{sec:future}. This is a survey with a protocol-bounded
-evidence map of an assembled corpus: a scoping review in the sense of Arksey and
-O'Malley~\cite{arksey2005scoping,levac2010scoping,peters2020scoping} with a descriptive synthesis in the
-sense of SWiM~\cite{campbell2020swim}, not a systematic review designed or reported to PRISMA, PRISMA-S or
-PRISMA-ScR~\cite{page2021prisma,rethlefsen2021prismas,tricco2018prismascr}, and its search strategy has not
-been peer reviewed in the sense of PRESS~\cite{mcgowan2016press}. No effect is pooled and no
+representation, a sparseness taken up in \S\ref{sec:future}. The synthesis is descriptive, in the sense of SWiM~\cite{campbell2020swim}: no effect is pooled and no
 certainty is graded, so every count below is a description of this corpus, not an estimate of the
-literature, and an empty cell in Fig.~\ref{fig:corpus}b means ``no study found under this protocol'', not
-that none exists. Four limitations bound it. Screening and coding were performed in a single pass by one coder (see the declaration at the end), so no inter-coder reliability is reported. IEEE Xplore and the ACM Digital Library were reached only through the indices above, MEDLINE
-having since been searched directly (S1j). No formal risk-of-bias appraisal was applied beyond the
+literature, and an empty cell in Fig.~\ref{fig:corpus}b means that no study was found, not that none
+exists. Two limitations bound it. No formal risk-of-bias appraisal was applied beyond the
 evidence-type, validity-test and quality coding, neither at the review level (ROBIS~\cite{whiting2016robis})
 nor at the study level (PROBAST and PROBAST+AI~\cite{wolff2019probast,moons2025probast}, TRIPOD+AI~\cite{collins2024tripod},
 QUADAS-2~\cite{whiting2011quadas}): adapting either instrument to representation-level claims would be a
 new, unvalidated instrument applied by one coder, so what is reported instead is the domain-by-domain audit
-of Fig.~\ref{fig:findings}, and the released per-record fields let a reader apply a PROBAST+AI domain
-judgement to the sheet. And the experimental-use section (\S\ref{sec:applications}) and the maturity and
+of Fig.~\ref{fig:findings}, and the released per-record fields let a reader apply a PROBAST+AI domain judgement to each record. And the experimental-use section (\S\ref{sec:applications}) and the maturity and
 failure-mode cells of Table~\ref{tab:famreq} are the authors' reading rather than coded fields.
 
