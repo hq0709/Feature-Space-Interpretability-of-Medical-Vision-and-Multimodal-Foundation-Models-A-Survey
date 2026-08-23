@@ -1,45 +1,46 @@
-\textbf{Benchmarks that evaluate representations.} A few benchmarks score frozen medical features rather than fine-tuned
-performance. Pathology benchmarks compare 19 models on
-13 external cohorts~\cite{neidlinger2025benchmark} and 23 models on 16 tile-level datasets with their feature
-spaces~\cite{marza2025thunder}; others test clinical end-points~\cite{campanella2024clinical},
-standardise slide processing~\cite{zhang2025pathobench}, probe spatial
-transcriptomics~\cite{jaume2024hest} or weigh biology against centre
-confounders~\cite{dejong2025current}. In radiology, BenchX covers nine
-chest-radiograph datasets~\cite{zhou2024benchx}; frozen-feature comparisons cover medical and general
-chest-radiograph encoders~\cite{li2025featurequality}, ten three-dimensional CT encoders on three
-thoracic cohorts~\cite{chevli2026frozenct} and general self-supervised features in more than 200
-radiology settings~\cite{baharoon2023dinov2}. Representation benchmarks require controls: an EEG
-benchmark uses label permutation, scrambled-label fine-tuning and random-init
-encoders~\cite{zare2026eeg}, an ECG benchmark matches dictionary capacity across depths, widths and
+\textbf{Benchmarks that evaluate representations.} A few benchmarks score frozen medical features rather
+than fine-tuned performance. Pathology benchmarks compare 19 models on 13 external
+cohorts~\cite{neidlinger2025benchmark} and 23 models on 16 tile-level datasets together with their feature
+spaces~\cite{marza2025thunder}; others test clinical end-points~\cite{campanella2024clinical}, standardise
+slide processing~\cite{zhang2025pathobench}, probe spatial transcriptomics~\cite{jaume2024hest} or weigh
+biology against centre confounders~\cite{dejong2025current}. In radiology, BenchX covers nine
+chest-radiograph datasets~\cite{zhou2024benchx}, and frozen-feature comparisons cover medical and general
+chest-radiograph encoders~\cite{li2025featurequality}, ten three-dimensional CT encoders on three thoracic
+cohorts~\cite{chevli2026frozenct} and general self-supervised features in more than 200 radiology
+settings~\cite{baharoon2023dinov2}. A representation benchmark needs controls. An EEG benchmark uses
+label permutation, scrambled-label fine-tuning and randomly initialised encoders~\cite{zare2026eeg}, and
+an ECG benchmark matches dictionary capacity across depths, widths and
 seeds~\cite{duan2026ecginterpbench}; both lie outside medical imaging, where such standards are mostly
 absent.
 
-\textbf{Faithfulness protocols.} Model- and data-randomisation checks~\cite{adebayo2018sanity} became a
-four-criterion radiology protocol that eight saliency methods failed~\cite{arun2021trustworthiness}. A
-radiologist-segmentation benchmark~\cite{saporta2022benchmarking} and revised
-criteria~\cite{zhang2023revisiting} followed. Medical vision--language audits find attention unfaithful
-under occlusion~\cite{sadanandan2026attention}, low grounding accuracy~\cite{chen2026grounding} and weak
-reasoning faithfulness under perturbation~\cite{moll2025faithfulness}. A test-bed builds faithful and unfaithful pairs by model editing to test the metrics
-themselves~\cite{zaman2025causal}.
-
-\textbf{Feature and intervention evaluation.} Sparse-autoencoder evaluation includes SAEBench and its re-seeding audit, SynthSAEBench's synthetic ground truth, cross-seed feature sharing and intervention-scored interpretation~\cite{karvonen2025saebench,chanin2026are,chanin2026synthsaebench,paulo2025sparse,paulo2024automatically} (\S\ref{sec:discovery}). A unified steering framework covers multiple-choice and open-ended
-settings~\cite{im2025unifiedsteering}; reliability, non-identifiability and safety studies provide
-negative controls (\S\ref{sec:intervention})~\cite{tan2024steeringreliability,venkatesh2026nonident,korznikov2025the}.
+\textbf{Faithfulness, feature and intervention protocols.} Model- and data-randomisation
+checks~\cite{adebayo2018sanity} became a four-criterion radiology protocol that eight saliency methods
+failed~\cite{arun2021trustworthiness}, followed by a radiologist-segmentation
+benchmark~\cite{saporta2022benchmarking} and revised criteria~\cite{zhang2023revisiting}. Medical
+vision--language audits find attention unfaithful under occlusion~\cite{sadanandan2026attention}, low
+grounding accuracy~\cite{chen2026grounding} and weak reasoning faithfulness under
+perturbation~\cite{moll2025faithfulness}; a test-bed builds faithful and unfaithful pairs by model
+editing to test the metrics themselves~\cite{zaman2025causal}. Sparse-autoencoder evaluation has
+SAEBench and its re-seeding audit, SynthSAEBench's synthetic ground truth, cross-seed feature sharing and
+intervention-scored
+interpretation~\cite{karvonen2025saebench,chanin2026are,chanin2026synthsaebench,paulo2025sparse,paulo2024automatically}
+(\S\ref{sec:discovery}); steering has a unified framework~\cite{im2025unifiedsteering} and the
+reliability, non-identifiability and safety studies that supply its negative
+controls~\cite{tan2024steeringreliability,venkatesh2026nonident,korznikov2025the}.
 
 \textbf{Tooling.} The designs of \S\ref{sec:methods} run on open software: sparse dictionaries with the
-SAELens and dictionary-learning libraries, patching and
-steering of open multimodal LLMs with TransformerLens, nnsight or pyvene, and closed-form concept erasure
-with a reference LEACE implementation~\cite{belrose2023leace}. Released medical
+SAELens and dictionary-learning libraries, patching and steering of open multimodal LLMs with
+TransformerLens, nnsight or pyvene, and closed-form concept erasure with a reference LEACE
+implementation~\cite{belrose2023leace}. Released medical
 dictionaries~\cite{abdulaal2024an,nooralahzadeh2026universal} and the checkpoints of
-Table~\ref{tab:models} supply the objects. The four encoders with embeddings but not weights
-(\S\ref{sec:models}) expose no intermediate activations, admitting decoding and geometry but not tracing
-or within-run intervention.
+Table~\ref{tab:models} supply the objects. The four encoders that expose embeddings but not weights
+(\S\ref{sec:models}) admit decoding and geometry but not tracing or intervention inside the forward pass.
 
-\textbf{Human evaluation and reporting standards.} A three-phase study found dermatologist-aligned
-explanations increased trust and confidence~\cite{chanda2023dermatologist}; systematic reviews find few eligible studies, mixed effects
-and high risk of bias~\cite{rosenbacke2024how,uddin2026which,gambetti2025a}, supporting no claim of
-clinical benefit. Guidelines cover clinical XAI
+\textbf{Human evaluation and reporting standards.} A three-phase study found that dermatologist-aligned
+explanations increased trust and confidence~\cite{chanda2023dermatologist}. Systematic reviews find few
+eligible studies, mixed effects and a high risk of bias~\cite{rosenbacke2024how,uddin2026which,gambetti2025a},
+which supports no claim of clinical benefit. Guidelines cover clinical XAI
 evaluation~\cite{jin2022guidelines,chen2021humancentered}, explanation
 properties~\cite{nauta2023interpreting}, user-centred studies~\cite{rong2022userstudies,donosoguzman2025a}
-and mechanistic-interpretability audits~\cite{lan2026auditable}, none addressing representation-level
+and mechanistic-interpretability audits~\cite{lan2026auditable}; none addresses representation-level
 claims about medical foundation models.

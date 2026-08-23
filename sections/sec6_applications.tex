@@ -25,43 +25,41 @@ Regulatory and clinician-facing use & \cite{muralidharan2024a}, \cite{mehta2025e
 \end{tabular}
 \end{table*}
 
-Table~\ref{tab:applications} maps the uses the core studies state to the family and locus they rest on, with
-the maturity we read from them: \emph{retrospective}, shown on a medical foundation model with a task-level
-end-point; \emph{emerging}, shown on general models or as a proof of concept in medicine; \emph{proposed},
-argued but not demonstrated. The uses come from the studies' own stated applications and the work they cite. In this reading, detection has transferred more consistently than mitigation. Representation-level evidence supports shortcut and
-bias auditing, through proxy groups for missing protected attributes, concept ranking and head-level
+Table~\ref{tab:applications} maps the uses that the core studies state to the family they rest on, with
+the maturity we read from them: \emph{retrospective}, shown on a medical foundation model with a
+task-level end-point; \emph{emerging}, shown on general models or as a proof of concept in medicine;
+\emph{proposed}, argued but not demonstrated. Detection has transferred more consistently than
+mitigation. Representation-level evidence supports shortcut and bias auditing, through proxy groups for
+missing protected attributes, concept ranking and head-level
 localisation~\cite{queiroz2024using,bahre2025underdiagnosis,bhattacharyya2025conformal,yang2024demographic,brown2022detecting,yang2024the,janizek2026visual,yasser2026locating};
-grounding and hallucination diagnosis from internal states, by finding-level risk scores, token-time probes
-and decoding-time feature
+grounding and hallucination diagnosis from internal states, by finding-level risk scores, token-time
+probes and decoding-time feature
 suppression~\cite{hardy2024rextrust,yu2026realtime,nooralahzadeh2026universal,li2026suppressing,phukan2024beyond,li2025the,kossen2024semantic};
 shift detection and deployment monitoring, since embeddings encode site, scanner and acquisition
 (\S\ref{sec:geometry},
 \S\ref{sec:decoding})~\cite{dejong2025current,mishra2025comparing,donle2026featmap,disalvo2026mars,poceviciute2024outofdistribution,schulthess2025anomaly,das2026proton};
-privacy, memorisation and data auditing, where image--report correspondence in joint spaces creates
+privacy, memorisation and data auditing, where image--report correspondence in a joint space creates a
 re-linkage
 risk~\cite{tayebiarasteh2026crossmodal,tonekaboni2025an,deo2026a,hardan2025forgetmi,nasirigerdeh2024machine,zhang2026auditing,xu2026a};
 and cheap probes for model selection, training monitoring and data
 curation~\cite{liang2026cheap,chen2025revisiting}.
 
-Mitigation and behaviour control remain emerging and model-specific. Attribute removal, feature separation
-during adaptation, spurious-behaviour revision and latent steering are each demonstrated
-once~\cite{zheng2025towards,huang2025knowledgeguided,pahde2025ensuring,ahsan2025can}, as are causal-tracing
-guided fine-tuning, adapter guidance and inference-time activation
-addition~\cite{abbasi2026layerspecific,sadanandan2026mechanistically,farina2026translating}; against them,
-decodable concepts may be uncontrollable~\cite{basu2026interpretability} and steering may compromise
-safety~\cite{korznikov2025the,li2026analysing} (\S\ref{sec:intervention}).
+Mitigation and behaviour control remain emerging and model-specific. Attribute removal, feature
+separation during adaptation, spurious-behaviour revision and latent steering are each demonstrated
+once~\cite{zheng2025towards,huang2025knowledgeguided,pahde2025ensuring,ahsan2025can}, as are
+causal-tracing guided fine-tuning, adapter guidance and inference-time activation
+addition~\cite{abbasi2026layerspecific,sadanandan2026mechanistically,farina2026translating}. Against
+them, decodable concepts may be uncontrollable~\cite{basu2026interpretability} and steering may
+compromise safety~\cite{korznikov2025the,li2026analysing} (\S\ref{sec:intervention}).
 
-Prospective evidence is missing, of the kind DECIDE-AI specifies for the early-stage clinical
-evaluation of decision-support systems~\cite{vasey2022decide} and FUTURE-AI for deployable medical
-AI~\cite{lekadir2023future}: no study reviewed here reaches that stage.
-Shortcut audits must show that removing an encoded attribute changes a clinical error rate, not a fairness
-metric; hallucination detection needs cross-model
-transfer; debugging needs the controls of \S\ref{sec:intervention}; monitoring needs signals calibrated
-to action thresholds; and privacy auditing needs a standard re-identification protocol.
-Regulatory and clinician-facing use is not yet an application: approved-device audits find sparse
-demographic and performance transparency~\cite{muralidharan2024a,mehta2025evaluating}, regulators
-identify concepts for adaptive oversight~\cite{warraich2024fda}, reader studies remain rare
-(\S\ref{sec:eval-bench}), and no evidence chain links a representation-level measurement to a clinical
-decision (\S\ref{sec:future}).
-
-
+Prospective evidence is missing. No study reviewed here reaches the early-stage clinical evaluation that
+DECIDE-AI specifies for decision-support systems~\cite{vasey2022decide} or the deployment criteria of
+FUTURE-AI~\cite{lekadir2023future}. A shortcut audit would have to show that removing an encoded
+attribute changes a clinical error rate rather than a fairness metric; hallucination detection needs
+cross-model transfer; debugging needs the controls of \S\ref{sec:intervention}; monitoring needs signals
+calibrated to action thresholds; and privacy auditing needs a standard re-identification protocol.
+Regulatory and clinician-facing use is not yet an application. Audits of approved devices find sparse
+demographic and performance transparency~\cite{muralidharan2024a,mehta2025evaluating}, regulators have
+identified concepts for adaptive oversight~\cite{warraich2024fda}, reader studies remain rare
+(\S\ref{sec:eval-bench}), and no evidence chain yet links a representation-level measurement to a
+clinical decision (\S\ref{sec:future}).

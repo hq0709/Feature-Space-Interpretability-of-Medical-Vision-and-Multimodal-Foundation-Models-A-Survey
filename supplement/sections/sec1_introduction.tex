@@ -1,70 +1,71 @@
 \section{Introduction}
 \label{sec:intro}
 
-Foundation models pre-trained at scale on medical images or image--text pairs are an increasingly common
+Foundation models pre-trained at scale on medical images or image--text pairs have become a common
 starting point for medical image analysis. Self-supervised encoders for
-radiology~\cite{perezgarcia2024scalable}, computational pathology~\cite{chen2024generalpurpose,xu2024wholeslide,vorontsov2024model} and ophthalmology~\cite{zhou2023model}, most of them trained by the DINOv2 recipe~\cite{oquab2024dinov2} that also supplies the general comparator in most of the studies reviewed here, are reused frozen across dozens of tasks;
-dual-encoder vision--language models (VLMs) built on the CLIP recipe~\cite{radford2021learning}, such as
-BiomedCLIP~\cite{zhang2023biomedclip} and CONCH~\cite{lu2024visuallanguage}, support zero-shot
-classification and retrieval; multimodal large
+radiology~\cite{perezgarcia2024scalable}, computational
+pathology~\cite{chen2024generalpurpose,xu2024wholeslide,vorontsov2024model} and
+ophthalmology~\cite{zhou2023model}, most of them trained by the DINOv2 recipe~\cite{oquab2024dinov2}, are
+reused frozen across dozens of tasks. Dual-encoder vision--language models (VLMs) built on the CLIP
+recipe~\cite{radford2021learning}, such as BiomedCLIP~\cite{zhang2023biomedclip} and
+CONCH~\cite{lu2024visuallanguage}, support zero-shot classification and retrieval. Multimodal large
 language models (MLLMs) such as LLaVA-Med~\cite{li2023llavamed} and MedGemma~\cite{sellergren2025medgemma}
-answer image questions; and MAIRA-2~\cite{bannur2024maira2} drafts reports
-(Table~\ref{tab:models}, Fig.~\ref{fig:overview}). Reuse
-across institutions, modalities and tasks is what makes them foundation models~\cite{bommasani2021opportunities}.
+answer questions about images, and MAIRA-2~\cite{bannur2024maira2} drafts reports
+(Table~\ref{tab:models}, Fig.~\ref{fig:overview}). Reuse across institutions, modalities and tasks is what
+makes them foundation models~\cite{bommasani2021opportunities}.
 
-This reuse makes \emph{what internal representations encode} consequential. Self-reported race decodable
-from medical images~\cite{banerjee2021ai} and from a frozen foundation-model encoder~\cite{zheng2024demographic}
-is available, in principle, to any downstream model that reads those features; a chest-radiograph vision--language system can answer accurately
-without the image~\cite{lotfinia2026vision}; and a clinically named concept present in a
-representation need not be used~\cite{basu2026interpretability}. Regulatory guidance asks device
-developers to declare bias sources and system dependencies~\cite{fda2025aiguidance,euaiact2024}.
-Input-pixel attribution, dominant in medical explainable AI, does not characterise feature content and fails
-faithfulness criteria in medical-image protocols~\cite{arun2021trustworthiness,sadanandan2026attention},
-whereas feature-space interpretability targets the representations themselves.
+Because the same representation is reused so widely, what it encodes matters on its own. Self-reported race
+is decodable from medical images~\cite{banerjee2021ai} and from a frozen foundation-model
+encoder~\cite{zheng2024demographic}, and is therefore available to any downstream model that reads those
+features. A chest-radiograph vision--language system can answer accurately without the
+image~\cite{lotfinia2026vision}. A clinically named concept that is present in a representation need not
+be used~\cite{basu2026interpretability}. Regulators now ask developers to declare the sources of bias and
+the dependencies of their systems~\cite{fda2025aiguidance,euaiact2024}. Input-pixel attribution, the
+dominant form of explanation in medical imaging, does not describe what the features contain, and it fails
+faithfulness tests in medical-image protocols~\cite{arun2021trustworthiness,sadanandan2026attention}.
+Feature-space interpretability addresses the representations themselves.
 
-Linear probing~\cite{alain2016understanding}, concept activation vectors~\cite{kim2018interpretability},
-network dissection~\cite{bau2017network} and representational similarity analysis~\cite{kriegeskorte2008representational}
-came from convolutional networks and language models and were applied to medical classifiers~\cite{lucieri2020interpretability}.
-Since 2023, work has expanded to medical image--text embedding geometry~\cite{restrepo2026cone},
-demographic probing of foundation-model embeddings~\cite{zheng2024demographic}, sparse autoencoders
-for pathology, radiology and mammography encoders and medical-MLLM residual streams~\cite{bouzid2025insights,nakka2025mammosae,wesp2026sparse},
-and steering, editing and patching of medical multimodal models~\cite{nooralahzadeh2026universal,zhu2026evaluating,sadanandan2026mechanistically},
-most of it from 2025 onwards (Fig.~\ref{fig:corpus}a) and spread across machine-learning, medical-imaging and clinical
-venues.
+The methods are not new. Linear probing~\cite{alain2016understanding}, concept activation
+vectors~\cite{kim2018interpretability}, network dissection~\cite{bau2017network} and representational
+similarity analysis~\cite{kriegeskorte2008representational} were developed for convolutional networks and
+language models, and were applied early to medical classifiers~\cite{lucieri2020interpretability}. What is
+new is their application to medical foundation models: embedding geometry~\cite{restrepo2026cone},
+demographic probing~\cite{zheng2024demographic}, sparse autoencoders for medical encoders and
+MLLMs~\cite{bouzid2025insights,nakka2025mammosae,wesp2026sparse}, and steering, editing and patching of
+medical multimodal models~\cite{nooralahzadeh2026universal,zhu2026evaluating,sadanandan2026mechanistically}.
+Most of this work dates from 2025 onwards (Fig.~\ref{fig:corpus}a) and is spread across machine-learning,
+medical-imaging and clinical venues. Existing surveys cover medical explainable AI, medical foundation
+models or general interpretability separately; none reviews representation-level evidence across medical
+foundation models (Table~\ref{tab:surveys}).
 
-Existing surveys cover medical XAI, medical foundation models, or general interpretability separately; none
-reviews representation-level evidence across medical foundation models (Table~\ref{tab:surveys}).
+\textbf{Scope.} This survey covers measurements of, and interventions on, the internal representations of
+medical vision, vision--language and multimodal foundation models, including their language decoders, and
+the general-domain methods they build on. Clinical language models, foundation models for electronic health
+records (EHR), physiological signals and omics, and generative medical image models fall outside the core
+scope and appear only as marked anchors or instruments. Input attribution enters only when it tests a
+representation-level claim (\S\ref{sec:method}). Terminology follows \S\ref{sec:prelim}.
 
-\textbf{Scope.} This survey covers measurements of and interventions on internal representations in
-medical vision, vision--language and multimodal foundation models, including their language
-decoders, and the general-domain methods they build on. Clinical language models, foundation models for
-electronic health records (EHR), physiological signals and omics, and generative medical image models
-fall outside the core scope and enter only as marked anchors or instruments; input attribution enters
-only when it tests a representation-level claim (\S\ref{sec:method}). Terminology follows \S\ref{sec:prelim}.
-
-\textbf{Contributions.} The contributions are fourfold. \textit{First}, a taxonomy of feature-space
-interpretability methods by methodology, locus and concept provenance, with boundary-case rules
-(\S\ref{sec:taxonomy}). It is applied through record-level coding of \Ncore{} core studies, one record per
-study, family, evidence type and locus (\S\ref{sec:method}), \Npreprint{} preprints among them. \textit{Second}, a family-by-family
-review of what each family can and cannot establish, and of their requirements, maturity and combinations
-(\S\ref{sec:methods}). \textit{Third}, consolidated datasets, concept resources, benchmarks and protocols,
-with an assessment of evidence comparability and study quality (\S\ref{sec:evaluation}); a coded evidence map of that corpus, \Fnrows{} cross-family statements in three classes, each
-read against \Vnclasses{} validity-test classes
-that state what a test licenses beyond the design's base reading and what it does not
-(\S\ref{sec:findings}, Table~\ref{tab:vcov}); and a review of experimental uses
-(\S\ref{sec:applications}). \textit{Fourth}, open problems and what each solution must demonstrate
-(\S\ref{sec:future}).
+\textbf{Contributions.} The survey makes four contributions. \textit{First}, a taxonomy of feature-space
+interpretability methods by family, locus and concept provenance, with rules for the boundary cases
+(\S\ref{sec:taxonomy}), applied to \Ncore{} core studies, \Npreprint{} preprints among them, coded at
+the level of individual results (\S\ref{sec:method}). \textit{Second}, a family-by-family review of what each family can and cannot
+establish, what it costs, and how the families combine (\S\ref{sec:methods}). \textit{Third}, a
+consolidated account of datasets, concept resources, benchmarks and protocols, with an assessment of how
+comparable the evidence is (\S\ref{sec:evaluation}), and an evidence map of \Fnrows{} statements, each
+read against the controls that the studies behind it report (\S\ref{sec:findings}), together with a review
+of the experimental uses of these methods (\S\ref{sec:applications}). \textit{Fourth}, the open problems,
+and what a solution to each would have to show (\S\ref{sec:future}).
 
 \begin{figure*}[!tbp]
 \centering
 \includegraphics[width=0.98\linewidth]{fig1.png}
 \caption{Overview. The three architectural templates of \S\ref{sec:models} share one computational path:
 (A) a unimodal vision encoder feeding a downstream probe or classifier; (B) a dual encoder whose image
-and text encoders meet in a projected joint space used for retrieval and zero-shot classification; (C) a
-multimodal language model, in which a connector $\pi$ turns encoder features into visual tokens that
-join the prompt's text tokens in the decoder's residual stream and end in the pre-readout state before
-the logits, answer or report. The labels along the path are the six loci of \S\ref{sec:loci}. The lower
-strip names the five method families of \S\ref{sec:methods} with representative techniques, and the axis beneath them is the evidence-type tag, observational (what is encoded) against interventional (what is used), which belongs to each claim rather than to a family: most claims in the first four
-families are observational, most in the fifth interventional, and a study may contribute both.}
+and text encoders meet in a projected joint space; (C) a multimodal language model, in which a connector
+$\pi$ turns encoder features into visual tokens that join the prompt's text tokens in the decoder's
+residual stream and end in the pre-readout state before the logits, answer or report. The labels along
+the path are the six loci of \S\ref{sec:loci}. The lower strip names the five method families of
+\S\ref{sec:methods}, and the axis beneath them is the evidence-type tag, observational (what is
+encoded) against interventional (what is used), which belongs to each claim rather than to a family.}
 \label{fig:overview}
 \end{figure*}

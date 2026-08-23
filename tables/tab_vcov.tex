@@ -1,33 +1,37 @@
-\begin{table*}[!tb]
-\centering\footnotesize\setlength\tabcolsep{4pt}\renewcommand{\arraystretch}{1.12}
-\caption{The \Vnclasses{} validity-test classes, a descriptive audit taxonomy: the designs each applies to, what it licenses beyond the base reading of the design, what it does not, and how many records whose design can carry it report it ($k/n$; $k_{\text{all}}$--$k/n$ where the test covers only part of some records\textquotesingle{} outcomes). No class is a prerequisite for the base reading and none is summed with another.}
+\begin{table}[!tb]
+\centering\footnotesize\setlength\tabcolsep{3pt}\renewcommand{\arraystretch}{1.12}
+\caption{The \Vnclasses{} classes of control, grouped as in Fig.~\ref{fig:findings}, the designs each applies to, and how many records whose design can carry it report it ($k/n$; $k_{\text{all}}$--$k/n$ where the control covers only part of some records\textquotesingle{} outcomes). No class is a prerequisite for a design\textquotesingle{}s base reading and none is summed with another.}
 \label{tab:vcov}
-\begin{tabular}{@{}L{2.85cm}L{2.35cm}L{4.3cm}L{3.75cm}R{1.75cm}@{}}
+\begin{tabular}{@{}L{3.4cm}L{2.4cm}R{1.35cm}@{}}
 \toprule
-Class & Applies to & Licenses & Does not license & $k/n$ \\
+Class & Applies to & $k/n$ \\
 \midrule
-\multicolumn{5}{@{}l}{\emph{Controls on a fitted or fixed readout}} \\
-Sample-level permutation control (\emph{perm}) & fitted probes; intrinsic & value beats the refitted pipeline on permuted labels & that the readout tracks the target & 3/69 \\
-Reference-distribution calibration (\emph{ncal}) & decoding; intrinsic; geometry & statistic placed on a chance or null scale & what the fitting procedure could extract & 4--5/110 \\
-Randomized control task (\emph{ctrl}) & fitted probes; intrinsic & readout is selective, not merely expressive & applicable to images yet; no denominator claimed (\S\ref{sec:future}) & 0 \\
-Matched-object control (\emph{mobj}) & decoding; intrinsic & quantity follows the fitted object, not its size & what the readout tracks & 1/80 \\
-Planted ground truth (\emph{plant}) & decoding; intrinsic & pipeline recovers a planted, known answer & transfer to real data & 3--4/80 \\
-Learned-representation attribution (\emph{lrn}) & decoding; intrinsic; geometry; tracing & structure comes from training, not architecture & that the structure is used & 3--5/121 \\
-\addlinespace[4pt]
-\multicolumn{5}{@{}l}{\emph{Comparison and semantic checks}} \\
-Comparison model (\emph{comp}) & geometry & value differs between models under one measurement & that the value is unusual in absolute terms & 13--16/30 \\
-Semantic validation (\emph{sem}) & discovery & unit matches the concept named, per clinicians or labels & completeness, stability or causal meaning & 15--18/25 \\
-\addlinespace[4pt]
-\multicolumn{5}{@{}l}{\emph{Localisation and intervention checks}} \\
-Input-space corroboration (\emph{inp}) & tracing & output depends on the highlighted input region & which internal component carries it & 5--6/11 \\
-Internal-component perturbation (\emph{int}) & tracing; intrinsic & output changes when a component is perturbed & an on-manifold intervention; specificity & 2/24 \\
-Intervention specificity (\emph{spc}) & targeted interventions & change follows the target, not the act of perturbing & semantic validity of $v_c$ & 2--3/8 (13 n/a) \\
+\multicolumn{3}{@{}l}{\emph{Chance calibration}} \\
+Sample-level permutation control (\emph{perm}) & fitted probes; intrinsic & 3/69 \\
+Reference-distribution calibration (\emph{ncal}) & decoding; intrinsic; geometry & 4--5/110 \\
+Randomized control task (\emph{ctrl}) & fitted probes; intrinsic & 0 \\
+\addlinespace[3pt]
+\multicolumn{3}{@{}l}{\emph{Attribution to training}} \\
+Learned-representation attribution (\emph{lrn}) & decoding; intrinsic; geometry; tracing & 3--5/121 \\
+Planted ground truth (\emph{plant}) & decoding; intrinsic & 3--4/80 \\
+Matched-object control (\emph{mobj}) & decoding; intrinsic & 1/80 \\
+\addlinespace[3pt]
+\multicolumn{3}{@{}l}{\emph{Comparison model and semantic validation}} \\
+Comparison model (\emph{comp}) & geometry & 13--16/30 \\
+Semantic validation (\emph{sem}) & discovery & 15--18/25 \\
+\addlinespace[3pt]
+\multicolumn{3}{@{}l}{\emph{Perturbation test}} \\
+Input-space corroboration (\emph{inp}) & tracing & 5--6/11 \\
+Internal-component perturbation (\emph{int}) & tracing; intrinsic & 2/24 \\
+\addlinespace[3pt]
+\multicolumn{3}{@{}l}{\emph{Matched control}} \\
+Intervention specificity (\emph{spc}) & targeted interventions & 2--3/8 (13 n/a) \\
 \midrule
-\multicolumn{5}{@{}l}{\emph{Study-level context (share of studies)}} \\
-split stated & \multicolumn{3}{l}{a patient-, slide- or subject-level split is stated} & 67/135 \\
-data unused for fitting & \multicolumn{3}{l}{evaluation on data unused for probe, dictionary or intervention fitting} & 47/132 \\
-uncertainty reported & \multicolumn{3}{l}{seeds, repeated runs, intervals or tests accompany the main result} & 81/133 \\
-dictionary stability & \multicolumn{3}{l}{any reproducibility check of a dictionary, over the dictionary studies} & 6/18 \\
+\multicolumn{3}{@{}l}{\emph{Study-level reporting (share of studies)}} \\
+\multicolumn{2}{@{}l}{patient-, slide- or subject-level split stated} & 67/135 \\
+\multicolumn{2}{@{}l}{evaluation on data unused for fitting} & 47/132 \\
+\multicolumn{2}{@{}l}{seeds, intervals or tests reported} & 81/133 \\
+\multicolumn{2}{@{}l}{reproducibility check of a dictionary} & 6/18 \\
 \bottomrule
 \end{tabular}
-\end{table*}
+\end{table}

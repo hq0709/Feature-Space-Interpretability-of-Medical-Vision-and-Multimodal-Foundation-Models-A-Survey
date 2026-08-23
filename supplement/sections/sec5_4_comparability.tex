@@ -1,48 +1,47 @@
-Published values are rarely commensurable, so side-by-side display is inappropriate;
-Table~\ref{tab:famreq} states what each family requires and how far this corpus has taken it; the counts of comparable evaluations are below. Decoding protocols
-overlap most, and only within a modality and a shared public label schema; probes otherwise report AUROC
-on different concept sets, splits, label definitions, decoder capacities and controls, obscuring
-differences of a few points. Discovery overlaps least: width, sparsity, layer and
-interpretation vary, cross-seed stability is seldom reported and nominal concepts cannot be matched.
-Intervention records permit individual inspection, but differing end-points, magnitudes and controls preclude
-effect-size comparison. The most compatible stratum, six chest-radiograph studies using linear decoders on CheXpert or MIMIC-CXR, still differs in targets, label versions, splits and
-regularisation, so it shows six distinct estimands rather than a poolable stratum, which the reporting
-checklists of \S\ref{sec:future} would supply. Independent replication by a second group is uncoded and
-apparently rare, and same-data medical--general comparisons confound domain with data, objective,
-architecture and protocol (\S\ref{sec:findings}).
+Published values are rarely commensurable, so no side-by-side display of results is attempted;
+Table~\ref{tab:famreq} states what each family requires and how far this corpus has taken it. Decoding
+protocols overlap most, and only within a modality and a shared public label schema. Otherwise probes
+report AUROC on different concept sets, splits, label definitions, decoder capacities and controls, which
+obscures differences of a few points. Discovery overlaps least: width, sparsity, layer and
+interpretation all vary, cross-seed stability is seldom reported, and nominal concepts cannot be
+matched. Intervention records can be inspected one by one, but their end-points, magnitudes and controls
+differ, so effect sizes cannot be compared. Even the most compatible stratum, six chest-radiograph
+studies using linear decoders on CheXpert or MIMIC-CXR, differs in targets, label versions, splits and
+regularisation, and so shows six distinct estimands rather than a poolable set. Independent replication
+by a second group appears to be rare, and the same-data medical--general comparisons confound domain with
+data, objective, architecture and protocol (\S\ref{sec:findings}).
 
-\textbf{Modality and family.} Pathology appears in \Npathstud{} of the \Ncore{} studies and chest radiography in
-\Ncxrstud{} (\Npathrec{} and \Ncxrrec{} records); every other modality is markedly rarer
-(Fig.~\ref{fig:corpus}c). Chest radiography supplies \Nintcxr{} of the \Nintrec{} intervention records and
-\Ntracecxr{} of the \Ntracerec{} tracing records, so multimodal-LLM interpretability is largely a
-chest-radiograph literature; pathology dominates geometry and discovery, entering intervention only through
-frozen-embedding post-processing. Modality is retained in the evidence tables because a claim rarely
-transfers across modalities.
+\textbf{Modality and family.} Pathology appears in \Npathstud{} of the \Ncore{} studies and chest
+radiography in \Ncxrstud{} (\Npathrec{} and \Ncxrrec{} records); every other modality is markedly rarer
+(Fig.~\ref{fig:corpus}c). Chest radiography supplies \Nintcxr{} of the \Nintrec{} intervention records
+and \Ntracecxr{} of the \Ntracerec{} tracing records, so the interpretability of medical multimodal
+LLMs is largely a chest-radiograph literature. Pathology dominates geometry and discovery and enters
+intervention only through post-processing of frozen embeddings. Modality is retained in the evidence
+tables because a claim rarely transfers across modalities.
 
-\textbf{Study quality.} Study-quality coding comes from full texts (four from abstracts,
-\S\ref{sec:method}). The fields are the subset of the imaging-AI and clinical-AI reporting
-checklists~\cite{mongan2020claim,norgeot2020minimum} that a representation-level claim can be scored on from a paper: they
-record what was reported, not whether it was done well.
-Of the \Ncore{} core studies, \Npreprint{} are preprints, \Nconf{} conference
-papers, \Nwork{} workshop papers and \Njour{} journal articles; \Ngrey{} of the preprints are grey-literature deposits and
-\Nsingle{} are single-author, admitted under the rule of \S\ref{sec:method} that any retrievable full text meeting the eligibility criteria is coded. Excluding the
-grey deposits lowers the corpus-breadth tier of F8a$''$ alone and changes no direction; excluding all \Ngreysingle{} lowers F3c as well. Of these studies, \Nextyes{} evaluate on a cohort or
+\textbf{Study quality.} The quality fields are the subset of the imaging-AI and clinical-AI reporting
+checklists~\cite{mongan2020claim,norgeot2020minimum} on which a representation-level claim can be scored
+from the paper; they record what was reported, not whether it was done well. Of the \Ncore{} core
+studies, \Npreprint{} are preprints, \Nconf{} conference papers, \Nwork{} workshop papers and \Njour{}
+journal articles; \Ngrey{} of the preprints are grey-literature deposits and \Nsingle{} are
+single-author. Excluding the grey deposits lowers the corpus-breadth tier of F8a$''$ alone and changes
+no direction; excluding all \Ngreysingle{} lowers F3c as well. Of these studies, \Nextyes{} evaluate on a cohort or
 dataset unused for probe, dictionary or intervention training, \Nextno{} do not and \Nextunk{} are
-indeterminate;
-patient-, slide- or subject-level splits are stated in \Nsplityes{} and unstated in \Nsplitno{}. Seeds,
-repeated runs, intervals or tests accompany the main result in \Nseedyes{}, not in \Nseedno{}, and
-indeterminately in \Nseedunk{}. Of the \Nclaims{} records, \Ndirpos{} report a positive result,
-\Ndirmix{} a mixed or partial one and \Ndirnull{} a null or negative one; null results this rare warrant
-publication- and reporting-bias caution for every statement below. The young corpus relies more on internal
-than external validation, a second reason \S\ref{sec:findings} grades breadth rather than pooling effect
-sizes.
+indeterminate; patient-, slide- or subject-level splits are stated in \Nsplityes{} and unstated in
+\Nsplitno{}; seeds, repeated runs, intervals or tests accompany the main result in \Nseedyes{} and not
+in \Nseedno{}, with \Nseedunk{} indeterminate. Of the \Nclaims{} records, \Ndirpos{} report a positive
+result, \Ndirmix{} a mixed or partial one and \Ndirnull{} a null or negative one. Null results this rare
+call for caution about publication and reporting bias in every statement of \S\ref{sec:findings}, and a
+corpus that relies more on internal than on external validation is a second reason to describe breadth
+rather than to pool effect sizes.
 
-\textbf{Concept provenance and concept validity.} Among those records, \Nprovlabel{} use structured
-schemas, \Nprovtext{} text-mined concepts, \Nprovexpert{} expert vocabularies, \Nprovmodel{}
-model-generated banks and \Nprovnone{} no prior concept, \Nposthocname{} of the last naming features post
-hoc. Expert-defined and model-generated concepts occur almost only in intrinsic designs
-(\S\ref{sec:intrinsic}). The best-supported decoding findings (\S\ref{sec:findings}, F1a and F2) rest on
-labels automatically extracted from chest-radiograph
-reports~\cite{irvin2019chexpert,johnson2019mimicjpg}, so concept validity reflects a labeller, not clinician
-judgement (\S\ref{sec:eval-data}). Discovery without a prior concept shifts the burden to post-hoc naming,
-clinician-validated by fewer than half of dictionary studies (\S\ref{sec:eval-what}). Provenance locates where a claim may fail for reasons unrelated to the model.
+\textbf{Concept provenance.} Among the records, \Nprovlabel{} use structured schemas, \Nprovtext{}
+text-mined concepts, \Nprovexpert{} expert vocabularies, \Nprovmodel{} model-generated banks and
+\Nprovnone{} no prior concept, \Nposthocname{} of the last naming features post hoc. Expert-defined and
+model-generated concepts occur almost only in intrinsic designs (\S\ref{sec:intrinsic}). The
+best-supported decoding findings (F1a and F2 in \S\ref{sec:findings}) rest on labels automatically
+extracted from chest-radiograph reports~\cite{irvin2019chexpert,johnson2019mimicjpg}, so their concept
+validity is that of a labeller rather than of clinician judgement (\S\ref{sec:eval-data}). Discovery
+without a prior concept shifts the burden to post-hoc naming, which fewer than half of the dictionary
+studies validate with clinicians (\S\ref{sec:eval-what}). Provenance thus locates where a claim may fail
+for reasons unrelated to the model.

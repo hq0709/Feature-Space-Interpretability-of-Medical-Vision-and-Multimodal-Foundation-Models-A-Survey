@@ -1,41 +1,42 @@
 \section{Taxonomy}
 \label{sec:taxonomy}
 
-The taxonomy has three dimensions and one tag (Fig.~\ref{fig:taxonomy}), organised around the inferential
-claim a study makes: \textbf{methodology} is primary and fixes the section in which a study is discussed, while \textbf{locus}, \textbf{concept provenance} and the \textbf{evidence type} tag are recorded per core study. The scheme maps the field's target space, not the medical
-corpus alone: the tracing family, two loci and two provenance categories are populated by
-general-domain work but by eleven, zero and thirteen core medical records, sparse cells kept as gaps in the coverage map (Fig.~\ref{fig:corpus}b). The unit of coding is the claim: one row with one evidence
-type. Table~\ref{tab:boundary} resolves boundary cases.
+The taxonomy has three dimensions and one tag (Fig.~\ref{fig:taxonomy}), and it is organised around the
+inferential claim a study makes. \textbf{Methodology} is primary and fixes the section in which a study
+is discussed; \textbf{locus}, \textbf{concept provenance} and the \textbf{evidence type} tag are
+recorded for every core study. The scheme maps the field's target space rather than the medical corpus
+alone: some of its cells are populated mainly by general-domain work and hold few medical records, and
+those cells are kept as gaps in the coverage map (Fig.~\ref{fig:corpus}b). The unit of coding is the
+claim, one row with one evidence type. Table~\ref{tab:boundary} resolves the boundary cases.
 
 \begin{figure*}[!tbp]
 \centering
 \includegraphics[width=0.96\linewidth]{fig4.png}
 \caption{Taxonomy of feature-space interpretability methods for medical vision and multimodal foundation
 models. The five columns are the method families of \S\ref{sec:methods}, assigned by the study's
-inferential claim rather than its algorithm, with the sub-groups each section reviews; the decoding family
-carries the validity-control tag of \S\ref{sec:decoding}. The band beneath collects the intrinsic and concept-aligned designs (concept bottlenecks, concept-aligned vision--language models, prototype and part-based models on foundation-model features), which are tagged rather than assigned a family. The
+inferential claim rather than its algorithm, with the sub-groups each section reviews. The band beneath
+collects the intrinsic and concept-aligned designs, which are tagged rather than assigned a family. The
 axis at the foot orders the families from representation structure and availability (predominantly
-observational) to representation use and control (predominantly interventional); the evidence type of any
-one claim is determined by that claim, not by its family. Locus and concept provenance, the other two dimensions, are recorded per study.}
+observational) to representation use and control (predominantly interventional); the evidence type of
+any one claim is determined by that claim, not by its family.}
 \label{fig:taxonomy}
 \end{figure*}
 
-\textbf{Methodology.} Five families are assigned by \emph{primary inferential claim}, not algorithm,
-because one algorithm can support different claims. \emph{Structural and geometric analysis}
-(\S\ref{sec:geometry}) characterises the shape of the space rather than a decoded concept, through
-image--text distance, spread, cross-model similarity, adaptation-induced change or acquisition-metadata
-structure. \emph{Supervised concept mapping and decodability}
-(\S\ref{sec:decoding}) recovers an external concept from labelled data using a decoder, direction or
-similarity structure. \emph{Feature decomposition and discovery} (\S\ref{sec:discovery}) decomposes
-representations into units, neurons, directions or dictionary features named afterwards.
-\emph{Representation attribution, localisation and tracing} (\S\ref{sec:tracing}) observationally
-assigns representational content or output to a component, layer, token position or training example.
-\emph{Causal intervention and representation control} (\S\ref{sec:intervention}) changes a
-representation and measures behaviour, the strength of the claim set by the controls
-(\S\ref{sec:methods}) and coded one row per claim (\S\ref{sec:eval-compare}). Intrinsically interpretable
-designs are model properties: they take an \emph{intrinsic-design} tag and their claims stay in the
-analytic family, concept-layer decodability in every case but one prototype design
-(\S\ref{sec:intrinsic}).
+\textbf{Methodology.} The five families are assigned by the \emph{primary inferential claim} of a
+study, not by its algorithm, because one algorithm can support different claims. \emph{Structural and
+geometric analysis} (\S\ref{sec:geometry}) characterises the shape of the space rather than a decoded
+concept: image--text distance, spread, cross-model similarity, the change induced by adaptation, or the
+structure of acquisition metadata. \emph{Supervised concept mapping and decodability}
+(\S\ref{sec:decoding}) recovers an external concept from labelled data with a decoder, a direction or a
+similarity structure. \emph{Feature decomposition and discovery} (\S\ref{sec:discovery}) breaks
+representations into units, neurons, directions or dictionary features that are named afterwards.
+\emph{Representation attribution, localisation and tracing} (\S\ref{sec:tracing}) assigns
+representational content or output to a component, layer, token position or training example, without
+intervening. \emph{Causal intervention and representation control} (\S\ref{sec:intervention}) changes
+a representation and measures behaviour; the strength of the claim is set by the controls. Intrinsically
+interpretable designs are properties of a model rather than a method: they take an
+\emph{intrinsic-design} tag, and their claims stay in the analytic family, which is concept-layer
+decodability in every case but one prototype design (\S\ref{sec:intrinsic}).
 
 \begin{table*}[!tb]
 \centering\small
@@ -65,46 +66,45 @@ Saliency map used to test a representation-level claim & Evaluation (\S\ref{sec:
 \end{table*}
 
 \textbf{Locus.} A locus is the position along the computational path at which a representation is
-taken. Six are placed on the architectural templates of \S\ref{sec:loci}
-and Fig.~\ref{fig:overview}: vision encoder, text encoder, the projected joint space of a dual
-encoder, the connector output of a multimodal LLM, the decoder residual stream and its components, and
-the pre-readout representation. A study is coded by the locus at which it measures or intervenes, not
-by where its claim is directed. A study that repeats one measurement at several loci is coded once, as a transition record with the derived locus label ``Path'', which is not a seventh locus but a marker that the record spans several of the six, so that connector-level counts are not inflated by transition claims.
-
-The pre-readout representation, the connector output and the text encoder carry almost no single-locus core
-claim (Fig.~\ref{fig:corpus}b). All six loci are kept, deliberately coarse, since that sparseness is itself a
-finding (\S\ref{sec:future}). Within the encoder the coding also records the readout granularity (field
-\emph{sublocus}), which often decides what is decodable (\S\ref{sec:findings}), so \S\ref{sec:future} argues
-for promoting it, and the connector's fusion mechanism, to loci.
+taken: the vision encoder, the text encoder, the projected joint space of a dual encoder, the connector
+output of a multimodal LLM, the decoder residual stream and its components, or the pre-readout
+representation (\S\ref{sec:loci}, Fig.~\ref{fig:overview}). A study is coded by the locus at which it
+measures or intervenes, not by where its claim is directed, and a study that repeats one measurement at
+several loci is coded once, with the label ``Path''. The pre-readout representation, the connector
+output and the text encoder carry almost no single-locus core claim (Fig.~\ref{fig:corpus}b); all six
+loci are kept because that sparseness is itself a finding (\S\ref{sec:future}). Within the encoder the
+coding also records the readout granularity as a \emph{sublocus}, which often decides what is decodable
+(\S\ref{sec:findings}).
 
 \textbf{Concept provenance.} Five sources are distinguished: \emph{expert- or ontology-defined}
 vocabularies such as RadLex, SNOMED and the seven-point dermoscopy checklist; \emph{structured labels}
-such as CheXpert and VinDr-CXR; \emph{corpus- or text-mined} report or literature concepts;
-\emph{model-generated} banks of class attributes; and \emph{none} when units are discovered before
-optional labelling, which post-hoc labelling flags.
+such as CheXpert and VinDr-CXR; \emph{corpus- or text-mined} concepts from reports or the literature;
+\emph{model-generated} banks of class attributes; and \emph{none}, when units are discovered first and
+labelled, if at all, afterwards.
 
 \textbf{Evidence type.} A claim is \emph{observational} when it rests on measuring the representation
-as the model computes it, \emph{interventional} when it rests on a deliberate change, following the first two levels of the causal
-hierarchy~\cite{bareinboim2022pearl}. The tag cuts across methodology and separates the two most conflated statements in this literature, ``the model encodes $c$'' and ``the model uses $c$'', which rest on
-different evidence~\cite{hewitt2019designing,elazar2020amnesic,ravfogel2020null}.
+as the model computes it, and \emph{interventional} when it rests on a deliberate change, following the
+first two levels of the causal hierarchy~\cite{bareinboim2022pearl}. The tag cuts across the families. It
+separates the two statements most often run together in this literature, ``the model encodes $c$'' and
+``the model uses $c$'', which rest on different
+evidence~\cite{hewitt2019designing,elazar2020amnesic,ravfogel2020null}.
 
-Fig.~\ref{fig:example} traces a hypothetical chest radiograph along the loci, a schematic of what each
-family would report rather than a summary of any one study, since only one repeats a measurement at
+Fig.~\ref{fig:example} traces a hypothetical chest radiograph along the loci. It is a schematic of what
+each family would report, not a summary of any one study, since only one study repeats a measurement at
 successive loci of the same model~\cite{zhu2026lost}.
 
 \begin{figure*}[!tbp]
 \centering
 \includegraphics[width=\linewidth]{fig5.png}
 \caption{Hypothetical worked example. A chest radiograph with subtle blunting of the right costophrenic
-angle passes through a frozen vision encoder and connector into visual tokens, which join the prompt
-``Describe the findings'' in the language model's residual stream and reach the pre-readout state and
-the generated report. Each panel shows the artefact one family would return at its locus, the evidence
-type of that claim and the controls it needs: (1) the geometry of the joint space (image and text cones,
-a modality gap, a same-site cluster); (2) a linear probe on the visual tokens returning a concept score for right pleural effusion and a direction $v_c$, where available is not used; (3) a sparse dictionary
-returning a candidate feature that fires on the costophrenic angle; (4) a map of which visual tokens
-and which layers carry the signal that reaches the report token ``effusion''; (5) the only
-interventional panel, adding $\pm\alpha v_c$ to the residual stream at a late layer and reading the
-change in the report against equal-norm random and unrelated-concept directions, sham edits, both signs
-and several magnitudes. Hypothetical: no value is measured.}
+angle passes through a frozen vision encoder and connector into visual tokens, which join the prompt in
+the language model's residual stream and reach the pre-readout state and the generated report. Each
+panel shows the artefact one family would return at its locus, the evidence type of that claim and the
+controls it needs: (1) the geometry of the joint space; (2) a linear probe on the visual tokens
+returning a concept score for right pleural effusion and a direction $v_c$; (3) a sparse dictionary
+feature that fires on the costophrenic angle; (4) a map of which visual tokens and layers carry the
+signal that reaches the report token ``effusion''; (5) the only interventional panel, adding
+$\pm\alpha v_c$ to the residual stream and reading the change in the report against matched control
+directions, sham edits, both signs and several magnitudes. No value is measured.}
 \label{fig:example}
 \end{figure*}

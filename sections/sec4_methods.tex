@@ -1,76 +1,86 @@
 \section{Method families and their medical evidence}
 \label{sec:methods}
 
-Following \S\ref{sec:taxonomy}, each subsection defines a family, reviews representative
-studies, tabulates the medical evidence and summarises its claims and limits; studies with claims
-in two families appear in both. Here ``medical'' means analysing a medical foundation model
-(\S\ref{sec:models}); cited general-domain studies supply methods or mechanisms used by medical work. Table~\ref{tab:families} summarises what each family
-shows and the tests that strengthen it, and Fig.~\ref{fig:families} draws the ladder of evidence from
-observation to concept-specific causal contribution that the formal view below defines. Core studies whose quality assessment records a defect that undermines the representation-level result (\S\ref{sec:findings}) are marked $^{\dagger}$ where cited singly in this section (a group citation is not marked), so that their results are read with that qualification.
+Each subsection below defines a family, reviews representative studies, tabulates the medical evidence
+and states what the family's claims can and cannot support. A study with claims in two families appears
+in both. ``Medical'' here means analysing a medical foundation model (\S\ref{sec:models}); general-domain
+studies are cited where they supply a method or a mechanism that the medical work uses.
+Table~\ref{tab:families} summarises what each family shows and the tests that strengthen it, and
+Fig.~\ref{fig:families} draws the ladder of evidence from observation to concept-specific causal
+contribution that the formal view below defines. A core study whose quality assessment records a defect
+that undermines its representation-level result (\S\ref{sec:findings}) is marked $^{\dagger}$ where it is
+cited singly in this section, so that its result is read with that qualification.
 
-
-\textbf{Formal view.} In the notation of \S\ref{sec:prelim}, each family can be read as characterising a
-functional of the representation $z_\lambda(x)$ at a locus $\lambda$, differing in the functional
-examined and in whether the forward pass remains intact. For a multimodal model the state also depends on the prompt $t$, the token position $p$ and, for generated
-end-points, the decoding policy, so $z_\lambda(x)$ abbreviates $z_\lambda(x,t,p)$ and $B(x)$ abbreviates
-$B(x,t)$ under a fixed decoding rule. A claim about a decoder or connector state is therefore conditional on
-the prompt and position at which it was measured, which is why the coding records locus and readout
-separately. Structural analysis reports a
-statistic $\Phi(\{z_\lambda(x_i)\}_{i=1}^{N})$ of the embedding distribution, unconditionally
-or stratified by metadata such as scanner or site, $\Phi(\{z_\lambda(x_i)\}_{i:\,m(x_i)=m})$;
-neither decodes a concept. Decoding fits, within a decoder class $\mathcal{G}$ and on a training set
-$\mathcal{T}$, the map
+\textbf{Formal view.} In the notation of \S\ref{sec:prelim}, each family characterises a functional of
+the representation $z_\lambda(x)$ at a locus $\lambda$; the families differ in the functional and in
+whether the forward pass is left intact. For a multimodal model the state also depends on the prompt
+$t$, the token position $p$ and, for generated end-points, the decoding policy, so $z_\lambda(x)$
+abbreviates $z_\lambda(x,t,p)$ and $B(x)$ abbreviates $B(x,t)$ under a fixed decoding rule. A claim
+about a decoder or connector state is therefore conditional on the prompt and position at which it was
+measured, which is why locus and readout are coded separately. Structural analysis reports a statistic
+$\Phi(\{z_\lambda(x_i)\}_{i=1}^{N})$ of the embedding distribution, unconditionally or stratified by
+metadata such as scanner or site; it decodes no concept. Decoding fits, within a decoder class
+$\mathcal{G}$ and on a training set $\mathcal{T}$, the map
 \begin{equation}
 \hat g=\arg\min_{g\in\mathcal G}\ \tfrac{1}{|\mathcal T|}\textstyle\sum_{i\in\mathcal T}\ell\big(g(z_\lambda(x_i)),\,c(x_i)\big)
 \label{eq:probe}
 \end{equation}
-and reports the performance of $\hat g$ on examples held out of $\mathcal T$, which depends on
-$\mathcal G$ as much as on $z_\lambda$. Discovery fits a dictionary $D$ and sparse codes $a(x)$ with $z_\lambda(x)\approx D\,a(x)$,
-then names its columns. Tracing reports functionals of the unchanged forward pass indexed by
-layer, position or component, such as layer-wise decoding of $h^{(\ell)}$ or attention mass on
-visual tokens. Intervention replaces $z_\lambda$ by $\tilde z_\lambda$ and reports the
+and reports the performance of $\hat g$ on held-out examples, which depends on $\mathcal G$ as much as
+on $z_\lambda$. Prompt-similarity scoring and labelled representational similarity recover $c$ without
+a fitted $\hat g$, and are grouped with decoding by the claim they license, the second as its weakest
+member (\S\ref{sec:taxonomy}). Discovery fits a dictionary $D$ and sparse codes $a(x)$ with
+$z_\lambda(x)\approx D\,a(x)$, then names the columns. Tracing reports functionals of the unchanged
+forward pass indexed by layer, position or component, such as layer-wise decoding of $h^{(\ell)}$ or the
+attention mass on visual tokens. Intervention replaces $z_\lambda$ by $\tilde z_\lambda$ and reports the
 behavioural effect
 \begin{equation}
 \Delta B=B\big(x;\,z_\lambda\!\leftarrow\!\tilde z_\lambda\big)-B(x),
 \label{eq:effect}
 \end{equation}
-with $\overline{\Delta B}=\mathbb{E}_x[\Delta B(x)]$ its expectation over inputs (and, for generated text, over
-the decoding policy), the replacement $\tilde z_\lambda$ being in general itself a function of $x$, $t$ and
-$p$; the reviewed studies report sample averages of it. Equation~(\ref{eq:effect})
-describes within-run interventions; post-hoc transformations of stored embeddings, parameter editing
-and unlearning have their own estimands and subtype-specific end-points (\S\ref{sec:intervention}).
-For a steering intervention $\tilde z_\lambda=z_\lambda+\alpha v_c$ along a direction built for concept
-$c$, the coding records whether the study reports any matched control against which $\Delta B(\alpha v_c)$
-is compared; \S\ref{sec:future} proposes a diagnostic that operationalises the comparison, as a reporting
-proposal rather than a standard the reviewed literature was held to. Exceeding matched controls establishes
-selective sensitivity to the direction, not semantic validity, which depends on how $v_c$ was obtained.
-Erasure carries part of its control in its construction, an affine map removing the linear predictability
-of $c$ under a stated metric~\cite{belrose2023leace}, but attributing a behavioural change to it still
-requires a sham or rank-matched transformation, and checks that $c$ is not recoverable non-linearly, that
-correlated concepts survive and that off-target performance is retained. The paired probe-and-intervention design that the medical corpus lacks (\S\ref{sec:intervention}, \S\ref{sec:future}) follows directly: $v_c$ is the normal of a binary linear probe fitted by~(\ref{eq:probe}) or a dictionary column decoding $c$, and~(\ref{eq:effect}) is reported against matched control directions at the same intervention locus and behavioural end-point.
+with $\overline{\Delta B}=\mathbb{E}_x[\Delta B(x)]$ its expectation over inputs and, for generated
+text, over the decoding policy; the reviewed studies report sample averages of it.
+Equation~(\ref{eq:effect}) describes interventions inside the forward pass. Post-hoc transformations of
+stored embeddings, parameter editing and unlearning have estimands and end-points of their own
+(\S\ref{sec:intervention}). For a steering intervention $\tilde z_\lambda=z_\lambda+\alpha v_c$ along a
+direction built for concept $c$, the coding records whether the study compares $\Delta B(\alpha v_c)$
+with a matched control. Exceeding matched controls establishes selective sensitivity to the direction,
+not semantic validity, which depends on how $v_c$ was obtained. Erasure carries part of its control in
+its construction, an affine map that removes the linear predictability of $c$~\cite{belrose2023leace},
+but attributing a behavioural change to it still requires a sham or rank-matched transformation and
+checks that correlated concepts and off-target performance survive. The paired probe-and-intervention
+design that the medical corpus lacks (\S\ref{sec:intervention}, \S\ref{sec:future}) follows directly
+from the two equations: $v_c$ is the normal of a probe fitted by~(\ref{eq:probe}) or a dictionary
+column that decodes $c$, and~(\ref{eq:effect}) is reported against matched control directions at the
+same locus and end-point.
 
-Eq.~(\ref{eq:probe}) is the canonical decoding case; prompt-similarity scoring recovers $c$ through a fixed similarity structure rather than a fitted $\hat g$, and labelled representational similarity shows only that representation distances covary with concept-labelled distances, without mapping a held-out example to a concept value; both are grouped with decoding by the claim they license, the second as the weakest member (\S\ref{sec:taxonomy}). \textbf{Three causal claims.} Three claims of increasing strength follow from~(\ref{eq:effect}).
-\emph{Causal sensitivity} means that the output changes when $z_\lambda$ is changed; any
-intervention whose effect exceeds its uncertainty over inputs establishes it. \emph{Direction-selective sensitivity}
-means that the effect of $v_c$ exceeds that of matched controls (the screening diagnostic proposed in \S\ref{sec:future}). \emph{Concept-specific causal contribution} means that the effect is attributable to the model's representation of $c$ rather than to a merely correlated direction. Necessary but not sufficient conditions for it, beyond matched controls, are validation of $v_c$ through
-agreement among several independently constructed directions for the same concept, a
-correlated-concept hard-negative control, and an intervention that stays within the empirical activation distribution (the layer's range of activation norms and its principal subspace, which is a proximity check rather than a test of manifold membership).
-Edits far from that distribution can change behaviour for reasons unrelated to $c$; together these checks falsify the simplest alternatives and establish stronger direction-selective sensitivity, consistent with rather than proof of a concept-specific contribution. Identifying it takes a mediation design with a defined exposure, mediator and outcome and the sequential-ignorability assumptions that identify a natural indirect effect~\cite{pearl2001direct,imai2010mediation}, a causal-concept effect estimated under an intervention on the concept itself~\cite{goyal2019cace}, or a causal-abstraction mapping between concept and representation~\cite{geiger2021causal,geiger2023causal}; no medical study in this corpus reaches any of the three. The gap between structure that a representation merely exhibits, structure that an intervention can move, and factors that are causally meaningful is the one Sch\"olkopf \emph{et al.}~\cite{scholkopf2021causal} draw for representation learning generally; the three inferential levels of this review are its measurement-side counterpart. Table~\ref{tab:families} (\S\ref{sec:comparison}) restates this view family by family.
+\textbf{Three causal claims.} Three claims of increasing strength follow from~(\ref{eq:effect}).
+\emph{Causal sensitivity} means that the output changes when $z_\lambda$ is changed; any intervention
+whose effect exceeds its uncertainty over inputs establishes it. \emph{Direction-selective sensitivity}
+means that the effect of $v_c$ exceeds that of matched controls. \emph{Concept-specific causal
+contribution} means that the effect is attributable to the model's representation of $c$ rather than to
+a correlated direction. Agreement among independently constructed directions, a correlated-concept hard
+negative and an intervention that stays within the empirical activation distribution are necessary for
+the third claim, but they do not identify the contribution; identification takes a mediation
+design~\cite{pearl2001direct,imai2010mediation}, a causal-concept effect estimated under an
+intervention on the concept itself~\cite{goyal2019cace}, or a causal-abstraction mapping between concept
+and representation~\cite{geiger2021causal,geiger2023causal}. No medical study in this corpus reaches any
+of the three. The distinction between structure a representation exhibits, structure an intervention
+can move and factors that are causally meaningful is the one Sch\"olkopf \emph{et
+al.}~\cite{scholkopf2021causal} draw for representation learning in general. Table~\ref{tab:families}
+(\S\ref{sec:comparison}) restates this view family by family.
 
 \begin{figure*}[!tbp]
 \centering
 \includegraphics[width=0.95\linewidth]{fig6.png}
-\caption{From what is encoded to what is used. Observational evidence (structure, decodability, discovered features, localisation) characterises $z_\lambda(x)$ and shows availability, not use. Use
+\caption{From what is encoded to what is used. Observational evidence (structure, decodability,
+discovered features, localisation) characterises $z_\lambda(x)$ and shows availability, not use. Use
 requires an intervention $z_\lambda\to\tilde z_\lambda$ with a pre-specified behavioural end-point
-$\Delta B$, and the interventional evidence then climbs three rungs of increasing inferential strength:
-\emph{causal sensitivity} ($\Delta B\neq 0$ on held-out inputs; the edited direction may still be
-arbitrary), \emph{direction-selective sensitivity} (the effect of $\alpha v_c$ exceeds equal-norm random
-and unrelated-concept controls; still not proof of concept-specific causality) and \emph{concept-specific
-causal contribution}, for which semantic agreement, hard negatives and an intervention within the
-empirical activation distribution are necessary but not sufficient: identifying the contribution takes a
-mediation, causal-concept or causal-abstraction design with stated assumptions (\emph{Formal view}), and
-no reviewed medical study meets the criterion. The required evidence grows from a behavioural end-point,
-to matched controls, to semantic and distributional validation and, finally, an identification design.}
+$\Delta B$, and the interventional evidence then climbs three rungs: \emph{causal sensitivity}
+($\Delta B\neq 0$ on held-out inputs), \emph{direction-selective sensitivity} (the effect of
+$\alpha v_c$ exceeds matched random and unrelated-concept controls) and \emph{concept-specific causal
+contribution}, which needs semantic agreement, hard negatives, an intervention within the empirical
+activation distribution and, finally, an identification design (\emph{Formal view}). No reviewed
+medical study reaches the top rung.}
 \label{fig:families}
 \end{figure*}
 

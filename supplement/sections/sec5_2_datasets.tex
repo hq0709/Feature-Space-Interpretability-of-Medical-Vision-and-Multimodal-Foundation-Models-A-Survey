@@ -38,22 +38,20 @@ representation-level evaluation can currently establish.
 
 \textbf{Label provenance.} The large chest-radiograph corpora carry findings extracted from reports by
 automatic labellers rather than assigned by
-radiologists~\cite{irvin2019chexpert,johnson2019mimic,johnson2019mimicjpg,wang2017chestxray}: they are
-noisy proxies derived from clinician-authored reports, so a probe fitted to them measures agreement with a
-labeller's reading of those reports rather than with a radiologist reading the image. Expert resources
-supply a direct clinical
+radiologists~\cite{irvin2019chexpert,johnson2019mimic,johnson2019mimicjpg,wang2017chestxray}. A probe
+fitted to them measures agreement with a labeller's reading of the report, not with a radiologist reading
+the image. Expert resources supply a direct clinical
 reference~\cite{nguyen2020vindr,liu2020chestxdet,bustos2019padchest,jain2021radgraph,smit2020chexbert}.
-In pathology the two resources listed here differ in kind, a text corpus and expert region
-annotations~\cite{ikezogwo2023quilt,litjens2018camelyon}, and
-concept-scored image--text models are themselves
-resources~\cite{kim2024transparent,nie2025explainable}. Volumetric imaging offers report-derived
-abnormality labels only~\cite{hamamci2024ctrate,draelos2020radchestct}.
+In pathology the two resources listed differ in kind, a text corpus and expert region
+annotations~\cite{ikezogwo2023quilt,litjens2018camelyon}, and concept-scored image--text models are
+resources in their own right~\cite{kim2024transparent,nie2025explainable}. Volumetric imaging offers
+report-derived abnormality labels only~\cite{hamamci2024ctrate,draelos2020radchestct}.
 
 \textbf{Expert concept density.} Dermatology is the best-annotated modality, with checklist criteria,
 dermatologist-assigned concepts, dermoscopic structure masks and a hierarchically annotated South-Indian
 cohort~\cite{kawahara2019derm7pt,daneshjou2023skincon,mendonca2013ph2,codella2019isic,madarkar2025dermacon};
-it therefore carries the best-validated concept bottlenecks. Even here annotation is not a ground truth:
-16\% of Derm7pt concept profiles map to conflicting diagnoses~\cite{napoles2026concept}.
+and it therefore carries the best-validated concept bottlenecks. Even here the annotation is not a ground
+truth: 16\% of Derm7pt concept profiles map to conflicting diagnoses~\cite{napoles2026concept}.
 
 \textbf{Demographic metadata.} Confounder analysis needs attributes the datasets rarely record: only two of
 23 audited public chest-radiograph datasets report ethnicity~\cite{yi2022demographic}. EMBED supplies

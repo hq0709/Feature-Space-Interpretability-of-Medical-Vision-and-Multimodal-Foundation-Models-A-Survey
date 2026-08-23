@@ -1,122 +1,120 @@
 \subsection{Supervised concept mapping and decodability}
 \label{sec:decoding}
 
-Decoding maps representations to external concepts through probes, concept activation vectors,
-labelled-set similarity or zero-shot text scoring. The oldest family, it measures decodability, a joint
-property of representation and decoder~\cite{alain2016understanding,belinkov2021probing,hewitt2019designing,elazar2020amnesic}.
+Decoding maps a representation to an external concept through a probe, a concept activation vector,
+similarity to a labelled set or zero-shot text scoring. It is the oldest family, and what it measures is
+decodability, a joint property of the representation and the
+decoder~\cite{alain2016understanding,belinkov2021probing,hewitt2019designing,elazar2020amnesic}.
 
 \subsubsection{Probing for clinical findings and anatomy}
 
-Seventeen frozen-feature benchmarks meet the criteria of \S\ref{sec:method}, \Nbenchdec{} of
-them with decoding-family records and two with structural records only. They rank
-frozen pathology, chest-radiograph, CT, retinal and volumetric
+Seventeen frozen-feature benchmarks meet the criteria of \S\ref{sec:method}, \Nbenchdec{} of them with
+decoding records and two with structural records only. They rank frozen pathology, chest-radiograph, CT,
+retinal and volumetric
 encoders~\cite{neidlinger2025benchmark,marza2025thunder,li2025featurequality,li2025embeddings,chevli2026frozenct,zhou2025generalist,aerts2025foundation}.
 
-Across ten mammography cohorts, frozen Mammo-CLIP probes beat GLoRIA, CLIP and DINOv2 by 9.7 to 15.3\% relative F1
-averaged over the diagnosis and density tasks, the diagnosis F1 being about 0.65 against 0.56--0.58, yet a probe fitted
-on a single cohort falls from 0.73 to 0.32 on the other nine~\cite{germani2025bias}. On 492,724 chest radiographs, pooled embeddings from five frozen
-transformers are at chance for the controlled small-scale perturbations (AUC 0.50--0.52) while patch tokens
-from the same forward pass recover them; on the 3,543-image bounding-box cohort the same contrast holds, with
-patch-local AUC at least 0.899 in every model--class cell, but the patches are selected by the ground-truth
-lesion box, so the recovery is an oracle readout rather than a deployable one~\cite{muthyala2026frozen}. On a
-pre-registered PET benchmark of 2,592 patients, patch classification saturates for every frozen
-encoder and for a randomly initialised control~\cite{farquhar2026pretraining}.
+Three studies show what such probes can and cannot tell. Across ten mammography cohorts, frozen
+Mammo-CLIP probes beat GLoRIA, CLIP and DINOv2 by 9.7 to 15.3\% relative F1, yet a probe fitted on a
+single cohort falls from 0.73 to 0.32 on the other nine~\cite{germani2025bias}. On 492,724 chest
+radiographs, pooled embeddings from five frozen transformers are at chance for controlled small-scale
+perturbations while patch tokens from the same forward pass recover them; but the patches are selected by
+the ground-truth lesion box, so the recovery is an oracle readout rather than a deployable
+one~\cite{muthyala2026frozen}. On a pre-registered PET benchmark of 2,592 patients, patch classification
+saturates for every frozen encoder and for a randomly initialised control~\cite{farquhar2026pretraining}.
 
-The same readout reaches phenotype codes, training configurations, knee grades, cell types, omics tasks,
-spatial embedding tensors, placental lesions, prostate grade, spatial-domain labels, kidney morphometrics and
-radiological retrieval, in benchmarks of five to nineteen
-encoders~\cite{lin2026transparent,liang2026cheap,demir2025downstream,cui2026translating,hu2026probing,jamzad2026p3ca,sadman2025interpreting,svatko2026deep,jung2026foundation,steiner2026when,vadori2025mind,bakhta2026frozen,beyeler2024comparing,peng2025benchmarking,gustafsson2024evaluating,kasireddy2025explainable,denner2024leveraging,howard2024generative,ramchandani2026benchmarking,zhao2026benchmarking}
-Two of them carry a critical-defect flag, for patch-level leakage and a
-circular cluster-selection metric, and the instructive case is a failure: an ejection-fraction probe with
-$R^2$ 0.63 in the development cohort correlates negatively with the label on an external
-one~\cite{akanova2026interpreting}$^{\dagger}$.
-
-Decodability can also be localised, to intermediate layers for chest-radiograph shortcuts, to a dictionary
-neuron for tumours, and to roughly ten channels whose ablation removes a finding
+The same readout reaches phenotype codes, training configurations, tissue and cell types, omics tasks,
+placental lesions, prostate grade, kidney morphometrics and radiological retrieval, in benchmarks of
+five to nineteen
+encoders~\cite{lin2026transparent,liang2026cheap,demir2025downstream,cui2026translating,hu2026probing,jamzad2026p3ca,sadman2025interpreting,svatko2026deep,jung2026foundation,steiner2026when,vadori2025mind,bakhta2026frozen,beyeler2024comparing,peng2025benchmarking,gustafsson2024evaluating,kasireddy2025explainable,denner2024leveraging,howard2024generative,ramchandani2026benchmarking,zhao2026benchmarking}.
+The most instructive case is a failure: an ejection-fraction probe with $R^2$ 0.63 in the development
+cohort correlates negatively with the label on an external one~\cite{akanova2026interpreting}$^{\dagger}$.
+Decodability can also be localised, to intermediate layers for chest-radiograph shortcuts, to a
+dictionary neuron for tumours, and to roughly ten channels whose ablation removes a finding
 altogether~\cite{pedersen2026look,tamura2025patch,nooralahzadeh2026sparse,goetze2025prediction,basu2026interpretability,nooralahzadeh2026arbitration}.
 
 \subsubsection{Probing for demographic and acquisition attributes}
 
-Before foundation models, chest-radiograph classifiers underdiagnosed underserved groups, failed on hidden
-strata and acquisition cues, predicted race, sex and age without anatomical correlates, and showed
-misdiagnosis disparities in
-pathology~\cite{seyyedkalantari2021underdiagnosis,oakdenrayner2019hidden,degrave2020ai,banerjee2021ai,adleberg2022predicting,korot2021predicting,coyner2021color,burns2023ability,vaidya2024demographic,jones2024causal};
-asking whether an attribute is encoded or used made this a representation-level
+Before foundation models, medical classifiers were already known to underdiagnose underserved groups,
+to rely on hidden strata and acquisition cues, and to predict race, sex and age without anatomical
+correlates~\cite{seyyedkalantari2021underdiagnosis,oakdenrayner2019hidden,degrave2020ai,banerjee2021ai,adleberg2022predicting,korot2021predicting,coyner2021color,burns2023ability,vaidya2024demographic,jones2024causal}.
+Asking whether an attribute is encoded or used made this a representation-level
 question~\cite{glocker2023algorithmic,glocker2022risk}.
 
-Frozen CT embeddings trained without demographic labels decode sex at AUROC 0.998, age at RMSE 3.8 years and
-race at 0.878~\cite{zheng2024demographic}, and the pattern recurs in chest radiography, pathology, brain MRI,
-retina and mammography, where embeddings also give away site, camera or dataset even after stain
+Frozen CT embeddings trained without demographic labels decode sex at AUROC 0.998, age at RMSE 3.8 years
+and race at 0.878~\cite{zheng2024demographic}. The pattern recurs in chest radiography, pathology, brain
+MRI, retina and mammography, where embeddings also give away site, camera or dataset, even after stain
 normalisation~\cite{sourget2025fairness,dejong2025current,komen2024do,rahbar2026frozen,li2026acquisition,hajishafiezahramini2026dataset,encin2026comparative,lin2025beyond,kmen2026robust}.
-The range is wide, and the low end is instructive: eight chest-CT encoders decode race at only 0.72--0.74
-AUROC and read age and sex no better than a randomly initialised
-encoder~\cite{tariq2024self}$^{\dagger}$, while of thirteen shortcut detectors on CheXpert only the non-probe
-ones flag race~\cite{cajas2026shortkit}.
+The range is wide. Eight chest-CT encoders decode race at only 0.72--0.74 AUROC and read age and sex no
+better than a randomly initialised encoder~\cite{tariq2024self}$^{\dagger}$, and of thirteen shortcut
+detectors on CheXpert only the non-probe ones flag race~\cite{cajas2026shortkit}.
 
-On 230,697 radiographs, sex is encoded at AUROC 0.942, yet linear finding probes refitted after residualising
-it out lose less than 0.001 AUROC, so the sex component is redundant for an optimally refitted linear readout;
-whether the model's own head used it was not tested~\cite{kim2026encoding}$^{\dagger}$. Orthogonalisation recovers these attributes before projection and chance after, cropping reduces them, and
-fairness benchmarks span 17 datasets and 20
+Availability and use come apart here too. On 230,697 radiographs, sex is encoded at AUROC 0.942, yet
+linear finding probes refitted after residualising it out lose less than 0.001 AUROC; the sex component
+is redundant for an optimally refitted linear readout, and whether the model's own head used it was not
+tested~\cite{kim2026encoding}$^{\dagger}$. Orthogonalisation recovers these attributes before projection
+and chance after, cropping reduces them, and fairness benchmarks span 17 datasets and 20
 models~\cite{weber2023posthoc,sutariya2026impact,jin2024fairmedfm,kauffmann2024explainable}.
 
 \subsubsection{Concept activation vectors and directional sensitivity}
 
-Concept activation vectors (CAVs) fit a direction from labelled positive and negative examples, then
-score classes by logit directional derivatives~\cite{kim2018interpretability}. With $v_c$ the unit
-normal of a classifier separating $\{z_\lambda(x):x\in P_c\}$ from negatives and $\eta_k$ the model's logit
-for class $k$, sensitivity is $S_{c,k}(x)=\nabla_{z_\lambda}\eta_k(x)\cdot v_c$ and the TCAV score is
-the fraction of class-$k$ inputs with $S_{c,k}(x)>0$, tested against random directions. Applications cover histopathology, dermoscopy, cardiac MRI and diabetic-retinopathy
+Concept activation vectors (CAVs) fit a direction $v_c$ from labelled positive and negative examples and
+score a class by the directional derivative of its logit along $v_c$; the TCAV score is the fraction of
+inputs with a positive derivative, tested against random directions~\cite{kim2018interpretability}.
+Applications cover histopathology, dermoscopy, cardiac MRI and diabetic-retinopathy
 grading~\cite{graziani2018regression,graziani2020concept,lucieri2020interpretability,clough2019global,stors2024looking},
 and iterated HPV directions predict HPV status in a pathology
-encoder~\cite{hieromnimon2025analysis}$^{\dagger}$. Text-derived vectors remove labelled exemplars and support
-adversarial debiasing~\cite{nicolson2024textcavs,correa2023efficient}, but the scores stay observational, and
-they are inconsistent across layers, entangled and spatially dependent~\cite{nicolson2024explaining}.
+encoder~\cite{hieromnimon2025analysis}$^{\dagger}$. Text-derived vectors remove the need for labelled
+exemplars and support adversarial debiasing~\cite{nicolson2024textcavs,correa2023efficient}, but the
+scores stay observational, and they are inconsistent across layers, entangled and spatially
+dependent~\cite{nicolson2024explaining}.
 
 \subsubsection{Representational similarity with concept-labelled sets}
 
-Representational similarity analysis compares representation and stimulus distances without a
-decoder~\cite{kriegeskorte2008representational}. Across six pathology encoders similarity follows
-slide identity more than disease, which stain normalisation only partly
-reduces~\cite{mishra2025comparing}. Diffusion pseudotime over five pathology encoders recovers the
-progression order of four cancer types against a label-shuffled null, order fidelity predicting
-few-shot accuracy~\cite{vig2026do}. Chance-calibrated discordance across 22 encoders, anchored by a random encoder, shows one encoder reading
+Representational similarity analysis compares distances in the representation with distances between
+stimuli, without a decoder~\cite{kriegeskorte2008representational}. Across six pathology encoders,
+similarity follows slide identity more than disease~\cite{mishra2025comparing}; diffusion pseudotime over
+five pathology encoders recovers the progression order of four cancer types against a label-shuffled
+null~\cite{vig2026do}; and chance-calibrated discordance across 22 encoders shows one encoder reading
 pneumothorax at 84.5 AUROC while placing 18\% of positives nearer an opposite-label film from the same
 hospital~\cite{arasteh2026candor}.
 
 \subsubsection{Text-anchored concept scoring}
 
-Prompt similarity in joint spaces gives zero-shot concept scores. MONET audits data and models with
-dermatologist-verified concepts~\cite{kim2024transparent}, which pre-training on 23 million
-image--text--concept triplets extends~\cite{nie2025explainable}. The same zero-shot scoring serves as a general-purpose concept detector, for dermoscopic criteria, retinal
-clusters, concept-to-region grounding and counterfactual
-generation~\cite{patricio2023conceptbased,mensah2026interpretable,luo2025xbench,sadashivaiah2024explaining}, with one
-instructive limit: it detects injected biases but not implicit ones~\cite{bertolini2025strengths}. Because prompts alter directions,
-expert-label validation is required (\S\ref{sec:eval-what}).
+Prompt similarity in a joint space gives zero-shot concept scores. MONET audits data and models with
+dermatologist-verified concepts~\cite{kim2024transparent}, and pre-training on 23 million
+image--text--concept triplets extends the approach~\cite{nie2025explainable}. The same scoring serves as
+a general-purpose concept detector, for dermoscopic criteria, retinal clusters, concept-to-region
+grounding and counterfactual
+generation~\cite{patricio2023conceptbased,mensah2026interpretable,luo2025xbench,sadashivaiah2024explaining},
+with one instructive limit: it detects injected biases but not implicit
+ones~\cite{bertolini2025strengths}. Because the prompt alters the direction, expert-label validation is
+required (\S\ref{sec:eval-what}).
 
 \subsubsection{Validity controls}
 
-Expressive decoders require controls: a control task refits $\mathcal G$ in~(\ref{eq:probe}) on permuted or
-type-matched labels and reports task-minus-control accuracy~\cite{hewitt2019designing}, description length
-controls capacity~\cite{voita2020information}, amnesic probing and erasure test whether removing a property
-changes behaviour~\cite{elazar2020amnesic,ravfogel2020null,belrose2023leace}, and information-theoretic and
-geometric accounts bound cross-representation comparison and identify concept
-subspaces~\cite{pimentel2020informationtheoretic,guerner2023geometric}. Medical use is rare. Among the \Ndecni{} core decoding studies outside intrinsic
-designs, \Nprobectrl{} report a shuffled- or permuted-label null or a chance
+An expressive decoder needs a control: a control task refits $\mathcal G$ in~(\ref{eq:probe}) on
+permuted or type-matched labels and reports the difference~\cite{hewitt2019designing}, description
+length controls capacity~\cite{voita2020information}, and amnesic probing and erasure test whether
+removing a property changes
+behaviour~\cite{elazar2020amnesic,ravfogel2020null,belrose2023leace,pimentel2020informationtheoretic,guerner2023geometric}.
+Medical use of these controls is rare. Among the \Ndecni{} core decoding studies outside intrinsic
+designs, \Nprobectrl{} report a shuffled-label null or a chance
 calibration~\cite{liang2026cheap,rahbar2026frozen,vig2026do,bertolini2025strengths,arasteh2026candor,steiner2026when,li2026acquisition,cajas2026shortkit},
-none a randomized control task in the sense of
-Hewitt and Liang (\S\ref{sec:findings}); \Nproberand{} report a randomly initialised
-encoder~\cite{rahbar2026frozen,arasteh2026candor,svatko2026deep,farquhar2026pretraining} and \cite{tariq2024self}$^{\dagger}$, two of them also among the first (\S\ref{sec:eval-what} gives the full partition).
-Twenty-eight compare medical and general models on the same data. Only four probe successive depths in order to
-localise where a concept becomes decodable~\cite{pedersen2026look,rahbar2026frozen,vig2026do,vadori2025mind};
-two more read several depths without localising~\cite{farquhar2026pretraining,demir2025downstream}, one varies
-pooling rather than layer~\cite{muthyala2026frozen}, and the rest probe the final embedding. A frozen-probe benchmark of physiological-signal models sets the standard~\cite{zare2026eeg}, and the
-interventions of \S\ref{sec:intervention} supply the behavioural end-points decoding lacks.
-
+none a control task in the sense of Hewitt and Liang, and \Nproberand{} report a randomly initialised
+encoder~\cite{rahbar2026frozen,arasteh2026candor,svatko2026deep,farquhar2026pretraining} and
+\cite{tariq2024self}$^{\dagger}$. Twenty-eight compare medical and general models on the same data.
+Only four probe successive depths to localise where a concept becomes
+decodable~\cite{pedersen2026look,rahbar2026frozen,vig2026do,vadori2025mind}, two more read several
+depths without localising~\cite{farquhar2026pretraining,demir2025downstream}, one varies pooling rather
+than layer~\cite{muthyala2026frozen}, and the rest probe the final embedding; a frozen-probe benchmark
+of physiological-signal models shows what a complete protocol looks like~\cite{zare2026eeg}.
 
 \subsubsection{Summary and discussion}
 
-Whether a recoverable attribute influences the output is usually untested: only
+Clinical findings, anatomy, demographic attributes and acquisition conditions are all decodable from
+frozen medical encoders. Whether a recoverable attribute influences the output is usually untested: only
 residualisation~\cite{kim2026encoding}$^{\dagger}$ and channel ablation~\cite{nooralahzadeh2026sparse}
-separate availability from the dependence of a specified downstream readout, and neither tests the model's
-own fixed head. Decodability of a named concept across successive loci of one model, under a control, remains unmeasured;
-the one successive-locus probe reads class labels without one (F8b, \S\ref{sec:tracing}).
+separate availability from the dependence of a specified downstream readout, and neither tests the
+model's own fixed head. Decodability of a named concept across successive loci of one model, under a
+control, remains unmeasured; the one successive-locus probe reads class labels without one (F8b,
+\S\ref{sec:tracing}).

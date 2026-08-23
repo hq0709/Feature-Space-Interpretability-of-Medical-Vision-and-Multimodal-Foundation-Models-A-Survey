@@ -1,96 +1,91 @@
 \subsection{Representation attribution, localisation and tracing}
 \label{sec:tracing}
 
-Tracing observes forward passes without changing computation, localising concepts to layers,
-positions, heads or training examples, each a hypothesis for later patching or steering; the medical
-studies ask where multimodal LLMs use images.
+Tracing observes the forward pass without changing it. It localises a concept to a layer, a position, a
+head or a training example, and each localisation is a hypothesis for later patching or steering. The
+medical studies mostly ask where multimodal LLMs use the image.
 
 \subsubsection{Residual-stream decomposition and lenses}
 
-The logit lens reads an intermediate state through the unembedding matrix,
-$\mathrm{softmax}(W_U\,\mathrm{LN}(h^{(\ell)}_p))$; the tuned lens learns a layer-specific affine
-map~\cite{belrose2023eliciting}. In vision--language models visual tokens become text-decodable and
-middle layers enrich then refine, while visual information declines across layers and generation
-steps~\cite{neo2024towards,jiang2024devils,li2025the}; objects are named without fine-grained
-comparison and steering vectors leave no lens-decodable
-trace~\cite{shahgir2026vlms,nadaf2026steerable}. Medical lenses track diagnostic formation in a
+The logit lens reads an intermediate state through the unembedding matrix; the tuned lens learns a
+layer-specific affine map first~\cite{belrose2023eliciting}. In vision--language models, visual tokens
+become text-decodable and the middle layers enrich and then refine them, while visual information
+declines across layers and generation steps~\cite{neo2024towards,jiang2024devils,li2025the}; objects are
+named without fine-grained comparison, and steering vectors leave no lens-decodable
+trace~\cite{shahgir2026vlms,nadaf2026steerable}. Medical lenses track the formation of a diagnosis in a
 breast-cancer transformer~\cite{takahashi2026vision}, place multilingual knowledge at intermediate
-layers but not at output~\cite{abouzahir2026bridging}, and find early visual attributes regardless
-of answer correctness~\cite{nooralahzadeh2026arbitration}.
+layers but not at the output~\cite{abouzahir2026bridging}, and find visual attributes early regardless of
+whether the answer is correct~\cite{nooralahzadeh2026arbitration}.
 
 \subsubsection{Attention, visual tokens and the connector}
 
-Attention to the image is measured as visual-token mass $\sum_{q\in\mathcal V}A^{(\ell,h)}_{pq}$
-over heads and layers, or by rollout and its
-refinements~\cite{abnar2020quantifying,chefer2021transformer}; none quantifies causal contribution,
-as the attention-as-explanation debate
+Attention to the image is measured as the attention mass on visual tokens, summed over heads and
+layers, or by rollout and its refinements~\cite{abnar2020quantifying,chefer2021transformer}. None of these
+quantifies a causal contribution, as the attention-as-explanation debate
 established~\cite{jain2019attention,wiegreffe2019attention,serrano2019is}. General-domain work finds
-middle-layer concentration on real objects, staged flow into question tokens, attention sinks,
+middle-layer concentration on real objects, staged flow into the question tokens, attention sinks,
 redundant visual tokens and modality-specific
 neurons~\cite{jiang2024devils,zhang2024cross,kang2025you,luo2025sink,chen2024image,wang2025token,huo2024mmneuron,huang2024miner,kang2025large,kim2025interpreting,jiang2025investigating}.
-Connectors map correlated embeddings into language-model feature
-space~\cite{lee2026more,venhoff2025visual} and hallucinate when
-text-over-aligned~\cite{fan2026visual,venhoff2025too,saini2026when}; dermatology fine-tuning
-improves the projection but not its domain specificity~\cite{verma2024cross}.
+Connectors map correlated embeddings into the language model's feature
+space~\cite{lee2026more,venhoff2025visual} and hallucinate when they are over-aligned to
+text~\cite{fan2026visual,venhoff2025too,saini2026when}; dermatology fine-tuning improves the projection
+but not its domain specificity~\cite{verma2024cross}.
 
-Eleven core records from eleven studies, nine of which take tracing as their primary family (\S\ref{sec:method}), read attention or attribution maps of medical models; \Vtrany{} test them against
-perturbation, occlusion or counterfactual evidence, and where tested against a perturbation or counterfactual, the maps often fail, and the result is benchmark- and end-point-dependent. Four attribution methods disagree under patch deletion and insertion across 17 RETFound
-models, gradient-weighted rollout winning in 11 of 17~\cite{bors2026benchmarking}, and internal
-attributions of six vision--language models miss the counterfactually verified evidence region on
-chest radiographs (rollout IoU 2.7 against 39.2 for the best gradient
-method)~\cite{xiong2026rethinking}. Attention maps sometimes anti-correlate with occlusion
-importance~\cite{sadanandan2026attention}, lose to perturbation and relevance-propagation
+Eleven core records from eleven studies, nine of which take tracing as their primary family
+(\S\ref{sec:method}), read attention or attribution maps of medical models, and \Vtrany{} test the maps
+against perturbation, occlusion or counterfactual evidence. Where they are tested, the maps often fail,
+and the result depends on the benchmark and the end-point. Four attribution methods disagree under
+patch deletion and insertion across 17 RETFound models, with gradient-weighted rollout best in 11 of
+17~\cite{bors2026benchmarking}, and the internal attributions of six vision--language models miss the
+counterfactually verified evidence region on chest radiographs, with a rollout IoU of 2.7 against 39.2
+for the best gradient method~\cite{xiong2026rethinking}. Attention maps sometimes anti-correlate with
+occlusion importance~\cite{sadanandan2026attention}, lose to perturbation and relevance-propagation
 explanations~\cite{idaji2026beyond}, enrich for pathway rather than gene
-signatures~\cite{srikanthan2026do}, mark pixels outside the body~\cite{hashmi2024towards} and are
-diffuse and prompt-insensitive~\cite{injarabian2025interpreting}, while an EchoPrime probe beats
-random masking only by a method-dependent margin~\cite{akanova2026interpreting}$^{\dagger}$.
+signatures~\cite{srikanthan2026do}, mark pixels outside the body~\cite{hashmi2024towards}, and are
+diffuse and insensitive to the prompt~\cite{injarabian2025interpreting}; an EchoPrime probe beats random
+masking only by a method-dependent margin~\cite{akanova2026interpreting}$^{\dagger}$.
 
-The remaining records localise rather than test: visual-attention ratios find a visually dominant
-window in two medical multimodal LLMs (\S\ref{sec:intervention})~\cite{chen2026vihd}, and
-class-label probes at successive loci of fourteen models name four failure modes including connector
-fidelity loss~\cite{zhu2026lost}. The earliest record audits GLoRIA's text--image attention on Chest
+The remaining records localise without testing. Visual-attention ratios find a visually dominant window
+in two medical multimodal LLMs~\cite{chen2026vihd} (\S\ref{sec:intervention}), and class-label probes at
+successive loci of fourteen models name four failure modes, among them loss of fidelity at the
+connector~\cite{zhu2026lost}. The earliest record audits GLoRIA's text--image attention on Chest
 ImaGenome pairs: the map localises above chance (AUROC 69.1) yet barely moves when ``left'' becomes
-``right'' and falls only when the reference boxes move, so it is fixed by the
-image~\cite{mcinerney2022that}. Text-tower anchors trace negation failure in a chest-radiograph
-assistant and in radiology captions~\cite{vu2025improving,abbasi2026layerspecific}; input audits
-agree that image use is weak, a text-only baseline nearly matching the best multimodal
-model~\cite{lotfinia2026vision}, VQA grounding staying poor~\cite{chen2026grounding} and grounding
-failures separating~\cite{liu2026medical}. No other study measures a medical connector
-(Fig.~\ref{fig:corpus}b), so these token-level results transfer only where projectors preserve patch
-correspondence (Table~\ref{tab:models}).
+``right'', and falls only when the reference boxes move, so it is fixed by the
+image~\cite{mcinerney2022that}. Text-tower anchors trace negation failure in a chest-radiograph assistant
+and in radiology captions~\cite{vu2025improving,abbasi2026layerspecific}. Input audits agree that image
+use is weak: a text-only baseline nearly matches the best multimodal model~\cite{lotfinia2026vision},
+VQA grounding stays poor~\cite{chen2026grounding}, and grounding failures can be told
+apart~\cite{liu2026medical}. No other study measures a medical connector (Fig.~\ref{fig:corpus}b), so
+these token-level results transfer only where the projector preserves patch correspondence
+(Table~\ref{tab:models}).
 
-\subsubsection{Encoder tokens, attention heads and slide-level aggregators}
+\subsubsection{Encoder tokens, aggregators and training-data attribution}
 
-Three observations bear on the encoders of Table~\ref{tab:models}, none a core claim. The high-norm
-artefact tokens of vision transformers~\cite{darcet2023vision} are unmeasured in DINOv2-recipe
-models such as RAD-DINO, UNI and Prov-GigaPath, where they would dominate the patch norms and
-attention probes read. Self-supervised pathology encoders develop heads attending to morphological
+Three observations bear on the encoders of Table~\ref{tab:models}, none of them a core claim. The
+high-norm artefact tokens of vision transformers~\cite{darcet2023vision} are unmeasured in DINOv2-recipe
+models such as RAD-DINO, UNI and Prov-GigaPath, where they would dominate the patch norms and attention
+that probes read. Self-supervised pathology encoders develop heads that attend to morphological
 phenotypes~\cite{chen2022self,chen2024generalpurpose,xu2024wholeslide}, qualitative evidence that
 morphology was learned. Tile weights of attention-based multiple-instance learning (MIL)
-aggregators~\cite{ilse2018attention,lu2020data} are the common computational-pathology explanation,
+aggregators~\cite{ilse2018attention,lu2020data} are the usual explanation in computational pathology,
 partly answered by prototype- and concept-based aggregators
-(\S\ref{sec:intrinsic})~\cite{song2024morphological,huy2025interactive}. Like decoder attention,
-none is confirmed by patching.
-
-\subsubsection{Example- and training-data-based attribution}
-
-Frozen embeddings support content-based retrieval over 1.6 million radiological images~\cite{denner2024leveraging}, and foundation-feature prototypes (\S\ref{sec:intrinsic})
-turn nearest-neighbour structure into explanation. Text-based decomposition attributes CLIP
-representations to layers, heads and
-patches~\cite{gandelsman2023interpreting,balasubramanian2024decomposing}, with no medical instance.
-Influence functions~\cite{koh2017influence} trace predictions to training examples, identifying mislabelled
-data~\cite{hao2020inaccurate} and re-weighting noisy labels~\cite{braun2022influence}, and scalable
-gradient attribution has reached a biomedical language model~\cite{cao2026scalable}; medical vision
-use stays limited to curation and leakage auditing (\S\ref{sec:applications}), where image--report
-correspondence creates a re-linkage risk~\cite{tayebiarasteh2026crossmodal}.
-
+(\S\ref{sec:intrinsic})~\cite{song2024morphological,huy2025interactive}; like decoder attention, none
+of the three is confirmed by patching. Attribution to examples is rarer still. Frozen embeddings support
+content-based retrieval over 1.6 million radiological images~\cite{denner2024leveraging}, text-based
+decomposition attributes CLIP representations to layers, heads and
+patches~\cite{gandelsman2023interpreting,balasubramanian2024decomposing} with no medical instance, and
+influence functions~\cite{koh2017influence} identify mislabelled data~\cite{hao2020inaccurate},
+re-weight noisy labels~\cite{braun2022influence} and have reached a biomedical language
+model~\cite{cao2026scalable}. In medical vision their use is limited to curation and leakage auditing
+(\S\ref{sec:applications}), where image--report correspondence creates a re-linkage
+risk~\cite{tayebiarasteh2026crossmodal}.
 
 \subsubsection{Summary and discussion}
 
-Tracing localises information and shows how unevenly it is attended, not that the output uses it: in
-language models the layer that causal tracing singles out is not the layer at which editing works
-best~\cite{hase2023does}. The medical records that test their maps find them unreliable or
-method-dependent, and image use weak. \Vtrany{} of the \Vtrn{} records
-\emph{test} their map, by occlusion, perturbation, patching or counterfactual evidence, and the test
-corroborates the map in some and refutes it in others; localisation itself remains a hypothesis, and artefact tokens threaten the
-patch-level analyses reviewed here.
+Tracing shows where information sits and how unevenly it is attended, not that the output uses it; in
+language models, the layer that causal tracing singles out is not the layer at which editing works
+best~\cite{hase2023does}. \Vtrany{} of the \Vtrn{} records \emph{test} their map, by occlusion,
+perturbation, patching or counterfactual evidence, and the test corroborates the map in some and refutes
+it in others. The medical records that test their maps find them unreliable or method-dependent, and
+image use weak. Localisation remains a hypothesis, and artefact tokens threaten the patch-level
+analyses reviewed here.

@@ -1,141 +1,133 @@
 \subsection{Structural and geometric analysis}
 \label{sec:geometry}
 
-Structural analyses characterise representation spaces through image--text arrangement,
-distributional spread, cross-model similarity, organisation by scanner or site and change under
-adaptation. Fitting no decoder, they are the cheapest analyses. Eligibility here requires a demonstrated
-link to decodability, retrieval, transfer or shortcut behaviour~\cite{geirhos2020shortcut}, which makes this family a
-\emph{functionally grounded} selection rather than a map of medical foundation-model geometry: a study that
-measures anisotropy or alignment and reports no downstream consequence does not enter, so purely descriptive
-and negative geometry results are under-represented by construction. The restriction is not applied to the
-other families, so geometry counts and positive-direction rates are not comparable with theirs, and the
-statements it supports (F3c, F5, F5b, F11) should be read as statements about functionally grounded geometry
-work.
+Structural analyses characterise a representation space through the arrangement of image and text
+embeddings, the spread of the distribution, similarity across models, organisation by scanner or site,
+and change under adaptation. They fit no decoder, and they are the cheapest analyses. Eligibility in this
+family requires a demonstrated link to decodability, retrieval, transfer or shortcut
+behaviour~\cite{geirhos2020shortcut}, so the family is a \emph{functionally grounded} selection rather
+than a map of medical foundation-model geometry: purely descriptive and negative geometry results are
+under-represented by construction, the counts of this family are not comparable with those of the
+others, and the statements it supports (F3c, F5, F5b, F11) describe functionally grounded geometry work
+only.
 
 \subsubsection{Modality gap and cross-modal alignment}
 
-\textbf{The modality gap.} Contrastive dual encoders separate image and text embeddings; the gap
-between modality centroids is $\Delta=\|\bar z_v-\bar z_t\|_2$, with $\bar z_v=\frac{1}{N}\sum_i z_v(x_i)/\|z_v(x_i)\|_2$ and $\bar z_t$ defined the same way: each embedding is unit-normalised \emph{before} averaging, so $\Delta$ is a distance between mean directions and $\|\bar z_v\|_2\le 1$; averaging first and normalising afterwards gives a different quantity, and the studies that report $\Delta$ are not always explicit about which they compute. General-domain
-accounts trace it to initialisation cones, information imbalance, sparse cross-modal atoms or a
-functional role~\cite{liang2022mind,schrodi2025two,dhimoila2026crossmodal,yan2025beyond}. Restrepo
-\emph{et al.}~\cite{restrepo2026cone} find tighter cones on medical than on natural data for all four backbones and a
-smaller cross-modal separation in BiomedCLIP and MedSigLIP than in CLIP and SigLIP, though the gap persists, and a frozen-encoder
-shift gives task-dependent gains below 0.02 in the area under the ROC curve (AUROC) without a random-direction control. Gap-shrinking losses and gaze guidance improve retrieval, captioning and
-alignment~\cite{grassucci2025closing,lahmar2026bridging,kumar2024improving}, on no shared protocol.
+\textbf{The modality gap.} Contrastive dual encoders keep image and text embeddings apart, and the gap
+is usually measured as the distance between the two modality centroids,
+$\Delta=\|\bar z_v-\bar z_t\|_2$, after unit-normalising each embedding. General-domain accounts trace
+it to initialisation cones, information imbalance, sparse cross-modal atoms or a functional
+role~\cite{liang2022mind,schrodi2025two,dhimoila2026crossmodal,yan2025beyond}. Restrepo \emph{et
+al.}~\cite{restrepo2026cone} find tighter cones on medical than on natural data for all four backbones
+they test and a smaller cross-modal separation in BiomedCLIP and MedSigLIP than in CLIP and SigLIP,
+although the gap persists; shifting the frozen embeddings gives task-dependent gains below 0.02 AUROC,
+without a random-direction control. Gap-shrinking losses and gaze guidance improve retrieval, captioning
+and alignment~\cite{grassucci2025closing,lahmar2026bridging,kumar2024improving}, each on its own protocol.
 
-\textbf{Alignment quality and cross-modal consistency.} Contrastive objectives decompose into
-alignment and uniformity~\cite{wang2020understanding}: paired distance $\mathbb{E}_{(x,t)}\|z_v(x)-z_t(t)\|_2^{2}$ and spherical coverage
-$\log\mathbb{E}_{x,x'}\exp(-2\|z(x)-z(x')\|_2^{2})$, though intra- and cross-modal similarities disagree in CLIP~\cite{mistretta2025cross}. Global
-alignment survives where local alignment does not: in GLoRIA, global image--sentence similarity separates the
-paired sentence from a random one at 70\% but region-level similarity only at 55\%, and at 43\% on abnormal
-pairs, below chance~\cite{mcinerney2022that}; counterfactual edits of negation and laterality barely move
-BiomedCLIP and PubMedCLIP similarity~\cite{balogh2026regularization}$^{\dagger}$; and a projection head can
-collapse tumour and normal prototypes to 98\% similarity~\cite{arora2026semantic}. Because distinct patients
-share findings, off-diagonal negatives are often semantically positive, and the objectives addressing
+\textbf{Alignment quality.} Contrastive objectives decompose into alignment and
+uniformity~\cite{wang2020understanding}, and intra- and cross-modal similarities disagree in
+CLIP~\cite{mistretta2025cross}. In medical models, global alignment survives where local alignment does
+not: in GLoRIA, global image--sentence similarity separates the paired sentence from a random one in
+70\% of cases, region-level similarity in only 55\%, and in 43\% on abnormal pairs, below
+chance~\cite{mcinerney2022that}. Counterfactual edits of negation and laterality barely move BiomedCLIP
+and PubMedCLIP similarity~\cite{balogh2026regularization}$^{\dagger}$, and a projection head can collapse
+tumour and normal prototypes to 98\% similarity~\cite{arora2026semantic}. Because distinct patients
+share findings, many off-diagonal negatives are semantically positive; the objectives that address
 this~\cite{wang2022medclip,park2025off,zhang2025fane,ztrk2025meta} are evaluated downstream rather than
 geometrically.
 
 \subsubsection{Anisotropy, effective rank and dimensional collapse}
 
-The cone effect, anisotropy, low effective rank and dimensional collapse all describe concentration
-in a small subspace, first found in language embeddings~\cite{ethayarajh2019how}; rapid spectral decay
-indicates low effective rank, $\mathrm{erank}=\exp(-\sum_k p_k\log p_k)$ with
-$p_k=\sigma_k/\sum_j\sigma_j$ the singular values of the centred embedding matrix normalised to sum to
-one, so $p_k$ is a share of singular value and not of variance (using $\sigma_k^2$, equivalently the
-covariance eigenvalues, gives a smaller number, and the studies compared here are not always explicit about
-which they report); effective rank predicts downstream performance; how uniformly a space is used can be measured
-directly~\cite{rudman2022isoscore}, and contrastive training can collapse
-dimensions~\cite{roy2007effective,garrido2022rankme,jing2021understanding,hassanpour2024overcoming}. Across
-eight encoders, aggressive post-hoc whitening (\S\ref{sec:intervention}) lowered downstream AUC in
-34 of 36 model--dataset pairs, though the pooled interval crossed zero, whereas gentler spectral
-standardisation gained about 0.005 AUROC (from the abstract)~\cite{garciahidalgo2026embedding}. Since the
-near-isotropic encoder degrades with the rest, that experiment does not establish the anisotropy itself as
-the task-relevant structure, and F5 records the point as a single-study hypothesis. Concentration
-neither places concept directions in the dominant subspace nor precludes decodability along
-low-variance directions, so similarity scores need standardisation and, with
-superposition~\cite{elhage2022toy}, overcomplete dictionaries (\S\ref{sec:discovery}).
+The cone effect, anisotropy, low effective rank and dimensional collapse all describe concentration of
+the embeddings in a small subspace, first found in language embeddings~\cite{ethayarajh2019how}.
+Effective rank, $\mathrm{erank}=\exp(-\sum_k p_k\log p_k)$ with $p_k$ the normalised singular values of
+the centred embedding matrix, summarises it~\cite{roy2007effective,garrido2022rankme,rudman2022isoscore},
+and contrastive training can collapse dimensions~\cite{jing2021understanding,hassanpour2024overcoming}.
+The one medical test of whether this structure matters is indirect: across eight encoders, aggressive
+post-hoc whitening lowered downstream AUC in 34 of 36 model--dataset pairs, whereas gentler spectral
+standardisation gained about 0.005 AUROC~\cite{garciahidalgo2026embedding}. Since the near-isotropic
+encoder degraded with the rest, the experiment does not show that the anisotropy itself is the
+task-relevant structure, and F5 records the point as a single-study hypothesis. Concentration neither
+places concept directions in the dominant subspace nor prevents decoding along low-variance directions,
+so similarity scores need standardisation and, under superposition~\cite{elhage2022toy}, overcomplete
+dictionaries (\S\ref{sec:discovery}).
 
 \subsubsection{Cross-model similarity}
 
 Cross-model similarity is measured by linear centred kernel alignment
 (CKA)~\cite{kornblith2019similarity}, representational similarity analysis
 (RSA)~\cite{kriegeskorte2008representational}, canonical-correlation
-measures~\cite{raghu2017svcca,morcos2018insights} or Procrustes distances, whose sensitivities differ and are
-surveyed and benchmarked elsewhere~\cite{klabunde2023similarity,ding2021grounding}: for centred activations $X$
-and $Y$, $\mathrm{CKA}(X,Y)=\|Y^{\top}X\|_F^{2}/(\|X^{\top}X\|_F\,\|Y^{\top}Y\|_F)$, while RSA correlates pairwise-dissimilarity matrices. Under the
+measures~\cite{raghu2017svcca,morcos2018insights} or Procrustes distances, whose sensitivities differ and
+are benchmarked elsewhere~\cite{klabunde2023similarity,ding2021grounding}. Under the
 platonic-representation hypothesis~\cite{huh2024platonic}, visual tokens align with text through the
-stack~\cite{neo2024towards}, whereas pathology encoders track slide of origin over
+stack~\cite{neo2024towards}, whereas pathology encoders track the slide of origin over
 disease~\cite{mishra2025comparing}.
 
 The largest medical study examines 18 image and 7 text encoders across five modalities in an
-objective-stratified training matrix (one seed per cell, native preprocessing)~\cite{tayebiarasteh2026self}:
-convergence is modest and groups by objective rather than scale, with matched self-supervised encoders
-aligning most (40.4\% on chest radiography) against label-supervised (21.1\%) and image--text (3.3\%) ones.
-No image encoder aligns with a clinical text encoder, although linear classifiers transfer at about 85\%. Across 22 encoders, 20 datasets
-and 605,443 images, chance-calibrated nearest-neighbour discordance puts blind sets above a
-hypergeometric null for every dermatology, fundus, histopathology and mammography pair and 655 of
-660 chest pairs, against about half of natural-image pairs~\cite{arasteh2026candor}; nearest-neighbour
-statistics in high-dimensional spaces are themselves distorted by hubness~\cite{radovanovic2010hubs}, which
-no reviewed study corrects for. Elsewhere between-scanner reliability of brain encoders is poor, CKA falls under MRI artefacts while
-effective rank holds, nearest-neighbour overlap among volumetric encoders tracks model quality, and an
-at-most-affine map stitches frozen chest-radiograph encoders into a zero-shot
-classifier~\cite{navarrogonzalez2026crossscanner,mielcarz2026do,aerts2025foundation,folco2025semantic}
-(\S\ref{sec:intervention}). The corpus's cross-encoder
-comparisons group by objective~\cite{tayebiarasteh2026self} and by modality~\cite{arasteh2026candor}, not by
-domain (\S\ref{sec:findings}). None of this is surprising if pipelines are underspecified: equal downstream
-performance does not identify equivalent representations, and the choices left free by the training
-objective can move them~\cite{damour2022underspecification}; identifiability up to a linear map holds only under
-conditions on the training objective that these pipelines do not check~\cite{roeder2020linear}.
+objective-stratified training matrix~\cite{tayebiarasteh2026self}. Convergence is modest and groups by
+objective rather than scale: matched self-supervised encoders align most (40.4\% on chest radiography),
+label-supervised ones less (21.1\%) and image--text ones least (3.3\%), and no image encoder aligns with a
+clinical text encoder, although linear classifiers transfer at about 85\%. Across 22 encoders and 20
+datasets, chance-calibrated nearest-neighbour discordance puts blind sets above a hypergeometric null for
+almost every pair of medical datasets, against about half of natural-image
+pairs~\cite{arasteh2026candor}, a statistic that hubness distorts in high
+dimensions~\cite{radovanovic2010hubs}. Elsewhere, between-scanner reliability of brain encoders is
+poor, CKA falls under MRI artefacts while effective rank holds, nearest-neighbour overlap among
+volumetric encoders tracks model quality, and an affine map stitches frozen chest-radiograph encoders
+into a zero-shot
+classifier~\cite{navarrogonzalez2026crossscanner,mielcarz2026do,aerts2025foundation,folco2025semantic}.
+None of this is surprising if training pipelines are underspecified: equal downstream performance does
+not identify equivalent representations~\cite{damour2022underspecification}, and identifiability up to
+a linear map holds only under conditions that these pipelines do not check~\cite{roeder2020linear}.
 
 \subsubsection{Site, scanner and acquisition structure}
 
-Acquisition confounding predates foundation models~\cite{zech2018variable}, and medical embeddings
-are organised the same way
-(\S\ref{sec:decoding}~\cite{dejong2025current,komen2024do,zheng2024demographic}). The signatures
-behave as geometric distortions: one affine correction per model harmonises embeddings across
-pathology scanners and MRI field strengths~\cite{donle2026featmap}, scanner variability shifts calibration
-while preserving discrimination~\cite{thiringer2026scanner}, and a contrastive projection on frozen
-embeddings reduces scanner clustering~\cite{carloni2025pathology} (\S\ref{sec:intervention}).
+Acquisition confounding predates foundation models~\cite{zech2018variable}, and medical embeddings are
+organised the same way (\S\ref{sec:decoding}~\cite{dejong2025current,komen2024do,zheng2024demographic}).
+The signatures behave as geometric distortions: one affine correction per model harmonises embeddings
+across pathology scanners and MRI field strengths~\cite{donle2026featmap}, scanner variability shifts
+calibration while preserving discrimination~\cite{thiringer2026scanner}, and a contrastive projection on
+frozen embeddings reduces scanner clustering~\cite{carloni2025pathology} (\S\ref{sec:intervention}).
 
-Pathology provenance is recoverable at high accuracy: source hospital from ten encoders at AUC 0.82--0.99,
-site above 0.95 after Macenko normalisation, scanner from slide embeddings above 0.99 out of fold, and
-14--55\% of a patch embedding's neighbours reflecting centre rather than
+Pathology provenance is recoverable at high accuracy. Source hospital is decodable from ten encoders at
+AUC 0.82--0.99, site above 0.95 after stain normalisation, scanner from slide embeddings above 0.99, and
+14--55\% of a patch embedding's neighbours reflect the centre rather than the
 biology~\cite{zhang2025hospital,murchan2024deep,kmen2026robust,jung2026foundation,shafique2026investigating,saueressig2025histology,gustafsson2024evaluating,esbri2025benchmarking}.
-The consequence is not only detectability: the scanner signature covaries with case mix and inflates an
-external Ki-67 correlation~\cite{jung2026foundation}, stain normalisation, lossy DICOM conversion and
+The consequence goes beyond detectability. The scanner signature covaries with case mix and inflates an
+external Ki-67 correlation~\cite{jung2026foundation}; stain normalisation, lossy DICOM conversion and
 sequential sectioning all move embeddings and
-predictions~\cite{wolflein2023benchmarking,mayer2025lossy,balan2025reproducibility}, and in CT and PET
+predictions~\cite{wolflein2023benchmarking,mayer2025lossy,balan2025reproducibility}; and in CT and PET,
 embedding concordance holds across reconstruction settings while nodule-outcome ranking moves with
 them~\cite{park2025evaluating,farquhar2026pretraining}.
 
-Outside pathology, a t-SNE of frozen Mammo-CLIP features visually suggests clustering by dataset across ten mammography cohorts, with no separation statistic reported, and
-the encoder most organised by cohort probes best yet loses most under external transfer, ending level with a general
-encoder~\cite{germani2025bias}. Six further studies tie embedding structure to subgroup and imaging attributes, judged image quality,
-tissue-type clustering, augmentation, biological order and institutional
-artefacts~\cite{alloula2025representation,ouaari2026assessing,fournier2026prognostic,elphick2024are,vig2026do,zhang2026auditing}.
-Image--report correspondence in a chest-radiograph joint space, at 15--50 times chance, is a
-re-linkage risk~\cite{tayebiarasteh2026crossmodal} (\S\ref{sec:tracing}), motivating the confounder
-controls of \S\ref{sec:applications}.
+Outside pathology, frozen Mammo-CLIP features cluster by dataset across ten mammography cohorts, and
+the encoder most organised by cohort probes best yet loses most under external transfer, ending level
+with a general encoder~\cite{germani2025bias}. Six further studies tie embedding structure to subgroup
+and imaging attributes, judged image quality, tissue-type clustering, augmentation, biological order and
+institutional
+artefacts~\cite{alloula2025representation,ouaari2026assessing,fournier2026prognostic,elphick2024are,vig2026do,zhang2026auditing},
+and image--report correspondence in a chest-radiograph joint space, at 15--50 times chance, is a
+re-linkage risk~\cite{tayebiarasteh2026crossmodal} (\S\ref{sec:applications}).
 
 \subsubsection{Representation change under adaptation}
 
-Similarity, checkpoint probes and cross-model dictionaries measure change under fine-tuning,
-low-rank adaptation and continued pre-training. General-domain work finds that fine-tuning most changes top layers and can distort features, that
-low-rank updates introduce intruder dimensions, and that visual instruction tuning moves visual features
-into intermediate language-model
+Similarity, checkpoint probes and cross-model dictionaries measure how a representation changes under
+fine-tuning, low-rank adaptation and continued pre-training. General-domain work finds that fine-tuning
+changes the top layers most and can distort features, that low-rank updates introduce intruder
+dimensions, and that visual instruction tuning moves visual features into intermediate language-model
 layers~\cite{merchant2020what,zhou2021closer,kumar2022fine,lee2022surgical,raghu2019rapid,biderman2024lora,shuttleworth2024lora,palacios2026visual,verma2024cross}.
-Medical few-shot and meta-learning are assessed downstream~\cite{bo2025famnet,wang2025task}, and the
-representation-level studies measure cross-hospital drift, forgetting during continued pre-training and
-adapter placement from transferred
+Medical few-shot and meta-learning methods are assessed downstream only~\cite{bo2025famnet,wang2025task},
+and the three representation-level medical studies measure cross-hospital drift, forgetting during
+continued pre-training, and adapter placement from transferred
 dictionaries~\cite{theofilou2025stable,zoellin2024block,sadanandan2026mechanistically}. Whether concept
-directions survive transfer is unmeasured, although crosscoder model diffing~\cite{minder2025overcoming} is
+directions survive transfer is unmeasured; crosscoder model diffing~\cite{minder2025overcoming} offers
 an instrument (\S\ref{sec:discovery}).
-
 
 \subsubsection{Summary and discussion}
 
-Medical encoders converge modestly, grouping by objective rather than scale~\cite{tayebiarasteh2026self},
-were alignable in one study by an affine map to within about a dozen AUROC points of the source
-encoder~\cite{folco2025semantic}, and place acquisition variables in prominent directions.
-\Vgeoany{} of the \Vgeon{} geometry records compare the statistic with a comparison model or a null; whether geometry-modifying methods repair what they target is unmeasured,
+Medical encoders converge modestly and group by objective rather than
+scale~\cite{tayebiarasteh2026self}; in one study an affine map aligned them to within about a dozen
+AUROC points of the source encoder~\cite{folco2025semantic}; and they place acquisition variables in
+prominent directions. \Vgeoany{} of the \Vgeon{} geometry records compare their statistic with a
+comparison model or a null. Whether geometry-modifying methods repair what they target is unmeasured,
 because they are assessed only downstream.
