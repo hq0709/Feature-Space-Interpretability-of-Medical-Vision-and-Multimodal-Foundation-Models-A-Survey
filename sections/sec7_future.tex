@@ -12,15 +12,14 @@ rather than for modelling, which constrains everything after it.
 \textit{(0) An atomic unit for representation-level claims.} The record of \S\ref{sec:findings} (study
 $\times$ family $\times$ evidence type $\times$ locus) is the finest unit the reviewed papers report
 consistently, and it is not atomic, which is why the statements name disagreeing records rather than
-count directions. What is needed is a reporting convention: a paper that reports a representation-level result should state, per concept,
+count directions. A reporting convention is needed: a paper that reports a representation-level result should state, per concept,
 model, dataset and end-point, the quantity, the comparison it is read against, and the validity test run on
 \emph{that} outcome. A sheet in that form, released beside the paper, would let a later synthesis count
 outcomes rather than records. The same convention needs a probe control that medical images do not yet
 have. A control task in the sense of Hewitt and Liang~\cite{hewitt2019designing} assigns each input
 \emph{type} a fixed random label, so that a probe with capacity but no selectivity scores as well on the
 control as on the task; language has recurring types and medical images usually do not, and under a
-patient-level split a type has to cross the split --- scanner, site, protocol, view or an annotated patch
-class --- or the control measures nothing. Supplement S8c sets out the three designs that should be kept
+patient-level split a type has to cross the split (scanner, site, protocol, view or an annotated patch class) or the control measures nothing. Supplement S8c sets out the three designs that should be kept
 apart (chance calibration, a control task proper, a memorisation test); none is a citation one can simply
 apply, so the selectivity of a medical probe is at present unreported rather than poor.
 
@@ -90,8 +89,7 @@ encoders, recording their choices and the deployed models' subgroup performance.
 \textit{(7) Aggregator, volumetric and multi-image loci.} The loci of \S\ref{sec:loci} follow the
 two-dimensional single-image path, yet whole-slide aggregators supply the commonest pathology explanations
 (\S\ref{sec:tracing}), volumetric encoders pool sub-volumes before probing, and multi-image report generators
-encode time at positions unseen by the encoder. None of the three is separately controlled, which is where the
-sublocus regularity of \S\ref{sec:findings} bites: future coding should add an aggregator locus and a pooling
+encode time at positions unseen by the encoder. None of the three is separately controlled, which is where the sublocus regularity of \S\ref{sec:findings} matters: future coding should add an aggregator locus and a pooling
 declaration, and test aggregator attention against occlusion, attention-MIL weights on UNI or TITAN features
 against CAMELYON tiles~\cite{sadanandan2026attention}.
 
@@ -107,7 +105,7 @@ the expert-verified scorers of \S\ref{sec:eval-data}~\cite{kim2024transparent} a
 Table~\ref{tab:models} suffice. Table~\ref{tab:practice} maps the seven recurring practitioner questions to
 a locus, family, validity and transport controls and licensed claim, and supplementary Table~S12 assembles
 them into a minimum audit of one attribute, with the inputs, splits, nulls and stopping criteria of each
-step. What is feasible depends on access: embeddings alone support permutation- and chance-calibrated probing on a
+step. Feasibility depends on access: embeddings alone support permutation- and chance-calibrated probing on a
 patient-level split, geometry and site measurement, and erasure before a downstream evaluation; open
 encoder weights add a randomly initialised baseline and layer- and pooling-resolved probes, so a sublocus
 can be named; and only an open encoder--connector--language-model stack supports tracing, patching and the

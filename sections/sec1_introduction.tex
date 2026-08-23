@@ -3,10 +3,7 @@
 
 Foundation models pre-trained at scale on medical images or image--text pairs are an increasingly common
 starting point for medical image analysis. Self-supervised encoders for
-radiology~\cite{perezgarcia2024scalable}, computational pathology~\cite{chen2024generalpurpose,xu2024wholeslide,vorontsov2024model} and
-ophthalmology~\cite{zhou2023model} --- most of them trained by the DINOv2
-recipe~\cite{oquab2024dinov2}, which is also the general comparator most of the studies reviewed here use
---- are reused frozen across dozens of tasks;
+radiology~\cite{perezgarcia2024scalable}, computational pathology~\cite{chen2024generalpurpose,xu2024wholeslide,vorontsov2024model} and ophthalmology~\cite{zhou2023model}, most of them trained by the DINOv2 recipe~\cite{oquab2024dinov2} that also supplies the general comparator in most of the studies reviewed here, are reused frozen across dozens of tasks;
 dual-encoder vision--language models (VLMs) built on the CLIP recipe~\cite{radford2021learning}, such as
 BiomedCLIP~\cite{zhang2023biomedclip} and CONCH~\cite{lu2024visuallanguage}, support zero-shot
 classification and retrieval; multimodal large
@@ -48,8 +45,7 @@ only when it tests a representation-level claim (\S\ref{sec:method}). Terminolog
 \textbf{Contributions.} The contributions are fourfold. \textit{First}, a taxonomy of feature-space
 interpretability methods by methodology, locus and concept provenance, with boundary-case rules
 (\S\ref{sec:taxonomy}). It is applied through record-level coding of \Ncore{} core studies, one record per
-study, family, evidence type and locus (\S\ref{sec:method}); \Npreprint{} preprints are among them, \Nrepstudies{} are returned by a
-logged, replayable retrieval, and the supplement lists every record
+study, family, evidence type and locus (\S\ref{sec:method}); \Npreprint{} preprints are among them, \Nrepstudies{} are retrieved by the documented searches, and the supplement lists every record
 (Tables~S1--S6) and every finding's evidence profile (Tables~S9--S11). \textit{Second}, a family-by-family
 review of what each family can and cannot establish, and of their requirements, maturity and combinations
 (\S\ref{sec:methods}). \textit{Third}, consolidated datasets, concept resources, benchmarks and protocols,
@@ -70,9 +66,7 @@ and text encoders meet in a projected joint space used for retrieval and zero-sh
 multimodal language model, in which a connector $\pi$ turns encoder features into visual tokens that
 join the prompt's text tokens in the decoder's residual stream and end in the pre-readout state before
 the logits, answer or report. The labels along the path are the six loci of \S\ref{sec:loci}. The lower
-strip names the five method families of \S\ref{sec:methods} with representative techniques, and the
-axis beneath them is the evidence-type tag --- observational (what is encoded) against interventional
-(what is used) --- which belongs to each claim rather than to a family: most claims in the first four
+strip names the five method families of \S\ref{sec:methods} with representative techniques, and the axis beneath them is the evidence-type tag, observational (what is encoded) against interventional (what is used), which belongs to each claim rather than to a family: most claims in the first four
 families are observational, most in the fifth interventional, and a study may contribute both.}
 \label{fig:overview}
 \end{figure*}

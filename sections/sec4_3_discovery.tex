@@ -52,7 +52,7 @@ where $(W_d)_{:,j}$ is the $j$th column of the decoder, the direction of feature
 Equation~(\ref{eq:sae}) is the canonical $\ell_1$ objective; the reviewed medical dictionaries replace the
 penalty by a fixed active-code count (top-$k$, batch-top-$k$), a gated or jump activation or a matched-pair
 crosscoder loss, changing what is held fixed rather than the estimand. Unit norm removes scale degeneracy,
-and each $W_d$ column is a feature named from its highest-code inputs --- a naming route that need not identify what the feature does, since in vision the maximally activating patches of a dictionary feature can fail a causal test of the same feature~\cite{han2025causal}. Scaling~\cite{gao2024scaling}, better
+and each $W_d$ column is a feature named from its highest-code inputs, a naming route that need not identify what the feature does, since in vision the maximally activating patches of a dictionary feature can fail a causal test of the same feature~\cite{han2025causal}. Scaling~\cite{gao2024scaling}, better
 activations~\cite{rajamanoharan2024jumping} and open dictionaries~\cite{lieberum2024gemma} made SAEs
 portable; medical adoption has two waves. Dictionaries that decompose an image--text space jointly, rather than one tower at a time, are a general-domain development the medical corpus has not taken up: group-sparse autoencoders over paired embeddings~\cite{kaushik2026decomposing} and canonical correlation between sparse concept sets~\cite{gordon2026scocca} both address the cross-modal case that the modality gap of \S\ref{sec:geometry} makes hard, and no reviewed medical study uses either.
 
