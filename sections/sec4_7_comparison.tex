@@ -10,22 +10,26 @@ strictly stronger reading, none a prerequisite (Table~\ref{tab:vcov}). Column~4:
 the family's evidence here, with the record counts of \S\ref{sec:findings}. Geometry is task-linked
 geometry only (\S\ref{sec:models}).}
 \label{tab:families}
-\begin{tabular}{@{}L{2.55cm}L{4.3cm}L{4.2cm}L{4.6cm}@{}}
+\begin{tabular}{@{}L{2.6cm}L{4.55cm}L{4.15cm}L{4.35cm}@{}}
 \toprule
-Family & Claim licensed on its own & Tests that license a stronger claim & Dominant gap in this corpus \\
+Family & Claim licensed on its own & Stronger reading needs & Where this corpus stops \\
 \midrule
-Structural and geometric (task-linked) & the space has this shape ($\Phi$ over $\{z_\lambda\}$: gap, alignment, effective rank, CKA); no concept & the same metric on a comparison model, and a random-initialised or shuffled baseline & a comparison model in \Vcomp{} of \Vcompn{} records; a reference distribution in only \Vncal{} of \Vncaln{} applicable records \\
-Supervised concept mapping and decodability & $c$ is recoverable from $z_\lambda$ by decoders in $\mathcal G$ ($\hat g$, Eq.~\ref{eq:probe}) & randomized control task or selectivity, shuffled labels, random-encoder baseline, fixed $\mathcal G$ across models & capacity and representation-attribution controls rare: a permutation null in \Vperm{} of \Vpermn{} records, a random encoder in \Vlrn{} of \Vlrnn{}; readout selectivity not measurable until an image-domain control task is established \\
-\quad{}\emph{zero-shot scoring} & $c$ is recoverable by this fixed scorer ($\cos(z_v,z_t)$); a held-out value only once validated against held-out labels & prompt-set sensitivity; validation against held-out labels & concepts expert-validated in a minority; prompt sensitivity unreported \\
-\quad{}\emph{concept activation vectors} & the class logit is gradient-associated with a direction fitted for $c$ (TCAV $S_{c,k}$), not that $c$ is recoverable & random-direction null; direction refitted on shuffled labels & the direction is refitted on shuffled labels in no record \\
-\quad{}\emph{labelled similarity} & representation and concept distances correspond (RSA); no held-out value is recovered & permutation null over the labelled sets & a permutation null over the labelled sets in one record of five \\
-Feature decomposition and discovery & $z_\lambda$ contains a unit whose activation tracks the named content ($D$, $a(x)$, Eq.~\ref{eq:sae}) & reconstruction $R^2$; names validated against ground truth; cross-seed feature matching & semantic validation in \Vsem{} of \Vsemn{} records; cross-seed identity of features in none \\
-Attribution, localisation and tracing & information about $c$ is decodable at, or attended from, $(\ell,p,h)$ (lens readout, attention mass on $\mathcal V$); use needs interventional confirmation & occlusion or patching confirmation; random-component comparison & input-space corroboration in \Vinp{} of \Vinpn{} records, internal-component perturbation in \Vint{} of \Vintn{} \\
-Representation intervention and control \emph{(within the forward pass)} & output is sensitive to $z_\lambda$ ($\Delta B$, Eq.~\ref{eq:effect}); with matched controls and a validated $v_c$, selectively to the direction built for $c$ & matched control directions for steering and patching (\S\ref{sec:future}); equal-size random units for ablation & a matched control in \Vspca{}--\Vspc{} of \Vspcn{} targeted records; no dose--response test \\
-\quad{}\emph{post-hoc transformation of stored embeddings} & the transformation changes what a refitted downstream readout can do; nothing about the model's own computation & a sham or alternative transformation of the same rank or norm; an unrelated-attribute control & evaluated downstream only; no sham transformation \\
-\quad{}\emph{parameter editing and unlearning} & the edit changes behaviour as specified; no representation-level mediator unless one is measured & locality and retain-set checks; a representation-level mediator if a representational claim is made & no record identifies a representation-level mediator \\
+\textbf{Structural and geometric} (task-linked) & shape of the space: gap, alignment, effective rank, CKA ($\Phi$ over $\{z_\lambda\}$); no concept & comparison model; random-initialised or shuffled baseline & comparison model \Vcomp{}/\Vcompn{}; reference distribution \Vncal{}/\Vncaln{} \\
+\addlinespace[3pt]
+\textbf{Supervised concept mapping and decodability} & $c$ recoverable from $z_\lambda$ by decoders in $\mathcal G$ (Eq.~\ref{eq:probe}) & control task or selectivity; shuffled labels; random encoder; fixed $\mathcal G$ across models & permutation null \Vperm{}/\Vpermn{}; random encoder \Vlrn{}/\Vlrnn{}; selectivity not yet measurable (\S\ref{sec:future}) \\
+\quad\emph{zero-shot scoring} & $c$ recoverable by a fixed scorer ($\cos(z_v,z_t)$), once validated on held-out labels & prompt-set sensitivity; held-out validation & expert-validated concepts a minority; prompt sensitivity unreported \\
+\quad\emph{concept activation vectors} & logit gradient-associated with a fitted direction (TCAV $S_{c,k}$), not recoverability & random-direction null; refit on shuffled labels & refit on shuffled labels: no record \\
+\quad\emph{labelled similarity} & representation and concept distances correspond (RSA); no held-out value & permutation null over the labelled sets & permutation null: one record of five \\
+\addlinespace[3pt]
+\textbf{Feature decomposition and discovery} & a unit's activation tracks the named content ($D$, $a(x)$, Eq.~\ref{eq:sae}) & reconstruction $R^2$; validated names; cross-seed matching & semantic validation \Vsem{}/\Vsemn{}; cross-seed identity: none \\
+\addlinespace[3pt]
+\textbf{Attribution, localisation and tracing} & $c$ decodable at, or attended from, $(\ell,p,h)$; use unconfirmed & occlusion or patching confirmation; random-component comparison & input-space corroboration \Vinp{}/\Vinpn{}; component perturbation \Vint{}/\Vintn{} \\
+\addlinespace[3pt]
+\textbf{Representation intervention and control} (within the forward pass) & output sensitive to $z_\lambda$ ($\Delta B$, Eq.~\ref{eq:effect}); with matched controls, selectively to $v_c$ & matched control directions (\S\ref{sec:future}); equal-size random units & matched control \Vspca{}--\Vspc{}/\Vspcn{} targeted records; no dose--response test \\
+\quad\emph{post-hoc transformation of stored embeddings} & changes what a refitted readout can do, not the model's computation & sham or alternative transformation; unrelated-attribute control & downstream evaluation only; no sham transformation \\
+\quad\emph{parameter editing and unlearning} & behaviour changes as specified; no mediator unless measured & locality and retain-set checks; a measured mediator & no representation-level mediator identified \\
 \midrule
-Intrinsic and concept-aligned designs (tag) & for bottlenecks ($\hat c=g_c(z_\lambda)$, $\hat y=g_y(\hat c)$), the label depends on $z_\lambda$ only through $\hat c$; for prototypes and anchors, that they mean what they are named & leakage test; accuracy of random concept projections; intervention on $\hat c$; validation against expert labels & a control on the concept layer in \Vintrany{} of \Vintrn{} records; leakage rarely measured \\
+\textbf{Intrinsic and concept-aligned designs} (tag) & label depends on $z_\lambda$ only through $\hat c$; prototypes and anchors mean what they are named & leakage test; random concept projections; intervention on $\hat c$; expert labels & concept-layer control \Vintrany{}/\Vintrn{}; leakage rarely measured \\
 \bottomrule
 \end{tabular}
 \end{table*}
