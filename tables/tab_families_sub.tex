@@ -1,0 +1,19 @@
+\begin{table*}[!tbp]
+\centering\footnotesize\setlength\tabcolsep{4pt}\renewcommand{\arraystretch}{1.1}
+\caption{Sub-types of the decoding and intervention families, as in article Table~\ref{tab:families}: the claim each licenses on its own, the test that licenses a stronger reading, and where this corpus stops. Zero-shot scoring, concept activation vectors and labelled similarity are decoding designs with no fitted decoder, a gradient-associated direction and a correspondence of distances respectively; post-hoc transformation of stored embeddings and parameter editing or unlearning are intervention sub-types with estimands of their own (\S\ref{sec:intervention}).}
+\label{tab:familiessub}
+\begin{tabular}{@{}L{3.2cm}L{4.9cm}L{4.0cm}L{4.6cm}@{}}
+\toprule
+Sub-type & Claim licensed on its own & Stronger reading needs & Where this corpus stops \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Supervised concept mapping and decodability}} \\
+\emph{zero-shot scoring} & $c$ recoverable by a fixed scorer ($\cos(z_v,z_t)$), once validated on held-out labels & prompt-set sensitivity; held-out validation & expert-validated concepts a minority; prompt sensitivity unreported \\
+\emph{concept activation vectors} & logit gradient-associated with a fitted direction (TCAV $S_{c,k}$), not recoverability & random-direction null; refit on shuffled labels & refit on shuffled labels: no record \\
+\emph{labelled similarity} & representation and concept distances correspond (RSA); no held-out value & permutation null over the labelled sets & permutation null: one record of five \\
+\addlinespace[3pt]
+\multicolumn{4}{@{}l}{\emph{Representation intervention and control}} \\
+\emph{post-hoc transformation of stored embeddings} & changes what a refitted readout can do, not the model's computation & sham or alternative transformation; unrelated-attribute control & downstream evaluation only; no sham transformation \\
+\emph{parameter editing and unlearning} & behaviour changes as specified; no mediator unless measured & locality and retain-set checks; a measured mediator & no representation-level mediator identified \\
+\bottomrule
+\end{tabular}
+\end{table*}
