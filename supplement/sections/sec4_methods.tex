@@ -4,15 +4,23 @@
 Following \S\ref{sec:taxonomy}, each subsection defines a family, reviews representative
 studies, tabulates the medical evidence and summarises its claims and limits; studies with claims
 in two families appear in both. Here ``medical'' means analysing a medical foundation model
-(\S\ref{sec:models}); cited general-domain studies supply methods or mechanisms used by medical work. Fig.~\ref{fig:families} summarises each family's
-input, operation, artefact, claim and the tests that strengthen it. Core studies whose quality note records a defect that undermines the representation-level result (\S\ref{sec:findings}; the judgement is recorded per record in the supplement and counted per finding in supplementary Tables~S9--S11) are marked $^{\dagger}$ where cited singly in this section (a group citation is not marked), so that their results are read with that qualification.
+(\S\ref{sec:models}); cited general-domain studies supply methods or mechanisms used by medical work. Table~\ref{tab:families} summarises what each family
+shows and the tests that strengthen it, and Fig.~\ref{fig:families} draws the ladder of evidence from
+observation to concept-specific causal contribution that the formal view below defines. Core studies whose quality note records a defect that undermines the representation-level result (\S\ref{sec:findings}; the judgement is recorded per record in the supplement and counted per finding in supplementary Tables~S9--S11) are marked $^{\dagger}$ where cited singly in this section (a group citation is not marked), so that their results are read with that qualification.
 
 \begin{figure*}[!tbp]
 \centering
-\figplaceholder{0.95\linewidth}{Author-drawn figure (method families; see FIGURE\_REQUESTS.md): one panel per family showing input, operation, output artefact, inferential claim and the tests that strengthen it.}
-\caption{The five method families. Each panel names the input (a representation at a locus, with or
-without concept labels), the operation, the artefact returned, the claim it supports, and the test
-that licenses a stronger claim.}
+\includegraphics[width=0.95\linewidth]{fig6.png}
+\caption{From what is encoded to what is used. Observational evidence --- structure, decodability,
+discovered features, localisation --- characterises $z_\lambda(x)$ and shows availability, not use. Use
+requires an intervention $z_\lambda\to\tilde z_\lambda$ with a pre-specified behavioural end-point
+$\Delta B$, and the interventional evidence then climbs three rungs of increasing inferential strength:
+\emph{causal sensitivity} ($\Delta B\neq 0$ on held-out inputs; the edited direction may still be
+arbitrary), \emph{direction-selective sensitivity} (the effect of $\alpha v_c$ exceeds equal-norm random
+and unrelated-concept controls; still not proof of concept-specific causality) and \emph{concept-specific
+causal contribution} (the effect is attributable to $c$, which needs semantic agreement, hard negatives
+and an on-manifold intervention, and which no reviewed medical study meets). The required evidence grows
+from a behavioural end-point, to matched controls, to semantic and on-manifold validation.}
 \label{fig:families}
 \end{figure*}
 
