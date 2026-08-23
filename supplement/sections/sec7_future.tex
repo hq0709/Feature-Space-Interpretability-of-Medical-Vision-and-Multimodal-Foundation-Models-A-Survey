@@ -20,14 +20,12 @@ projector output and every language-model layer on MIMIC-CXR.
 knockout~\cite{kim2026encoding,nooralahzadeh2026sparse}; no multimodal LLM study combines same-locus probing
 and controlled steering with one behavioural end-point, though random directions cause sizeable
 changes~\cite{korznikov2025the} and steering vectors are
-unidentifiable~\cite{venkatesh2026nonident}. We therefore propose a screening diagnostic for direction-selective sensitivity, an authors'
-proposal awaiting benchmarking rather than a validated standard: the steering effect along a direction
+unidentifiable~\cite{venkatesh2026nonident}. We therefore propose a screening diagnostic for direction-selective sensitivity: the steering effect along a direction
 $v_c$ built for concept $c$ (\S\ref{sec:methods}, Eq.~(\ref{eq:effect})) should exceed the 95th
 percentile of the effects of $K$ pre-specified control directions matched to $v_c$ in locus, norm and
 activation scale, each averaged over held-out inputs disjoint from those that built $v_c$, with the
 randomisation $p$-value carried only by the label-permuted control family refit through the same
-pipeline. Anything short of a pre-registered primary cell or a
-grid-maximum statistic is an exploratory screen and should be labelled one.
+pipeline. Without a pre-registered primary cell or a grid-maximum statistic the screen is exploratory.
 
 The further checks a concept-specific causal contribution requires are set out in \S\ref{sec:methods}, and no reviewed medical study reports them all. The paired probe-and-steer design is the natural first test, and the connector experiment of item (1)
 its natural setting.

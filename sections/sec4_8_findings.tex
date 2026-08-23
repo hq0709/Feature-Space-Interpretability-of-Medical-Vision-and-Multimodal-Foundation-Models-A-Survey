@@ -27,20 +27,16 @@ validity test recorded on it need not cover every outcome inside it; Table~\ref{
 Fig.~\ref{fig:findings} print the strict all-outcome count and the any-outcome bound wherever the two
 differ. Counts are taken on all \Nclaims{} records. \Fflagrec{} of them, from \Fdefstud{} studies, carry a recorded defect of one of five result-invalidating kinds (resubstitution, leakage across split units, circular estimation, selection on
 the reported metric or single-case fitting, the first two being the commonest leakage errors of
-machine-learning-based science~\cite{kapoor2023leakage}) and are marked wherever they appear rather than removed. And the counts weight neither sample size nor effect size, so they estimate neither prevalence
-nor certainty; datasets and lineages recur, CheXpert, MIMIC-CXR and TCGA running through F1a, F2, F2b and
+machine-learning-based science~\cite{kapoor2023leakage}) and are marked wherever they appear rather than removed. The counts weight neither sample size nor effect size; datasets and lineages recur, CheXpert, MIMIC-CXR and TCGA running through F1a, F2, F2b and
 F3a alone, and only \Nminvalid{} of the \Ncore{} studies state a patient-, slide- or subject-level split,
-evaluate on data unused for fitting and report seeds, intervals or tests. Breadth is therefore reported as
-a description of this corpus and not as a weight, and the conclusions of Table~\ref{tab:synthesis} rest on
-the corpus as reported, not on a validated subset of it.
+evaluate on data unused for fitting and report seeds, intervals or tests. Breadth is therefore a description of this corpus, not a weight.
 
 How well a row's evidence is safeguarded is a separate question from how much of it there is, and no
 grade combines the two. Table~\ref{tab:vcov} pairs each of the \Vnclasses{} test classes with the
 statement it licenses beyond the base reading its design already supports (held-out performance above
 the study-stated reference) and with what it does not license. A test validates the measurement, not the
 proposition, so two tested records are not a replication of the finding, and a share is comparable within
-a class, never across classes. On these counts the corpus is thinner than any pooled figure suggests.
-Capacity and representation-attribution controls on probes are rare, a permutation null appearing in
+a class, never across classes. Capacity and representation-attribution controls on probes are rare, a permutation null appearing in
 \Vperm{} of \Vpermn{} records and a randomly initialised encoder in \Vlrn{} of \Vlrnn{}, and the
 randomized control task of Hewitt and Liang~\cite{hewitt2019designing} is reported in no record (its
 construction needs repeated input types that medical images seldom have, so no applicability denominator

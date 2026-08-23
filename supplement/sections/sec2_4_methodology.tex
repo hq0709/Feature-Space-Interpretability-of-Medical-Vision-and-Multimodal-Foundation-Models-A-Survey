@@ -10,11 +10,9 @@ contextual; the tracing count is conditional on this rule (\S\ref{sec:tracing}).
 
 Claims were coded by family, sub-group, locus, concept provenance, evidence type, models, modality,
 same-data medical-versus-general comparison, evaluation on more than one model or dataset and, for
-interventional claims, matched control (\S\ref{sec:taxonomy}). A record is one study $\times$ family $\times$ evidence type $\times$ locus, so outcomes sharing all four components form one record. It is not an atomic
-proposition: one record can span several concepts, models, datasets or end-points, and a test recorded on it
-need not cover every outcome inside it, which \S\ref{sec:findings} bounds outcome by outcome. Record counts
+interventional claims, matched control (\S\ref{sec:taxonomy}). A record is one study $\times$ family $\times$ evidence type $\times$ locus, so outcomes sharing all four components form one record. A record may span several concepts, models, datasets or end-points; where a validity test covers only part of them, \S\ref{sec:findings} reports both the strict and the upper-bound count. Record counts
 are counts of coded rows; the study and distinct-first-author counts beside them are the less aggregated
-quantities. Full texts were read for all but four core studies, which are coded from abstracts. Publication status is not an eligibility criterion: preprints,
+quantities. Publication status is not an eligibility criterion: preprints,
 theses and repository deposits with a retrievable full text are coded like refereed papers, counted as
 preprints, and separated in the refereed-only sensitivity of \S\ref{sec:findings}. Four parameter-editing
 and unlearning benchmarks that report only output-level reliability, locality and generality are contextual,
@@ -48,13 +46,10 @@ chest radiography supply nearly two thirds of the records, and the few intervent
 the decoder residual stream and post-hoc operations on encoder or joint-space embeddings. Only one record
 repeats a probe at successive loci~\cite{zhu2026lost} and one is taken at the text
 encoder~\cite{tayebiarasteh2026self}; none is taken at the connector output alone or at the pre-readout
-representation, a sparseness taken up in \S\ref{sec:future}. The synthesis is descriptive, in the sense of SWiM~\cite{campbell2020swim}: no effect is pooled and no
-certainty is graded, so every count below is a description of this corpus, not an estimate of the
-literature, and an empty cell in Fig.~\ref{fig:corpus}b means that no study was found, not that none
-exists. Two limitations bound it. No formal risk-of-bias appraisal was applied beyond the
-evidence-type, validity-test and quality coding, neither at the review level (ROBIS~\cite{whiting2016robis})
-nor at the study level (PROBAST and PROBAST+AI~\cite{wolff2019probast,moons2025probast}, TRIPOD+AI~\cite{collins2024tripod},
-QUADAS-2~\cite{whiting2011quadas}): adapting either instrument to representation-level claims would be a
-new, unvalidated instrument applied by one coder, so what is reported instead is the domain-by-domain audit of Fig.~\ref{fig:findings}. And the experimental-use section (\S\ref{sec:applications}) and the maturity and
-failure-mode cells of Table~\ref{tab:famreq} are the authors' reading rather than coded fields.
+representation, a sparseness taken up in \S\ref{sec:future}. The synthesis is descriptive: no effect is pooled and no certainty is graded, every count describes this
+corpus rather than the literature, and an empty cell in Fig.~\ref{fig:corpus}b means that no study was
+found, not that none exists. Study quality is characterised by the validity-test and reporting audit of
+\S\ref{sec:findings}; the risk-of-bias instruments of prediction modelling (PROBAST and
+PROBAST+AI~\cite{wolff2019probast,moons2025probast}, TRIPOD+AI~\cite{collins2024tripod},
+QUADAS-2~\cite{whiting2011quadas}) are not designed for representation-level claims.
 
