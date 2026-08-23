@@ -1,17 +1,13 @@
-Medical foundation models pre-trained on images and image--text pairs are reused as frozen feature
-extractors, zero-shot classifiers and report generators, so their internal representations matter. This survey reviews work that analyses, decomposes, traces and
-intervenes on them. It organises methods by
-family, locus and concept provenance and codes \Nclaims{} records from \Ncore{} core studies into \Fnrows{}
-evidence statements, each read against \Vnclasses{} classes of validity test that state what a test
-licenses \emph{and what it does not}. Counts describe this corpus, \Pctpreprint\% of it preprints, not the literature. Clinical findings, anatomy, demographic and acquisition
-attributes are reported as recoverable from frozen encoders in four to seven modalities, but controls on
-probe validity are rare, few targeted interventions report a matched control and no study meets the criterion
-stated here for a concept-specific causal contribution, so evidence that models use what is recoverable
-remains limited. Centre, scanner and acquisition
-structure is reported recoverable in every record testing it but one, and whether removing it restores
-generalisation is operation-specific. Two thirds of the dictionary studies report a semantic check of their
-features, none cross-seed identity. In the same-data
-comparisons reviewed, selected geometric and shortcut properties are reported in both medical and general
-models, and because no comparison holds pre-training data, objective, architecture and scale fixed, the effect of
-medical pre-training is unidentified.
-The connector output and text encoder are almost unmeasured in this corpus. The coded corpus is released.
+Medical foundation models are reused as frozen feature extractors, zero-shot classifiers and report
+generators, so what their internal representations encode, and what the models actually use, matters
+independently of any downstream head. This survey reviews the work that measures or intervenes on those
+representations in medical vision encoders, image--text models and multimodal language models. It
+organises the methods by family and by the point along the model at which they read the representation,
+and it separates two questions that the literature often runs together: whether a concept can be decoded
+from a representation, and whether the model uses it. Across \Ncore{} studies, clinical findings,
+anatomy, demographic attributes and acquisition conditions are decodable from frozen encoders in four to seven modalities, but controls on probe validity are rare and no study shows that a model's output
+depends on a named concept. The site and scanner an image comes from is the property recovered most
+consistently, and whether removing it improves generalisation is untested. Comparisons of medical with
+general pre-training never hold data, objective, architecture and scale fixed, so the effect of medical
+pre-training remains unidentified. The survey closes with the experiments that would settle these
+questions.

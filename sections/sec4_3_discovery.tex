@@ -1,39 +1,39 @@
 \subsection{Feature decomposition and discovery}
 \label{sec:discovery}
 
-Discovery decomposes representations into neurons, factorised directions or sparse features without a
-prior vocabulary, then names them from activating inputs; naming validity and stability decide
-what it establishes.
+Discovery decomposes a representation into neurons, factorised directions or sparse features without a
+prior vocabulary, and then names them from the inputs that activate them. What the family establishes
+depends on whether the names are valid and the features stable.
 
 \subsubsection{Neuron-level analysis and network dissection}
 
-Network dissection labels each unit with the concept whose mask maximises intersection over union with
-its activation map~\cite{bau2017network}, CLIP-Dissect substituting a vision--language
-model~\cite{oikarinen2022clipdissect}; the multimodal neurons of CLIP, responding to a concept whether
-it is drawn, photographed or written, are the precursor of unit-level multimodal discovery~\cite{goh2021multimodal}. Mid-layer atlases of a pathology encoder show coherent tissue
-concepts but dispersed subclasses, pathologist agreement falling from $\kappa$ 0.82 for cancer groups to
-0.11 for subclasses~\cite{gustav2026class}; other unit-level work labels mammography neurons, rebuilds
-a diagnostic model, probes retinal networks and reads hallucination off language-model
-units~\cite{salahuddin2025mammoclip,gong2025concepts,yousefzadeh2023lava,vankadaru2026readable}.
-Superposition and non-axis-aligned concepts limit unit
-analysis~\cite{elhage2022toy,park2023linear}, a concept is in general carried by a combination of
-filters rather than by one~\cite{fong2018net2vec}, and unsupervised factors are not identifiable without
-inductive bias or supervision~\cite{locatello2019challenging}, so medical work benchmarks dictionaries.
+Network dissection labels each unit with the concept whose mask best overlaps its activation
+map~\cite{bau2017network}; CLIP-Dissect substitutes a vision--language model for the labelled
+masks~\cite{oikarinen2022clipdissect}, and the multimodal neurons of CLIP are the precursor of
+unit-level multimodal discovery~\cite{goh2021multimodal}. Mid-layer atlases of a pathology encoder show
+coherent tissue concepts but dispersed subclasses, with pathologist agreement falling from $\kappa$ 0.82
+for cancer groups to 0.11 for subclasses~\cite{gustav2026class}; other unit-level work labels
+mammography neurons, rebuilds a diagnostic model, probes retinal networks and reads hallucination off
+language-model
+units~\cite{salahuddin2025mammoclip,gong2025concepts,yousefzadeh2023lava,vankadaru2026readable}. The
+limits of unit analysis are well known: superposition and non-axis-aligned
+concepts~\cite{elhage2022toy,park2023linear}, concepts carried by combinations of filters rather than by
+one~\cite{fong2018net2vec}, and the non-identifiability of unsupervised factors without inductive bias or
+supervision~\cite{locatello2019challenging}. Medical work has therefore moved to dictionaries.
 
 \subsubsection{Factorisation directions}
 
-Principal components, independent components and non-negative factors give few directions, which in
-medical embeddings reflect acquisition and site before pathology (\S\ref{sec:geometry}): among inverted
-principal components of pathology-encoder gradients, one stain-colour direction carries 54--69\% of the
-tissue-source-site gradient against at most 20\% for any grade component~\cite{howard2024generative}.
-Other factorisations recover plausible morphology: concept-bank segmentation beats a
-ResNet-50~\cite{gildenblat2024segmentation}$^{\dagger}$ and three pathologist-named HPV-positive
-subtypes emerge~\cite{hieromnimon2025analysis}$^{\dagger}$. Carcinoma morphology, retinal characteristics,
+Principal components, independent components and non-negative factors give a few directions, and in
+medical embeddings these reflect acquisition and site before pathology (\S\ref{sec:geometry}): among
+inverted principal components of pathology-encoder gradients, one stain-colour direction carries
+54--69\% of the tissue-source-site gradient, against at most 20\% for any grade
+component~\cite{howard2024generative}. Other factorisations recover plausible morphology: concept-bank segmentation beats a
+ResNet-50~\cite{gildenblat2024segmentation}$^{\dagger}$, three pathologist-named HPV-positive subtypes
+emerge~\cite{hieromnimon2025analysis}$^{\dagger}$, and carcinoma morphology, retinal characteristics,
 breast-cancer archetypes and an infectious-disease proposal are reported
 alongside~\cite{qin2026clearhpv,varshney2024generating,beyeler2024comparing,fournier2026prognostic,sizikova2022automatic}.
 Activation clustering~\cite{ghorbani2019automating,fel2023a} and sparse decomposition onto a fixed
-vocabulary~\cite{bhalla2024interpreting} have no medical instance; dictionary learning grew from
-monosemanticity work~\cite{bricken2023monosemanticity,templeton2026scaling}.
+vocabulary~\cite{bhalla2024interpreting} have no medical instance.
 
 \subsubsection{Sparse autoencoders and dictionary learning}
 
@@ -48,65 +48,65 @@ minimises
 \end{split}
 \label{eq:sae}
 \end{equation}
-where $(W_d)_{:,j}$ is the $j$th column of the decoder, the direction of feature $j$.
-Equation~(\ref{eq:sae}) is the canonical $\ell_1$ objective; the reviewed medical dictionaries replace the
-penalty by a fixed active-code count (top-$k$, batch-top-$k$), a gated or jump activation or a matched-pair
-crosscoder loss, changing what is held fixed rather than the estimand. Unit norm removes scale degeneracy,
-and each $W_d$ column is a feature named from its highest-code inputs, a naming route that need not identify what the feature does, since in vision the maximally activating patches of a dictionary feature can fail a causal test of the same feature~\cite{han2025causal}. Scaling~\cite{gao2024scaling}, better
+where $(W_d)_{:,j}$, the $j$th column of the decoder, is the direction of feature $j$. The reviewed
+medical dictionaries replace the $\ell_1$ penalty by a fixed active-code count, a gated or jump
+activation or a crosscoder loss; this changes what is held fixed, not the estimand. Each column is
+named from its highest-code inputs, a route that need not identify what the feature does, since the
+maximally activating patches of a feature can fail a causal test of the same
+feature~\cite{han2025causal}. Dictionary learning grew out of the monosemanticity
+work~\cite{bricken2023monosemanticity,templeton2026scaling}, and scaling~\cite{gao2024scaling}, better
 activations~\cite{rajamanoharan2024jumping} and open dictionaries~\cite{lieberum2024gemma} made SAEs
-portable; medical adoption has two waves. Dictionaries that decompose an image--text space jointly, rather than one tower at a time, are a general-domain development the medical corpus has not taken up: group-sparse autoencoders over paired embeddings~\cite{kaushik2026decomposing} and canonical correlation between sparse concept sets~\cite{gordon2026scocca} both address the cross-modal case that the modality gap of \S\ref{sec:geometry} makes hard, and no reviewed medical study uses either.
+portable. Dictionaries that decompose an image--text space
+jointly~\cite{kaushik2026decomposing,gordon2026scocca} address the cross-modal case that the modality
+gap of \S\ref{sec:geometry} makes hard; no reviewed medical study uses one.
 
-The first wave trains on \emph{frozen encoders}. Pathologists curate 41 sarcoma concepts on CONCH
-embeddings, where the full dictionary reaches 73.7\% balanced accuracy against 77.4\% for the raw
-aggregator and 67.0\% for the curated concepts~\cite{bisson2026unsupervised}$^{\dagger}$; restricting the
-classifier to the 41 curated features reduced accuracy, but representation, feature count and curation
-change together and leakage is flagged, so the cost of naming itself is not isolated. Others take names
-from report-distilled descriptions, tissue structures, pathologists or neuropathologists, radiologist
-regions or an automated
-labeller~\cite{abdulaal2024an,le2024learning,kim2026dissecting,zhao2026compositional,redlich2026explainable,nakka2025mammosae,renzulli2025medsae},
-and they compress: ten features recover most downstream CT and MRI performance~\cite{wesp2026sparse} and
-a geometry-guided dictionary predicts Alzheimer's conversion~\cite{nerrise2026geosae}. Further variants exist~\cite{tang2025cxrlanic,sun2025prototypebased,dasdelen2025cytosae,yan2026a,huang2026classguided,chhetri2026when}.
-The second wave trains on \emph{residual streams of medical multimodal LLMs}, recovering device,
-pathology and longitudinal-change features from a report generator~\cite{bouzid2025insights}, steering
-directions on three radiology models (\S\ref{sec:intervention})~\cite{nooralahzadeh2026universal} and a
-transferable general suite~\cite{sadanandan2026mechanistically}; domain-specific dictionaries explain more
-clinical-activation variance~\cite{oneill2025resurrecting}. No eligible medical study trains a dictionary
-across models, across modalities or on model differences. The templates exist in general
+Medical adoption has come in two waves. The first trains on \emph{frozen encoders}. Pathologists curated
+41 sarcoma concepts on CONCH embeddings, where the full dictionary reaches 73.7\% balanced accuracy
+against 77.4\% for the raw aggregator and 67.0\% for the curated
+concepts~\cite{bisson2026unsupervised}$^{\dagger}$. Others take names from report-distilled
+descriptions, tissue structures, pathologists, radiologist regions or an automated
+labeller~\cite{abdulaal2024an,le2024learning,kim2026dissecting,zhao2026compositional,redlich2026explainable,nakka2025mammosae,renzulli2025medsae,tang2025cxrlanic,sun2025prototypebased,dasdelen2025cytosae,yan2026a,huang2026classguided,chhetri2026when},
+and the dictionaries compress: ten features recover most downstream CT and MRI
+performance~\cite{wesp2026sparse}, and a geometry-guided dictionary predicts Alzheimer's
+conversion~\cite{nerrise2026geosae}.
+The second wave trains on the \emph{residual streams of medical multimodal LLMs}: device, pathology and
+longitudinal-change features from a report generator~\cite{bouzid2025insights}, steering directions on
+three radiology models~\cite{nooralahzadeh2026universal} (\S\ref{sec:intervention}) and a transferable
+general suite~\cite{sadanandan2026mechanistically}; domain-specific dictionaries explain more of the
+clinical activation variance~\cite{oneill2025resurrecting}. No eligible medical study trains a dictionary
+across models, across modalities or on model differences, although the templates exist in general
 work~\cite{thasarathan2025universal,nasirisarvi2025sparc,minder2025overcoming,plantinga2025from}, in
-dictionaries over medically fine-tuned language models, task-specific segmentation models and
-physiological-signal
-models~\cite{tan2026efficient,ahmed2026medseglens,lehnschiler2026mechanistic,duan2026cadence}, and in the
+dictionaries over medically fine-tuned language, segmentation and physiological-signal
+models~\cite{tan2026efficient,ahmed2026medseglens,lehnschiler2026mechanistic,duan2026cadence}, and in
 general-vision dictionaries that steer or segment through the visual
-stream~\cite{joseph2025steering,pach2025sparse,stevens2025interpretable}, the designs \S\ref{sec:future}
-points to.
+stream~\cite{joseph2025steering,pach2025sparse,stevens2025interpretable} (\S\ref{sec:future}).
 
-Across the \Nsae{} core dictionary studies, every axis that fixes a feature varies:
-token, layer, expansion and sparsity. Features are therefore not commensurable, and naming is as
-uneven.
-Validation of feature meaning uses clinician readers in \Nsaeclin{} studies and structured labels in
-\Nsaelabel{}. Only the \Nsaeval{} with clinician or label validation enter the breadth-labelled statement
-F7 (\S\ref{sec:findings}); only \Nsaestab{} report reproducibility, none matches features across seeds
-and only \Nsaerecon{} quantify reconstruction, so headline claims of ten-feature
-compressibility~\cite{wesp2026sparse} and five thousand monosemantic
-features~\cite{tang2025cxrlanic} are neither validated nor reproduced.
+Across the \Nsae{} core dictionary studies, every axis that fixes a feature varies: token, layer,
+expansion and sparsity. Features are therefore not commensurable across studies, and naming is as
+uneven. Feature meaning is validated by clinician readers in \Nsaeclin{} studies and by structured labels
+in \Nsaelabel{}, and only the \Nsaeval{} with either kind of validation enter statement F7
+(\S\ref{sec:findings}). Only \Nsaestab{} report a reproducibility check, none matches features across
+seeds, and only \Nsaerecon{} quantify reconstruction. The headline claims of ten-feature
+compressibility~\cite{wesp2026sparse} and five thousand monosemantic features~\cite{tang2025cxrlanic}
+are thus neither validated nor reproduced.
 
 \subsubsection{Naming, validation and stability}
 
 Automated pipelines name features from activating inputs and score the
-predictions~\cite{paulo2024automatically}; the medical instances grade names against reports, labels or
-regions, or discover features and then name
-them~\cite{bouzid2025insights,abdulaal2024an,haque2026medconcept,nakka2025mammosae,rao2024discover}, none
-testing cross-labeller naming. Stability is worse: absorption and splitting persist across widths and
-sparsities~\cite{chanin2024a}, seeds share about 30\% of features~\cite{paulo2025sparse}, derived
-concepts are adversarially fragile~\cite{li2025evaluating}, and metrics and benchmarks are too unstable to
-separate architectures~\cite{chanin2026are,chanin2026synthsaebench}. Few features reproduce in an
-event-sequence anchor, where dictionary probes do not beat dense ones~\cite{sainsbury2026sparse}, and
-capacity-matched suites are proposed for signal models~\cite{duan2026ecginterpbench}. Named features are
-hypotheses, not stable identifiers, though subspace reconstruction survives.
-
+names~\cite{paulo2024automatically}. The medical instances grade names against reports, labels or
+regions, or discover features first and name them
+afterwards~\cite{bouzid2025insights,abdulaal2024an,haque2026medconcept,nakka2025mammosae,rao2024discover};
+none tests agreement between labellers. Stability is the larger problem. Absorption and splitting persist
+across widths and sparsities~\cite{chanin2024a}, differently seeded dictionaries share about 30\% of
+their features~\cite{paulo2025sparse}, derived concepts are adversarially fragile~\cite{li2025evaluating},
+and the metrics and benchmarks are too unstable to separate
+architectures~\cite{chanin2026are,chanin2026synthsaebench}. In an event-sequence anchor few features
+reproduce and dictionary probes do not beat dense ones~\cite{sainsbury2026sparse}, and capacity-matched
+suites are proposed for signal models~\cite{duan2026ecginterpbench}. A named feature is a hypothesis, not
+a stable identifier, although reconstruction of the subspace survives.
 
 \subsubsection{Summary and discussion}
 
-Names assigned under weak supervision pass their uncertainty to every downstream claim, and encoder
-dictionaries largely recover what probing already sees. Two-seed training, cross-cohort feature matching and
-any decomposition at the connector output remain open.
+Names assigned under weak supervision pass their uncertainty to every claim built on them, and encoder
+dictionaries largely recover what probing already sees. Two-seed training, cross-cohort feature matching
+and any decomposition at the connector output remain to be done.

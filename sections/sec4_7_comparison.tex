@@ -30,52 +30,48 @@ Family & Shows on its own & Does not show & Stronger reading needs & In this cor
 \caption{What each family costs and how far this corpus has taken it. \emph{Concept annotation}: whether
 the design needs a concept vocabulary, and how much labelling. \emph{Loci}: where the family has been
 applied to medical models (parentheses: reached only in general-domain work). \emph{Compute}: beyond a
-forward pass. \emph{Readable}: whether a clinician can read the artefact directly. \emph{Stud./rec.}:
-core studies whose primary family is this one / records of this family (for decoding,
-\Ndecstudnb{}/\Ndecrecnb{} without the \Nbenchdec{} frozen-feature benchmarks). \emph{Groups}: distinct
-first authors among those records. \emph{Base.}: records comparing a medical with a general model on the
-same data. \emph{Multi.}: more than one model or dataset. The structural row is task-linked geometry only
-(\S\ref{sec:models}). Counts are from the coded corpus, the other cells are qualitative summaries, and the \Nintrinsic{} intrinsic-design records are counted in their analytic family (thirteen decoding, one
-discovery) and listed again in the tag row.}
+forward pass. \emph{Readable}: whether a clinician can read the artefact directly. \emph{Base.}: records
+comparing a medical with a general model on the same data. \emph{Multi.}: more than one model or dataset.
+The structural row ($\dagger$) covers task-linked geometry only (\S\ref{sec:models}) and is not comparable
+with the others; the \Nintrinsic{} intrinsic-design records are counted in their analytic family and
+listed again in the tag row.}
 \label{tab:famreq}
-\begin{tabular}{@{}L{1.86cm}L{1.75cm}L{1.76cm}L{1.33cm}L{1.53cm}C{0.6cm}C{0.89cm}C{0.92cm}C{0.72cm}C{0.75cm}L{2.2cm}@{}}
+\begin{tabular}{@{}L{2.2cm}L{2.1cm}L{2.0cm}L{1.6cm}L{1.8cm}C{0.7cm}C{0.8cm}C{0.8cm}L{2.8cm}@{}}
 \toprule
-Family & Concept annotation & Loci (medical) & Compute & Readable & 1st yr & Stud./ rec. & Groups & Base. & Multi. & Main failure mode \\
+Family & Concept annotation & Loci (medical) & Compute & Readable & 1st yr & Base. & Multi. & Main failure mode \\
 \midrule
-Structural and geometric (task-linked) & none & Enc, Txt, Joint, Dec, (Conn) & low & no & 2022 & 21/30 & 27 & 11 & 29 & geometric quantity read as clinical meaning \\
-Supervised concept mapping and decodability & required; high (labels) & Enc, Joint & low & partly (scores yes, probes no) & 2022 & 75/80 & 76 & 31 & 72 & decodability read as use \\
-Feature decomposition and discovery & none or weak (post-hoc naming) & Enc, Dec, (Conn) & high (activations at scale, training) & yes, once named and validated & 2024 & 20/25 & 25 & 2 & 14 & unstable features and unvalidated names \\
-Attribution, localisation and tracing & optional; low--moderate & Enc, Joint, Dec, Path, (Pre) & moderate & partly (maps, often unfaithful) & 2022 & 9/11 & 11 & 2 & 8 & localisation read as causal confirmation \\
-Representation intervention and control & required for concept-\hspace{0pt}specific claims; moderate (exemplars) & Enc, Joint, Dec, (Txt, Conn) & mod.--high (repeated generation) & indirectly (behaviour change) & 2023 & 10/21 & 20 & 5 & 18 & uncontrolled, input-\hspace{0pt}dependent effects \\
+Structural and geometric (task-linked)$^{\dagger}$ & none & Enc, Txt, Joint, Dec, (Conn) & low & no & 2022 & 11 & 29 & geometric quantity read as clinical meaning \\
+Supervised concept mapping and decodability & required; high (labels) & Enc, Joint & low & partly (scores yes, probes no) & 2022 & 31 & 72 & decodability read as use \\
+Feature decomposition and discovery & none or weak (post-hoc naming) & Enc, Dec, (Conn) & high (activations at scale, training) & yes, once named and validated & 2024 & 2 & 14 & unstable features and unvalidated names \\
+Attribution, localisation and tracing & optional; low--moderate & Enc, Joint, Dec, Path, (Pre) & moderate & partly (maps, often unfaithful) & 2022 & 2 & 8 & localisation read as causal confirmation \\
+Representation intervention and control & required for concept-\hspace{0pt}specific claims; moderate (exemplars) & Enc, Joint, Dec, (Txt, Conn) & mod.--high (repeated generation) & indirectly (behaviour change) & 2023 & 5 & 18 & uncontrolled, input-\hspace{0pt}dependent effects \\
 \midrule
-Intrinsic and concept-aligned designs (tag) & required; high & Enc (concept layer), Joint & low--moderate & yes & 2023 & 14 rec. & 13 & 7 & 13 & leakage; concept invalidity \\
+Intrinsic and concept-aligned designs (tag) & required; high & Enc (concept layer), Joint & low--moderate & yes & 2023 & 7 & 13 & leakage; concept invalidity \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
 Table~\ref{tab:families} sets out what each family reports and what its artefact licenses;
-Table~\ref{tab:famreq} gives what each costs and how far this corpus has taken it, placing the medical
-evidence at the observational end (Fig.~\ref{fig:corpus}b). Within this corpus, and under its family-specific eligibility rules, decoding is the only family with a broad base of distinct first authors (76); discovery is two years old and intervention three, and they have 25 and 20 distinct first authors, a proxy for independent groups rather than a measure of the families' maturity in the field. Two asymmetries in Table~\ref{tab:famreq} are easily
-missed: intervention gives the claims of greatest practical interest at the highest cost and with the fewest
-controlled results, while the cheapest family addresses availability, often mistaken for use; and readability
-and validity pull apart, since discovery and intrinsic designs return the artefacts a clinician can read yet
-rest on an unvalidated naming or leakage step.
+Table~\ref{tab:famreq} gives what each costs and how far this corpus has taken it. Decoding is the
+oldest and by far the largest family; discovery is two years old and intervention three. Two asymmetries
+in Table~\ref{tab:famreq} are easily missed. Intervention gives the claims of greatest practical interest
+at the highest cost and with the fewest controlled results, while the cheapest family addresses
+availability, which is often mistaken for use. Readability and validity also pull apart: discovery and
+intrinsic designs return the artefacts a clinician can read, yet they rest on an unvalidated naming or
+leakage step.
 
 \textbf{Combining families.} Three pipelines recur. \emph{Discover, then intervene} uses residual-stream
 dictionary directions for steering or
-patching~\cite{bouzid2025insights,nooralahzadeh2026universal,sadanandan2026mechanistically}, carrying the
-caveats of \S\ref{sec:discovery} into the intervention. \emph{Trace, then intervene} exploits an
+patching~\cite{bouzid2025insights,nooralahzadeh2026universal,sadanandan2026mechanistically}, and carries
+the caveats of \S\ref{sec:discovery} into the intervention. \emph{Trace, then intervene} exploits an
 observational localisation through a training-time change, so far only in a general CLIP text tower on
-radiology captions~\cite{abbasi2026layerspecific}. \emph{Decode, then erase, residualise or ablate} probes
-for availability, then tests whether a downstream prediction depends on the
-concept~\cite{kim2026encoding,nooralahzadeh2026sparse,weber2023posthoc}, answering the shortcut question of
-\S\ref{sec:applications} most directly. Of its three core instances the two that test a downstream
-dependence point in opposite directions, since
-residualising a demographic attribute leaves a refitted finding probe unchanged~\cite{kim2026encoding}$^{\dagger}$
-whereas knocking out the roughly ten channels that decode a finding from a CT encoder collapses its
-score~\cite{nooralahzadeh2026sparse}; the third orthogonalises chest-radiograph embeddings and reports a
-downstream change within noise~\cite{weber2023posthoc}.
-
-Reading one family's result as an answer to another family's question is the commonest inferential error in
-this literature, and the evidence-type tag makes it visible.
+radiology captions~\cite{abbasi2026layerspecific}. \emph{Decode, then erase, residualise or ablate}
+probes for availability and then tests whether a downstream prediction depends on the
+concept~\cite{kim2026encoding,nooralahzadeh2026sparse,weber2023posthoc}; it answers the shortcut
+question of \S\ref{sec:applications} most directly, and its two core instances that test a downstream
+dependence point in opposite directions, residualisation leaving a refitted finding probe
+unchanged~\cite{kim2026encoding}$^{\dagger}$ while channel knockout collapses a finding's
+score~\cite{nooralahzadeh2026sparse}. Reading one family's result as an answer to another family's
+question is the commonest inferential error in this literature, and the evidence-type tag makes it
+visible.
 

@@ -7,42 +7,39 @@
 
 
 
-Table~\ref{tab:synthesis} is the whole of this section in five lines: what the corpus reports, what it
-stops short of, what limits each conclusion and the experiment that would settle it. The rest of the
-section is the evidence behind those five, statement by statement. Table~\ref{tab:statements} lists the
-\Fnrows{} evidence statements in three classes, so that breadth is not read as strength: \Fnmulti{}
-reported across multiple studies, \Fnsingle{} single-study or single-group signals and \Fncond{}
-conditional or descriptive inventories, the last being rows conditional on the selection defining them
-(F7 selects the dictionaries that attempted validation; F9b, F10 and F11 list heterogeneous records).
-Every statement describes this corpus; none is a claim about the size or composition of the literature.
-A row is a proposition that the finding statements of at least one record assert, split where records
-assert strictly different claims (F1b, F1b$'$ and F1b$''$ separate held-out recovery, gradient
-association and labelled correspondence; F8a, F8a$'$ and F8a$''$ separate an instrumented failure, a
-disagreement and an implausibility); of the \Nclaims{} records \Fnorow{} support no row and \Fmultirow{} are counted in more than one, \Fmultithree{} of them in three. The synthesis is descriptive: where records disagree, the disagreement is stated rather than averaged, and no direction of
-effect is counted across records.
+Table~\ref{tab:synthesis} is this section in five lines: what the corpus reports, what it stops short
+of, what limits each conclusion, and the experiment that would settle it. The rest of the section gives
+the evidence behind those five conclusions. Table~\ref{tab:statements} lists the \Fnrows{} evidence
+statements in three classes, so that breadth is not read as strength: \Fnmulti{} reported across
+multiple studies, \Fnsingle{} single-study or single-group signals and \Fncond{} conditional or
+descriptive inventories. The inventories are rows defined by a selection: F7 collects the dictionaries
+that attempted validation, and F9b, F10 and F11 list heterogeneous records. Every statement describes
+this corpus, and none is a claim about the size or composition of the literature.
 
-Three conventions govern every number. A record is one study $\times$ family $\times$ evidence type
-$\times$ locus (\S\ref{sec:method}) and can bundle several concepts, models, datasets or end-points, so a
-validity test recorded on it need not cover every outcome inside it; Table~\ref{tab:vcov} and
-Fig.~\ref{fig:findings} print the strict all-outcome count and the any-outcome bound wherever the two
-differ. Counts are taken on all \Nclaims{} records. \Fflagrec{} of them, from \Fdefstud{} studies, carry a recorded defect of one of five result-invalidating kinds (resubstitution, leakage across split units, circular estimation, selection on
-the reported metric or single-case fitting, the first two being the commonest leakage errors of
-machine-learning-based science~\cite{kapoor2023leakage}) and are marked wherever they appear rather than removed. The counts weight neither sample size nor effect size; datasets and lineages recur, CheXpert, MIMIC-CXR and TCGA running through F1a, F2, F2b and
-F3a alone, and only \Nminvalid{} of the \Ncore{} studies state a patient-, slide- or subject-level split,
-evaluate on data unused for fitting and report seeds, intervals or tests. Breadth is therefore a description of this corpus, not a weight.
+A few conventions apply to every number. A statement is a proposition that at least one record asserts,
+and statements are split where records assert strictly different claims: F1b, F1b$'$ and F1b$''$
+separate held-out recovery, gradient association and labelled correspondence, and F8a, F8a$'$ and
+F8a$''$ separate an instrumented failure, a disagreement and an implausibility. In all, of the \Nclaims{}
+records \Fnorow{} support no row and \Fmultirow{} are counted in more than one, \Fmultithree{} of them
+in three. \Fflagrec{} of them, from \Fdefstud{} studies, carry a recorded defect of one of five
+result-invalidating kinds (resubstitution, leakage across split units, circular estimation, selection on
+the reported metric, or single-case fitting~\cite{kapoor2023leakage}) and are marked with $^{\dagger}$
+wherever they appear rather than removed. Counts weight neither sample size nor effect size, the same
+datasets recur (CheXpert, MIMIC-CXR and TCGA run through F1a, F2, F2b and F3a alone), and only
+\Nminvalid{} of the \Ncore{} studies state a patient-, slide- or subject-level split, evaluate on data
+unused for fitting and report seeds, intervals or tests. Where records disagree, the disagreement is
+stated rather than averaged.
 
-How well a row's evidence is safeguarded is a separate question from how much of it there is, and no
-grade combines the two. Table~\ref{tab:vcov} pairs each of the \Vnclasses{} test classes with the
-statement it licenses beyond the base reading its design already supports (held-out performance above
-the study-stated reference) and with what it does not license. A test validates the measurement, not the
-proposition, so two tested records are not a replication of the finding, and a share is comparable within
-a class, never across classes. Capacity and representation-attribution controls on probes are rare, a permutation null appearing in
-\Vperm{} of \Vpermn{} records and a randomly initialised encoder in \Vlrn{} of \Vlrnn{}, and the
-randomized control task of Hewitt and Liang~\cite{hewitt2019designing} is reported in no record (its
-construction needs repeated input types that medical images seldom have, so no applicability denominator
-is given, \S\ref{sec:future}). \Vspca{}--\Vspc{} of \Vspcn{} targeted interventions report a matched
-control (the strict all-outcome count and the any-outcome bound), and a comparison model appears in
-\Vcomp{} of \Vcompn{} geometry records.
+How well a statement's evidence is safeguarded is a separate question from how much of it there is, and
+no grade combines the two. Fig.~\ref{fig:findings} shows, for each statement, the share of its records
+that report each of five groups of controls, and Table~\ref{tab:vcov} gives the \Vnclasses{} underlying
+classes with what each licenses. A control validates the measurement, not the proposition: two
+controlled records are not a replication of a finding, and a share is comparable within a class, never
+across classes. The map is mostly empty. A permutation null appears in \Vperm{} of \Vpermn{} records
+where a probe could carry one and a randomly initialised encoder in \Vlrn{} of \Vlrnn{}; the control
+task of Hewitt and Liang~\cite{hewitt2019designing} appears in none. A matched control is reported in
+\Vspc{} of \Vspcn{} targeted interventions, and a comparison model in \Vcomp{} of \Vcompn{} geometry
+records.
 
 \input{tables/tab_statements}
 
@@ -50,80 +47,72 @@ control (the strict all-outcome count and the any-outcome bound), and a comparis
 
 The evidence behind the five conclusions of Table~\ref{tab:synthesis} reads as follows.
 
-\emph{Availability against use.} The decodability findings (F1a, F1a$^{\prime}$, F1b, F1c, F2b) rest on
-18, 15, 6, 12 and 11 distinct first authors over all their records and on four or more modalities each.
-The four findings of most practical consequence rest on far less. Linear redundancy of a decodable
-attribute for a refitted readout (F4) rests on one record; attributions failing an instrumented
-faithfulness test (F8a) on six studies, with method disagreement (F8a$'$) and
-qualitative implausibility (F8a$''$) carried as separate, weaker rows; and a targeted intervention
-exceeding a matched control (F9a) on three records, only one against random directions. The
-interventional record is too heterogeneous and too weakly controlled to support a magnitude claim: the
-eight records to which a matched-direction control applies use incomparable end-points, none reports a
-dose--response test in the sense used here (at least three pre-specified magnitudes on the same held-out
-end-point, reported as a curve), and two vary a magnitude while tuning it~\cite{chen2026vihd,nooralahzadeh2026universal},
-which selects an operating point rather than characterising a response. The effects can be listed but
-not compared, from under 0.02 AUROC for a post-hoc gap shift~\cite{restrepo2026cone} and under 0.001 for
+\emph{Availability against use.} The decodability statements (F1a, F1a$^{\prime}$, F1b, F1c, F2b) rest
+on 18, 15, 6, 12 and 11 distinct first authors and on four or more modalities each. The statements of
+most practical consequence rest on far less. Linear redundancy of a decodable attribute for a refitted
+readout (F4) rests on one record; attributions failing an instrumented faithfulness test (F8a) on six
+studies, with method disagreement (F8a$'$) and qualitative implausibility (F8a$''$) carried as separate,
+weaker rows; and a targeted intervention exceeding a matched control (F9a) on three records, only one
+of them against random directions. The interventional record is too heterogeneous and too weakly
+controlled to support any claim about magnitude: the eight records to which a matched-direction control
+applies use incomparable end-points, none reports a dose--response curve, and two vary the magnitude
+while tuning it~\cite{chen2026vihd,nooralahzadeh2026universal}. The effects can be listed but not
+compared, from under 0.02 AUROC for a post-hoc gap shift~\cite{restrepo2026cone} and under 0.001 for
 residualising a demographic attribute~\cite{kim2026encoding}$^{\dagger}$ to the collapse of a finding's
-own AUROC when the roughly ten channels that decode it are zeroed~\cite{nooralahzadeh2026sparse}
-Post-hoc operations on frozen embeddings (F3b, F5, F6,
-F9b) are the only interventions with more than a handful of records.
+own AUROC when the roughly ten channels that decode it are zeroed~\cite{nooralahzadeh2026sparse}.
+Post-hoc operations on frozen embeddings (F3b, F5, F6, F9b) are the only interventions with more than a
+handful of records.
 
 \emph{Acquisition and site structure.} Centre, scanner and device are recoverable from pathology and
 brain-MRI embeddings in every record of F2b and F3c and in all but one of F3a's, by 11, 16 and 3
-distinct first authors, and centre rivals or exceeds biological structure where both are measured. The benefit of removing it is operation-specific: among the records of F3b, affine harmonisation raises cross-scanner retrieval
-and centre removal raises a robustness index without improving downstream generalisation, and no record
-reports the downstream end-point after harmonisation on a held-out site.
+distinct first authors, and where both are measured, centre rivals or exceeds biological structure. The
+benefit of removing it depends on the operation. Among the records of F3b, affine harmonisation raises
+cross-scanner retrieval and centre removal raises a robustness index without improving downstream
+generalisation, and no record reports the downstream end-point after harmonisation on a held-out site.
 
 \emph{Meaning of discovered features.} Naming and validation are separate steps, and an automatically
-named feature can still be validated. The \Nsaeval{} dictionaries with a reported semantic check share one property, the locus: all read encoder-side pooled, tile or patch representations, and none of the three
-trained on decoder residual streams is checked against clinicians or structured labels. The two sides
-also report different feature types, which we state as a hypothesis, that residual-stream dictionaries of report generators surface report-level rather than image-level concepts, confounded by model, layer,
-dictionary design and naming, and testable by the matched design of \S\ref{sec:future}. Of the \Nsaeval{} with a
-clinician- or label-based check, \Nsaemanual{} are named manually, \Nsaelabmatch{} by label matching,
-\Nsaellm{} by a language model and \Nsaetext{} by text matching, so an automatic naming route does not
-prevent validation and a manual one does not supply it. \Nsaestab{} of the \Nsae{} report any
-reproducibility check, and none establishes cross-seed identity of its features.
+named feature can still be validated: of the \Nsaeval{} dictionaries with a reported semantic check,
+\Nsaemanual{} are named manually, \Nsaelabmatch{} by label matching, \Nsaellm{} by a language model and
+\Nsaetext{} by text matching. The validated dictionaries share one property, their locus: all read
+encoder-side representations, and none of the three trained on decoder residual streams is checked
+against clinicians or structured labels. The two sides also report different kinds of feature, which
+suggests, as a hypothesis confounded by model, layer, dictionary design and naming, that
+residual-stream dictionaries of report generators surface report-level rather than image-level
+concepts. \Nsaestab{} of the \Nsae{} report any reproducibility check, and none establishes the
+cross-seed identity of its features.
 
 \emph{Medical against general pre-training.} \Nmvgrec{} core records from \Nmvgstud{} studies compare a
-medical with a general foundation model on the same data; seventeen further
-records compare only with an ImageNet- or task-supervised classifier and are excluded. F10 collects the
-decoding records and F11 those in which a property is shared or differs; three records are marked not
-compared, because the general model is measured only on zero-shot accuracy rather than on the coded
-property, and three with a determinate outcome fall outside both rows. Where the medical model is better,
-it is better by degree: under linear probing on chest radiographs~\cite{li2025featurequality}, for a breast
-image--text encoder over CLIP and DINOv2 by 9.7 and 13.3\% relative F1~\cite{germani2025bias}, under
-frozen-feature adaptation in retina~\cite{zhou2025generalist}, in expert concept scoring in
-dermatology~\cite{kim2024transparent,song2024morphological}, and in pathology segmentation and cell-type
-or gene-expression decoding against a ResNet-50~\cite{gildenblat2024segmentation,cui2026translating}.
-Against this, general self-supervised features match medical baselines across more than 200 radiology
-evaluations~\cite{baharoon2023dinov2}, a specialist model beats every foundation model in large-scale
-radiological retrieval~\cite{denner2024leveraging}, no encoder dominates ten three-dimensional CT
-models~\cite{chevli2026frozenct}, cohort-specific models learn complementary rather than better pathology
-features~\cite{neidlinger2025benchmark}, and a general encoder is at least as good after post-hoc
-alignment~\cite{folco2025semantic,wesp2026sparse}. The properties that matter most for interpretability
-are shared: effective dimensionality is a small fraction of the nominal dimension in seven of eight
-encoders, four medical and four general, and whitening degrades all eight~\cite{garciahidalgo2026embedding};
-shortcut reliance appears in both on the same radiographs~\cite{li2025featurequality,sourget2025fairness};
-both lose small-lesion signal at global pooling~\cite{muthyala2026frozen}; subgroup disparities hold
-whichever of twenty models is used~\cite{jin2024fairmedfm}; medical dual encoders show the modality gap of
-their general counterparts~\cite{restrepo2026cone}; and images whose nearest neighbours carry the opposite
-label overlap above chance far more among medical encoders than in two natural-image
-tasks~\cite{arasteh2026candor}. These are convenience comparisons that vary architecture, objective, scale
-and data at once; the one study that stratifies the objective in a controlled matrix finds convergence
-driven by the objective rather than by clinical supervision, but does not vary medical against general
-pre-training~\cite{tayebiarasteh2026self}. The effect of medical pre-training itself is therefore
-unidentified, and no study tests whether an interpretability method transfers between the two kinds of
-model (\S\ref{sec:future}).
+medical with a general foundation model on the same data; seventeen further records compare only with
+an ImageNet- or task-supervised classifier and are excluded. F10 collects the decoding records and F11
+those in which a property is shared or differs; three records are marked not compared, because the
+general model is measured only on zero-shot accuracy rather than on the coded property, and three with
+a determinate outcome fall outside both rows. Where the medical model is better, it is better by degree,
+under linear probing, frozen-feature adaptation, expert concept scoring and pathology
+segmentation~\cite{li2025featurequality,germani2025bias,zhou2025generalist,kim2024transparent,song2024morphological,gildenblat2024segmentation,cui2026translating};
+against this, general self-supervised features match medical baselines across more than 200 radiology
+evaluations~\cite{baharoon2023dinov2}, a specialist model beats every foundation model in radiological
+retrieval~\cite{denner2024leveraging}, no encoder dominates among ten CT
+models~\cite{chevli2026frozenct}, cohort-specific pathology models learn complementary rather than
+better features~\cite{neidlinger2025benchmark}, and a general encoder is at least as good after
+post-hoc alignment~\cite{folco2025semantic,wesp2026sparse}. The properties that matter most for
+interpretability are shared by both kinds of model: low effective dimensionality and the same
+degradation under whitening~\cite{garciahidalgo2026embedding}, shortcut reliance on the same
+radiographs~\cite{li2025featurequality,sourget2025fairness}, the loss of small-lesion signal at global
+pooling~\cite{muthyala2026frozen}, subgroup disparities across twenty models~\cite{jin2024fairmedfm},
+the modality gap~\cite{restrepo2026cone}, and nearest neighbours that carry the opposite
+label~\cite{arasteh2026candor}. All of these are convenience comparisons that vary architecture,
+objective, scale and data at once; the one study that stratifies the objective in a controlled matrix
+does not vary medical against general pre-training~\cite{tayebiarasteh2026self}. The effect of medical
+pre-training itself is therefore unidentified, and no study tests whether an interpretability method
+transfers between the two kinds of model (\S\ref{sec:future}).
 
 \emph{Where to measure.} Three studies that vary the readout within one model suggest, as a hypothesis
-rather than a row, that readout granularity can dominate apparent decodability for small or spatially
-localised targets: pooled probes sit at chance where patch-local probes on the same forward pass reach
-0.899 AUC, but only under an oracle lesion box the authors call undeployable~\cite{muthyala2026frozen};
-shallow blocks carry spatial information better than deep ones~\cite{vadori2025mind}; and acquisition
-site occupies a large principal component~\cite{rahbar2026frozen}. They vary different things and no
-design separates model, depth and pooling, so what follows for practice is only that an availability
-claim should name its sublocus as well as its model. Beyond the encoder, class labels become less
-decodable after the connector in one uncontrolled successive-locus probe (F8b), and no other core record
-measures a medical connector or the text encoder as a locus of its own.
-
-
+rather than a statement, that readout granularity can dominate apparent decodability for small or
+spatially localised targets: pooled probes sit at chance where patch-local probes on the same forward
+pass reach 0.899 AUC, although only under an oracle lesion box~\cite{muthyala2026frozen}; shallow blocks
+carry spatial information better than deep ones~\cite{vadori2025mind}; and acquisition site occupies a
+large principal component~\cite{rahbar2026frozen}. No design separates model, depth and pooling, so
+what follows for practice is only that an availability claim should name its sublocus as well as its
+model. Beyond the encoder, class labels become less decodable after the connector in one uncontrolled
+successive-locus probe (F8b), and no other core record measures a medical connector or the text encoder
+as a locus of its own.

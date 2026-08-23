@@ -2,11 +2,13 @@
 \begin{figure*}[!tbp]
 \centering
 \includegraphics[width=\linewidth]{fig6_findings.pdf}
-\caption{The evidence map: for each statement of \S\ref{sec:findings}, the validity tests its records
-report, one column per class in the codes of Table~\ref{tab:vcov}, as $k/n$ over the records whose design
-can carry the class ($k_{\text{all}}$--$k/n$ where credited records differ in how much of their outcomes
-the test covers); an en dash marks a class that does not apply. The randomized control task has no column
-(none is reported; its applicability to image probes is not established, \S\ref{sec:future}) and
-semantic validation none, because F7 selects on it. The studies behind each row are cited in Table~\ref{tab:statements}; no cell is combined with another, and none is graded.}
+\caption{The evidence map: for each statement of \S\ref{sec:findings}, the controls its records report, in
+five groups, as $k/n$ over the records whose design can carry the control. \emph{Chance calibration}: a
+label-permutation null or a reference distribution. \emph{Attribution to training}: a randomly initialised
+encoder, a planted ground truth or a matched object. \emph{Comparison model}: the same statistic on
+another model. \emph{Perturbation test}: an occlusion, patching or counterfactual check of a localisation.
+\emph{Matched control}: a control direction or unit for a targeted intervention. A dash marks a control
+the row's designs cannot carry; F7 has no cell because it selects on semantic validation
+(Table~\ref{tab:vcov} gives the \Vnclasses{} underlying classes).}
 \label{fig:findings}
 \end{figure*}
