@@ -1,23 +1,23 @@
 \begin{table*}[!tb]
 \centering\footnotesize\setlength\tabcolsep{3pt}\renewcommand{\arraystretch}{1.08}
 \caption{What this corpus reports, and what it does not: the five conclusions, the statements of
-\S\ref{sec:findings} behind each, the claim each stops short of, the property that limits it most, and the
+\S\ref{sec:findings} behind each (under the conclusion), the claim each stops short of, the property that limits it most, and the
 experiment of \S\ref{sec:future} that would test it. Counts are on all records. The authors' synthesis of
 \S\ref{sec:methods}--\S\ref{sec:future}, not a coded field.}
 \label{tab:synthesis}
-\begin{tabular}{@{}L{2.3cm}L{1.5cm}L{3.4cm}L{3.1cm}L{3.5cm}L{3.3cm}@{}}
+\begin{tabular}{@{}L{2.45cm}L{3.3cm}L{3.2cm}L{3.2cm}L{3.2cm}@{}}
 \toprule
-Conclusion & Rows & Reported in this corpus & Not established & Principal limitation & Experiment that would test it \\
+Conclusion (rows) & Reported in this corpus & Not established & Principal limitation & Experiment that would test it \\
 \midrule
-\textbf{Availability against use} & F1a--F1c, F2, F2b, F9a & findings, anatomy, demographic and acquisition attributes recoverable from frozen encoders in four to seven modalities & that the output uses them: matched control in \Vspca{}--\Vspc{} of \Vspcn{} targeted interventions; no concept-specific causal contribution by the criterion of \S\ref{sec:methods} & breadth is breadth over records; the safeguards pooled into one control are not equivalent & probe paired with a matched intervention or erasure at the same locus and end-point (item 2) \\
+\textbf{Availability against use} \newline {\scriptsize F1a--F1c, F2, F2b, F9a} & findings, anatomy, demographic and acquisition attributes recoverable from frozen encoders in four to seven modalities & that the output uses them: matched control in \Vspca{}--\Vspc{} of \Vspcn{} targeted interventions; no concept-specific causal contribution by the criterion of \S\ref{sec:methods} & breadth is breadth over records; the safeguards pooled into one control are not equivalent & probe paired with a matched intervention or erasure at the same locus and end-point (item 2) \\
 \addlinespace[2pt]
-\textbf{Acquisition and site structure} & F2b, F3a--F3c & centre, scanner and acquisition structure recoverable from pathology and brain-MRI embeddings & that removing it restores generalisation: the downstream effect is operation-specific & F3b rests on five records from five studies, two of them flagged by the defect screen; pathology dominates & downstream end-point, not only invariance, after harmonisation on a held-out site \\
+\textbf{Acquisition and site structure} \newline {\scriptsize F2b, F3a--F3c} & centre, scanner and acquisition structure recoverable from pathology and brain-MRI embeddings & that removing it restores generalisation: the downstream effect is operation-specific & F3b rests on five records from five studies, two of them flagged by the defect screen; pathology dominates & downstream end-point, not only invariance, after harmonisation on a held-out site \\
 \addlinespace[2pt]
-\textbf{Meaning of discovered features} & F7 & \Nsaeval{} of \Nsae{} dictionary studies attempt semantic confirmation against clinicians or labels, all encoder-side & cross-seed identity of features or names; completeness or causal meaning; any decoder-residual dictionary & the row selects studies that attempted validation: how, not how often it succeeds & two differently seeded dictionaries on one encoder; matched-feature fraction; names validated on region annotations (item 3) \\
+\textbf{Meaning of discovered features} \newline {\scriptsize F7} & \Nsaeval{} of \Nsae{} dictionary studies attempt semantic confirmation against clinicians or labels, all encoder-side & cross-seed identity of features or names; completeness or causal meaning; any decoder-residual dictionary & the row selects studies that attempted validation: how, not how often it succeeds & two differently seeded dictionaries on one encoder; matched-feature fraction; names validated on region annotations (item 3) \\
 \addlinespace[2pt]
-\textbf{Medical against general pre-training} & F10, F11 & in same-data comparisons, selected geometric and shortcut properties reported in both kinds of model & an effect of medical pre-training: better decodability appears only in uncontrolled comparisons & \Nmvgrec{} comparisons from \Nmvgstud{} studies vary architecture, objective, scale and data together; most strata hold one to five records & paired pre-training on matched corpora with objective, architecture and compute fixed, or a medical-fraction mixture read as a dose--response \\
+\textbf{Medical against general pre-training} \newline {\scriptsize F10, F11} & in same-data comparisons, selected geometric and shortcut properties reported in both kinds of model & an effect of medical pre-training: better decodability appears only in uncontrolled comparisons & \Nmvgrec{} comparisons from \Nmvgstud{} studies vary architecture, objective, scale and data together; most strata hold one to five records & paired pre-training on matched corpora with objective, architecture and compute fixed, or a medical-fraction mixture read as a dose--response \\
 \addlinespace[2pt]
-\textbf{Where to measure} & F8b, \S\ref{sec:loci} & connector output and text encoder almost unmeasured as loci of their own & that decodability depends on readout and locus; any ordering of model, depth and pooling & readout evidence: three studies varying different things; locus evidence: one uncontrolled successive-locus probe & one finding probed across encoder, connector output and every language-model layer of one report generator (item 1) \\
+\textbf{Where to measure} \newline {\scriptsize F8b, \S\ref{sec:loci}} & connector output and text encoder almost unmeasured as loci of their own & that decodability depends on readout and locus; any ordering of model, depth and pooling & readout evidence: three studies varying different things; locus evidence: one uncontrolled successive-locus probe & one finding probed across encoder, connector output and every language-model layer of one report generator (item 1) \\
 \bottomrule
 \end{tabular}
 \end{table*}
