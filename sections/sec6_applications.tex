@@ -1,0 +1,71 @@
+\Needspace{8\baselineskip}
+\section{Experimental uses and proposed applications}
+\label{sec:applications}
+
+\begin{table*}[!tb]
+\centering\small
+\caption{Experimental uses and proposed applications of representation-level findings to medical foundation
+models: representative studies, the method family relied on, and the kind of evidence available
+(Retrospective: shown on a medical FM with a task-level end-point in a retrospective experiment; Emerging:
+shown on general models or as a proof of concept in medicine; Proposed: argued but not demonstrated).
+No reviewed study reports prospective clinical evaluation or deployment. Studies in the core corpus are marked $^{c}$; the others are contextual references.}
+\label{tab:applications}
+\begin{tabular}{@{}L{3.6cm}L{5.4cm}L{3.4cm}L{2.2cm}@{}}
+\toprule
+Application & Representative studies & Method family & Maturity \\
+\midrule
+Shortcut and bias auditing & \cite{glocker2023algorithmic}, \cite{zheng2024demographic}$^{c}$, \cite{sourget2025fairness}$^{c}$, \cite{yang2024demographic}, \cite{zheng2025towards}, \cite{huang2025knowledgeguided}, \cite{pahde2025ensuring}, \cite{janizek2026visual} & decoding; geometry; intervention (debiasing) & Retrospective \\
+Grounding and hallucination diagnosis & \cite{hardy2024rextrust}, \cite{yu2026realtime}, \cite{nooralahzadeh2026universal}$^{c}$, \cite{li2026suppressing}, \cite{phukan2024beyond} & decoding; discovery; tracing; intervention & Retrospective (detection); Emerging (mitigation) \\
+Model debugging and behaviour control & \cite{abbasi2026layerspecific}, \cite{sadanandan2026mechanistically}$^{c}$, \cite{farina2026translating}$^{c}$, \cite{basu2026interpretability} & tracing; intervention & Emerging \\
+Adaptation and deployment monitoring & \cite{dejong2025current}$^{c}$, \cite{donle2026featmap}$^{c}$, \cite{disalvo2026mars}, \cite{poceviciute2024outofdistribution}, \cite{das2026proton} & geometry; decoding & Retrospective \\
+Privacy, memorisation and data auditing & \cite{tayebiarasteh2026crossmodal}$^{c}$, \cite{deo2026a}, \cite{hardan2025forgetmi}, \cite{zhang2026auditing}$^{c}$, \cite{xu2026a} & geometry; intervention (unlearning) & Retrospective (auditing); Emerging (unlearning) \\
+Model selection, training monitoring and data curation & \cite{liang2026cheap}$^{c}$, \cite{chen2025revisiting}, \cite{zhang2026auditing}$^{c}$ & decoding; geometry & Retrospective \\
+Regulatory and clinician-facing use & \cite{muralidharan2024a}, \cite{mehta2025evaluating}, \cite{warraich2024fda}, \cite{rosenbacke2024how} & --- & Proposed \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:applications} maps the uses the core studies state to the family and locus they rest on, with
+the maturity we read from them: \emph{retrospective}, shown on a medical foundation model with a task-level
+end-point; \emph{emerging}, shown on general models or as a proof of concept in medicine; \emph{proposed},
+argued but not demonstrated. The uses come from the studies' own stated applications and the work they cite,
+so this section is a purposive narrative rather than a protocol-bounded review.
+
+In this purposive reading, detection has transferred more consistently than mitigation --- a hypothesis the
+uses below suggest rather than a protocol-bounded comparison. Representation-level evidence supports shortcut and
+bias auditing, through proxy groups for missing protected attributes, concept ranking and head-level
+localisation~\cite{queiroz2024using,bahre2025underdiagnosis,bhattacharyya2025conformal,yang2024demographic,brown2022detecting,yang2024the,janizek2026visual,yasser2026locating};
+grounding and hallucination diagnosis from internal states, by finding-level risk scores, token-time probes
+and decoding-time feature
+suppression~\cite{hardy2024rextrust,yu2026realtime,nooralahzadeh2026universal,li2026suppressing,phukan2024beyond,li2025the,kossen2024semantic};
+shift detection and deployment monitoring, since embeddings encode site, scanner and acquisition
+(\S\ref{sec:geometry},
+\S\ref{sec:decoding})~\cite{dejong2025current,mishra2025comparing,donle2026featmap,disalvo2026mars,poceviciute2024outofdistribution,schulthess2025anomaly,das2026proton};
+privacy, memorisation and data auditing, where image--report correspondence in joint spaces creates
+re-linkage
+risk~\cite{tayebiarasteh2026crossmodal,tonekaboni2025an,deo2026a,hardan2025forgetmi,nasirigerdeh2024machine,zhang2026auditing,xu2026a};
+and cheap probes for model selection, training monitoring and data
+curation~\cite{liang2026cheap,chen2025revisiting}.
+
+Mitigation and behaviour control remain emerging and model-specific. Attribute removal, feature separation
+during adaptation, spurious-behaviour revision and latent steering are each demonstrated
+once~\cite{zheng2025towards,huang2025knowledgeguided,pahde2025ensuring,ahsan2025can}, as are causal-tracing
+guided fine-tuning, adapter guidance and inference-time activation
+addition~\cite{abbasi2026layerspecific,sadanandan2026mechanistically,farina2026translating}; against them,
+decodable concepts may be uncontrollable~\cite{basu2026interpretability} and steering may compromise
+safety~\cite{korznikov2025the,li2026analysing} (\S\ref{sec:intervention}).
+
+What is missing is prospective evidence, of the kind DECIDE-AI specifies for the early-stage clinical
+evaluation of decision-support systems~\cite{vasey2022decide} and FUTURE-AI for deployable medical
+AI~\cite{lekadir2023future}: no study reviewed here reaches that stage.
+Shortcut audits must show that removing an encoded attribute changes a clinical error rate, not a fairness
+metric; hallucination detection needs cross-model
+transfer; debugging needs the controls of \S\ref{sec:intervention}; monitoring needs signals calibrated
+to action thresholds; and privacy auditing needs a standard re-identification protocol.
+Regulatory and clinician-facing use is not yet an application: approved-device audits find sparse
+demographic and performance transparency~\cite{muralidharan2024a,mehta2025evaluating}, regulators
+identify concepts for adaptive oversight~\cite{warraich2024fda}, reader studies remain rare
+(\S\ref{sec:eval-bench}), and no evidence chain links a representation-level measurement to a clinical
+decision (\S\ref{sec:future}).
+
+

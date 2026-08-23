@@ -1,0 +1,62 @@
+Representation-level evaluation requires more than class labels: concept annotations for scoring probes,
+directions, features and bottlenecks, demographic and acquisition metadata for confounder analysis, and
+\begin{table*}[!tb]
+\centering\small
+\caption{Datasets and concept resources used for representation-level evaluation in the reviewed corpus.
+Concept source: how the concept or attribute labels were produced (expert = assigned by clinicians;
+report = extracted from free-text reports by an automatic labeller; text = mined from literature or
+captions). Demog.: demographic metadata available for confounder analysis. Region: region-level annotation. \cmark\ available, \pmark\ partial (a subset of the data or of the attributes), \xmark\ absent.}
+\label{tab:datasets}
+\setlength\tabcolsep{4pt}\begin{tabular}{@{}L{2.70cm}L{1.90cm}L{3.30cm}L{1.90cm}ccL{2.46cm}@{}}
+\toprule
+Resource & Modality & Scale and labels & Concept source & Demog. & Region & Typical use \\
+\midrule
+CheXpert~\cite{irvin2019chexpert} / CheXpert Plus~\cite{chambon2024chexpertplus} & CXR & 224k images; 14 observations; reports and metadata in Plus & report & \cmark & \xmark & probing, CBM, SAE labelling \\
+MIMIC-CXR / -JPG~\cite{johnson2019mimic,johnson2019mimicjpg} & CXR & 377k images, 227k reports; 14 labels & report & \cmark & \xmark & probing, SAE, steering end-points \\
+PadChest~\cite{bustos2019padchest} & CXR & 160k images; 174 findings, 104 locations & report / expert (27\%) & \pmark & \pmark & probing, attention audits \\
+VinDr-CXR~\cite{nguyen2020vindr} & CXR & 18k images; 22 local + 6 global labels & expert & \xmark & \cmark & grounding, faithfulness \\
+ChestX-ray8/14 / ChestX-Det~\cite{wang2017chestxray,liu2020chestxdet} & CXR & 109k--112k / 3.5k images; boxes in Det & report / expert & \pmark & \cmark & saliency benchmarks \\
+RadGraph~\cite{jain2021radgraph} & CXR reports & 500 annotated reports; entity--relation schema & expert & \xmark & \xmark & concept vocabulary, factuality \\
+Derm7pt~\cite{kawahara2019derm7pt} & dermoscopy & 1,011 cases; 7-point checklist & expert & \xmark & \xmark & CBM, TCAV \\
+SkinCon~\cite{daneshjou2023skincon} & clinical derm. & 3,230 images; 48 concepts & expert & \pmark & \xmark & probing, CBM, debugging \\
+ISIC 2018 attributes / PH$^2$~\cite{codella2019isic,mendonca2013ph2} & dermoscopy & 2,594 / 200 images; attribute masks & expert & \xmark & \cmark & concept localisation \\
+EMBED~\cite{jeong2022embed} & mammography & 3.4M images; balanced race & expert / metadata & \cmark & \pmark & fairness, confounder probing \\
+FairMedFM~\cite{jin2024fairmedfm} & multi (17 sets) & 20 FMs; sensitive attributes & metadata & \cmark & \xmark & fairness benchmarking \\
+CAMELYON~\cite{litjens2018camelyon} & pathology & 1,399 WSIs, 5 centres; metastasis outlines & expert & \xmark & \cmark & site structure, probing \\
+Quilt-1M~\cite{ikezogwo2023quilt} & pathology & 1M image--text pairs & text & \xmark & \xmark & concept banks \\
+MONET~\cite{kim2024transparent} & dermatology & 105k pairs; concept scorer & text, expert-verified & \xmark & \xmark & concept annotation, auditing \\
+MedConcept-23M~\cite{nie2025explainable} & multi & 23M triplets; UMLS concepts & text (UMLS) & \xmark & \xmark & concept-enhanced pre-training \\
+CT-RATE / RAD-ChestCT~\cite{hamamci2024ctrate,draelos2020radchestct} & chest CT & 25.7k volumes / 83 labels & report & \pmark & \xmark & 3-D probing, SAE \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+region annotations for grounding.
+
+Table~\ref{tab:datasets} lists the recurring resources; three properties of them bound what
+representation-level evaluation can currently establish.
+
+\textbf{Label provenance.} The large chest-radiograph corpora carry findings extracted from reports by
+automatic labellers rather than assigned by
+radiologists~\cite{irvin2019chexpert,johnson2019mimic,johnson2019mimicjpg,wang2017chestxray}: they are
+noisy proxies derived from clinician-authored reports, so a probe fitted to them measures agreement with a
+labeller's reading of those reports rather than with a radiologist reading the image. Expert resources
+supply a direct clinical
+reference~\cite{nguyen2020vindr,liu2020chestxdet,bustos2019padchest,jain2021radgraph,smit2020chexbert}.
+In pathology the two resources listed here differ in kind, a text corpus and expert region
+annotations~\cite{ikezogwo2023quilt,litjens2018camelyon}, and
+concept-scored image--text models are themselves
+resources~\cite{kim2024transparent,nie2025explainable}. Volumetric imaging offers report-derived
+abnormality labels only~\cite{hamamci2024ctrate,draelos2020radchestct}.
+
+\textbf{Expert concept density.} Dermatology is the best-annotated modality, with checklist criteria,
+dermatologist-assigned concepts, dermoscopic structure masks and a hierarchically annotated South-Indian
+cohort~\cite{kawahara2019derm7pt,daneshjou2023skincon,mendonca2013ph2,codella2019isic,madarkar2025dermacon};
+it therefore carries the best-validated concept bottlenecks. Even here annotation is not a ground truth:
+16\% of Derm7pt concept profiles map to conflicting diagnoses~\cite{napoles2026concept}.
+
+\textbf{Demographic metadata.} Confounder analysis needs attributes the datasets rarely record: only two of
+23 audited public chest-radiograph datasets report ethnicity~\cite{yi2022demographic}. EMBED supplies
+racially balanced mammography~\cite{jeong2022embed} and FairMedFM combines 17 datasets with sensitive
+attributes across 20 foundation models~\cite{jin2024fairmedfm}.
+

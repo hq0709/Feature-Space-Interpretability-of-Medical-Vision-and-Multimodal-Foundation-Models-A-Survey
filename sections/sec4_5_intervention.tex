@@ -1,0 +1,122 @@
+\subsection{Causal intervention and representation control}
+\label{sec:intervention}
+
+The family holds three subtypes that share a name but not an estimand, and their records should not be
+read as one total: interventions inside the forward pass, post-hoc transformations of stored embeddings,
+and parameter editing or unlearning. Only the first intervenes on an activation inside a fixed model and forward pass; the second changes
+what a refitted readout can do with a stored vector; the third changes the model's parameters and
+identifies no representation-level mediator unless the study measures one. Each therefore takes a different control
+(Table~\ref{tab:families}). Within the forward pass, non-zero effects establish output sensitivity to a
+locus, and matched controls direction selectivity. A validated direction strengthens the second, but a
+concept-specific contribution needs a mediation or causal-abstraction design, which no reviewed medical
+study reports (\S\ref{sec:methods}). Methods include causal mediation and
+abstraction, causal tracing, rank-one editing, activation patching and additive
+steering~\cite{vig2020causal,geiger2021causal,geiger2023causal,meng2022locating,meng2022mass,zhang2023towards,turner2023steering,rimsky2023steering,zou2023representation,li2023inference,arditi2024refusal}.
+Medical claims date from 2025--2026 and remain sparse and decoder-centred (Fig.~\ref{fig:corpus}b),
+after early orthogonalisation of chest-radiograph embeddings~\cite{weber2023posthoc} and a
+joint-space edit~\cite{sadashivaiah2024explaining}.
+
+\subsubsection{Ablation and knockout}
+
+Ablation removes a component: masking the highest-attention 10\% of visual tokens in the visually
+dominant decoder layers of two medical multimodal LLMs detects hallucinations (AUC 71.6--78.9
+against 68.9--73.0 for the best baseline), while random masking changes little~\cite{chen2026vihd}.
+Ablating object-specific visual tokens likewise reduces object identification in general
+models~\cite{neo2024towards}, and knockout in frozen CT encoders shows about ten channels carrying
+each radiological finding~\cite{nooralahzadeh2026sparse}. Fine-tuning visually critical heads from
+weak segmentation labels is a training method and therefore contextual~\cite{chang2025focus}.
+
+\subsubsection{Activation patching and causal tracing}
+
+Causal tracing corrupts a run, restores clean-run hidden states and measures output recovery; the
+indirect effect of locus $\lambda$ in~(\ref{eq:effect}) is
+$B(x_{\mathrm{corr}};z_\lambda\!\leftarrow\!z_\lambda(x_{\mathrm{clean}}))-B(x_{\mathrm{corr}})$.
+Adaptations to vision--language models localise image-conditioned generation to layers and
+tokens~\cite{palit2023towards,basu2024understanding,zhang2024cross,li2025causal}. One medical
+instance is core, and it patches a feature rather than tracing a corruption: in MedGemma, patching a
+single dictionary feature recovers more of the decision margin than random control
+features~\cite{sadanandan2026mechanistically} (F9a). No medical clean--corrupted tracing is core: the
+closest scales CLIP text-tower updates by causal contribution~\cite{abbasi2026layerspecific}; text-only anchors place editing
+adapters~\cite{xu2024editing}, localise gender~\cite{ahsan2025elucidating} and show knowledge
+failing to reach output~\cite{abouzahir2026bridging}. Automated circuit discovery remains
+general-domain~\cite{conmy2023automated,syed2023attribution,marks2024sparse,ameisen2025circuit}.
+
+\subsubsection{Steering vectors and representation engineering}
+
+Steering sets $\tilde z_\lambda=z_\lambda+\alpha v$ and measures $\Delta B(\alpha)$
+in~(\ref{eq:effect}); $v$ may be a contrastive mean difference, probe normal or dictionary decoder
+vector, with an equal-norm random direction or unrelated concept as controls (Table~S5). General
+vision encoders support patch-level steering~\cite{joseph2025steering,stevens2025interpretable}, and
+CLIP interventions propagate through the projector~\cite{pach2025sparse}.
+
+Evidence is mixed. Per-token steering improves a report-quality composite in three radiology
+multimodal LLMs, one transferring zero-shot to a second corpus~\cite{nooralahzadeh2026universal};
+Matryoshka dictionary steering is likewise mixed~\cite{bouzid2025insights}. Contrastive activation
+addition, with random and reversed controls, shifts pneumonia classification in one of three frozen
+chest-radiograph models~\cite{farina2026translating}, moderate modality-gap shifts improve
+supervised performance~\cite{restrepo2026cone}, and lesion-mask amplification improves subtle-lesion
+detection across five backbones, though on CT it rests on one model without a random
+control~\cite{zeng2026easylens}. Text-only anchors divide too: interventions leave a 53-point
+probe--action gap~\cite{basu2026interpretability}, hallucination resists
+control~\cite{vankadaru2026readable} and race-linked latents are marginally
+useful~\cite{ahsan2025can}, yet lightweight steering helps clinical question
+answering~\cite{ray2026do}.
+
+General-domain effects are input-dependent, sometimes sign-reversing and
+non-identifiable~\cite{tan2024steeringreliability,braun2025understanding,venkatesh2026nonident};
+random directions alone raise harmful compliance from 0\% to 1--13\% and move jailbreak success both
+ways~\cite{korznikov2025the,li2026analysing}, and function-vector steering dissociates from lens
+decodability~\cite{nadaf2026steerable}.
+
+\subsubsection{Post-hoc transformation, editing and unlearning}
+
+Editing changes weights, unlearning removes data influence, erasure removes concepts, and post-hoc
+transformations (whitening, harmonisation, projection, transport) change stored embeddings before re-evaluation;
+the boundary is the operation, not the paper's genre: an operation on a frozen representation with a downstream
+end-point is core (Table~\ref{tab:boundary}), whereas a method that changes the encoder's training or weights
+alone is contextual. Editing fails on medical benchmarks: gradient-based editors
+generalise but violate locality, memory-based editors preserve locality without generalising
+compositionally~\cite{zhu2026evaluating}, and every editor tested fails under single and sequential
+editing~\cite{xu2025medmkeb,wen2025multimededit}. Unlearning is
+contextual~\cite{guo2026exploring,hardan2025forgetmi,xu2025from}, at best projecting the target
+subspace out of language-model and connector weights~\cite{wu2025hierarchy}. Mechanistically guided
+low-rank adaptation improves paraphrase consistency~\cite{sadanandan2026mechanistically}, and
+editing 1\% of weights injects persistent misinformation into a text-only
+anchor~\cite{han2024medical}.
+
+Null-space projection~\cite{ravfogel2020null,ravfogel2022linear}, linear
+erasure~\cite{belrose2023leace} and amnesic probing~\cite{elazar2020amnesic} remove linearly
+decodable attributes. Projecting chest-radiograph embeddings off the protected-attribute column
+space removes attribute effects on pathology logits and shrinks subgroup AUC gaps, at a macro-AUC change of
+$-1.4$ to $+1.8$ points across two model--dataset pairs~\cite{weber2023posthoc}. On retinal embeddings it lowers device decodability only from 0.95 to
+0.70--0.86 and leaves a three-year device shift in predicted age~\cite{li2026acquisition}.
+Residualising demographics leaves clinical-finding prediction unchanged, a test of
+dependence~\cite{kim2026encoding}$^{\dagger}$; the joint-space analogue edits along report-derived
+directions~\cite{sadashivaiah2024explaining}.
+
+In pathology the target is acquisition: site prediction falls to chance under
+ComBat~\cite{murchan2024deep}$^{\dagger}$ and a gradient-reversal
+head~\cite{zhang2025hospital}$^{\dagger}$, with biomarker end-points holding; centre-signature
+removal raises robustness but not generalisation~\cite{kmen2026robust}; contrastive projection
+raises same-specimen agreement~\cite{carloni2025pathology}; an affine correction raises
+cross-scanner retrieval~\cite{donle2026featmap}; and whitening degrades downstream performance
+(\S\ref{sec:geometry})~\cite{garciahidalgo2026embedding}. Two core joint-space operations do the
+same, scoring CPath-CLIP embeddings against text anchors to raise cross-species tumour
+transfer~\cite{arora2026semantic} and regularising a text projection head against counterfactual
+text~\cite{balogh2026regularization}$^{\dagger}$. Evaluated only downstream, they establish what
+they remove, not what the model uses (F3b); adversarial perturbations on frozen embeddings are a
+training method~\cite{xu2024apple}, and demographic attributes (\S\ref{sec:decoding}) remain
+erasure's target.
+
+
+\subsubsection{Summary and discussion}
+
+Patching, ablation and steering show outputs to be sensitive to interventions on medical representations,
+but concept-directed effects are input- and model-specific: a matched control applies to the eight records that target a specific direction, feature, unit or token,
+whatever sub-group heading the study sits under and whether or not the target carries a name --- four of
+the eight target a named concept (F9a) --- and three report one. The other thirteen harmonise, project, erase or edit
+without such a target, share no estimand with them or with each other, and are inventoried as F9b rather than
+pooled into a family total; they need locality and retain-set checks (Table~S5), for which
+\S\ref{sec:future} proposes a standard. No study in this corpus intervenes on the connector, and
+non-identifiability~\cite{korznikov2025the,venkatesh2026nonident} precludes crediting uncontrolled
+improvements to concepts.

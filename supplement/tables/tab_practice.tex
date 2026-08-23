@@ -1,0 +1,23 @@
+\begin{table*}[!t]
+\centering\footnotesize\setlength\tabcolsep{2.5pt}\renewcommand{\arraystretch}{1.0}
+\caption{From a practitioner's question to a design: the locus and family that address each recurring
+question, the controls that establish the measurement's internal validity and, separately, its transport
+beyond the fitting data, the claim the result licenses and the claim it does not, and the state of the
+medical evidence in \S\ref{sec:findings}. None of the controls is deployment evidence. The table is the
+authors' synthesis, not a coded field; counts in the last column are over all records, except the
+dictionary row, whose denominator is all \Nsae{} dictionary studies.}
+\label{tab:practice}
+\begin{tabular}{@{}L{1.70cm}L{1.25cm}L{2.35cm}L{3.15cm}L{1.55cm}L{2.85cm}L{2.35cm}@{}}
+\toprule
+Question & Locus & Family; measurement & Validity controls (\emph{and} = cumulative, \emph{or} = alternatives) & Transport & Claim licensed / not licensed & Medical evidence: records, controls \\
+\midrule
+Is $c$ available? & encoder; joint & decoding: fixed-class probe, Eq.~(\ref{eq:probe}) & control task \emph{or} permuted labels; random-init encoder where weights allow; patient-level split & external cohort or site & \textbf{yes:} $c$ linearly decodable here. \textbf{no:} that the model uses $c$ & F1a, F1b, F2: 18/6/9 rec.; any validity class 4/18, 1/6, 3/9; control task 0 \\
+Does the output depend on $c$? & locus intervened on & intervention: edit along $v_c$, Eq.~(\ref{eq:effect}); or erasure & matched random \emph{and} unrelated-concept directions; both signs; $\ge$3 magnitudes & held-out inputs; second model & \textbf{yes:} direction-selective sensitivity. \textbf{no:} concept-specific contribution (needs mediation) & F9a: 8 rec., 2--3 controlled, 1 direction-selective; 0 dose--response \\
+Where along the path is $c$? & successive loci & decoding at each locus, one objective; lens or attention as hypothesis & capacity-matched readout at every locus; patching or erasure to confirm & second dataset or prompt set & \textbf{yes:} decodable by that readout at $\ell$. \textbf{no:} absent from, or used at, $\ell$ & F8b: 1 rec., class labels only; no named concept traced \\
+Is an attention or attribution map faithful? & decoder; encoder tokens & tracing: map plus perturbation test & occlusion, deletion \emph{or} counterfactual regions; model randomisation & second cohort with localisation ground truth & \textbf{yes:} faithful under that test. \textbf{no:} faithfulness without the test & F8a: 6 rec.\ fail the test; F8a$'$: 3 rec.\ of method disagreement; F8a$''$: 2 qualitative \\
+What unlabelled structure is there? & encoder; decoder stream & discovery: sparse dictionary, Eq.~(\ref{eq:sae}) & clinician \emph{or} structured-label validation of names; reconstruction; disjoint fit and score & cross-seed matching; second cohort & \textbf{yes:} validated features exist. \textbf{no:} a stable, complete inventory & F7: 12/18 validated, all encoder-side; 0/3 decoder-side; 0 cross-seed \\
+Acquisition or pathology structure? & encoder & geometry, then decoding: neighbourhoods, then site probes & same metric on a comparison model \emph{or} null; matched-scanner data; invariance \emph{and} downstream end-point after harmonisation & held-out site or scanner & \textbf{yes:} site structure present or removable. \textbf{no:} generalisation restored & F3a, F3b, F3c: 18/5/3 rec.; downstream effect operation-specific \\
+Does medical pre-training change it? & any & same measurement on a medical and a general model, same data & objective, architecture, scale and data controlled, at least the objective by paired training & same comparison on a second dataset & \textbf{yes:} association in a convenience comparison. \textbf{no:} an effect of domain pre-training & F10: 10/20 coded medical better; F11: 19/25 coded shared (coded comparison outcomes, not a direction of effect); 1 objective-stratified matrix \\
+\bottomrule
+\end{tabular}
+\end{table*}

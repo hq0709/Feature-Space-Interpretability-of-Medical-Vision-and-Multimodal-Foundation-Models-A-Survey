@@ -1,0 +1,112 @@
+%% Supplementary per-record evidence tables (Tables S1-S8) for
+%% "Feature-Space Interpretability of Medical Vision and Multimodal Foundation Models: A Survey"
+%% Build: pdflatex supplement_tables.tex (run from the supplement/ directory; needs tables/*.tex and refs.bib alongside)
+\documentclass[final,3p,times,twocolumn,number,sort&compress]{elsarticle}
+\usepackage{amsmath,amssymb,booktabs,array,multirow,graphicx,xcolor,pifont,tabularx,makecell,url}
+\graphicspath{{figures/}}
+\usepackage{placeins}
+\usepackage{enumitem}
+\usepackage{rotating}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xr}\IfFileExists{main.aux}{\externaldocument{main}}{}   % resolves \ref to article sections/tables when main.aux is alongside
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcommand{\cmark}{\ding{51}}\newcommand{\xmark}{\ding{55}}\newcommand{\pmark}{$\circ$}
+\input{sections/counts}
+\input{sections/chain_counts}
+\input{sections/frozen_counts}
+\input{sections/pubmed_counts}
+\input{sections/findings_counts}
+\input{sections/vclass_counts}
+\journal{Neurocomputing}
+\begin{document}
+\begin{frontmatter}
+\title{Supplementary evidence tables: Feature-Space Interpretability of Medical Vision and Multimodal Foundation Models: A Survey}
+\end{frontmatter}
+\section*{Per-record evidence tables}
+Tables~S1--S6 list every core claim record of the five method families and the intrinsic-design tag (one row per record; identifiers match \texttt{coding.csv}). Each study cell gives the citation number in this document's own reference list and, beneath it, the record identifier (the citation key) used in \texttt{coding.csv} and every other sheet, so that any row can be traced to its coded record. Column conventions are those of the article (Sec.~3): Loc.\ locus, Prov.\ concept provenance, Ev.\ evidence type (O observational, I interventional), Base.\ same-data comparison with a general foundation model, Multi.\ more than one model or dataset, 2nd secondary family, Ctrl matched control (interventional records).
+% One number per family; a family that spans several floats keeps its number and the captions say "table i of n".
+\renewcommand{\thetable}{S1}\input{tables/app_tab_geometry}
+\renewcommand{\thetable}{S2}\input{tables/app_tab_decoding}\input{tables/app_tab_decodingb}\input{tables/app_tab_decodingc}
+\renewcommand{\thetable}{S3}\input{tables/app_tab_discovery}
+\renewcommand{\thetable}{S4}\input{tables/app_tab_tracing}
+\renewcommand{\thetable}{S5}\input{tables/app_tab_intervention}
+\renewcommand{\thetable}{S6}\input{tables/app_tab_intrinsic}
+\FloatBarrier
+
+\section*{Retrieval tables}
+The two retrieval tables of supplement S1i, moved here from the article's appendix: the five logged
+citation-chaining waves (Table~S7) and the frozen replayable search protocol per query family (Table~S8).
+\renewcommand{\thetable}{S7}\input{tables/tab_chaining}
+\renewcommand{\thetable}{S8}\input{tables/tab_frozen}
+\FloatBarrier
+
+\section*{Evidence profiles and the audit workflow}
+The per-finding evidence profiles moved here from the article's appendix (Tables~S9--S11), and the minimum
+audit workflow of the open-problems section (Table~S12). The article reports each finding's proposition,
+coverage status, records, direction and qualification; these tables give the underlying fractions. They are
+set landscape, three parts with identical columns; the conventions common to all three follow.
+
+\input{tables/tab_profile_note}
+
+\renewcommand{\thetable}{S9}\input{tables/tab_profile}
+\renewcommand{\thetable}{S10}\input{tables/tab_profileb}
+\renewcommand{\thetable}{S11}\input{tables/tab_profilec}
+\renewcommand{\thetable}{S12}\input{tables/tab_workflow}
+\FloatBarrier
+
+\section*{S7c. The evidence statements in full}
+For each of the evidence statements of \S7 of the article (Table~\ref{tab:statements} there): the
+proposition, what the records show --- as ranges and, where they disagree, with the disagreement stated
+rather than averaged --- and the limit that most restricts it. Counts are on the unflagged records; the
+citations are in this document's own reference list.
+\input{tables/tab_findings}
+\FloatBarrier
+
+\section*{Medical-versus-general comparisons}
+The same-data medical-versus-general comparisons behind F10 and F11 of the article, stratified by the
+property tested and the model object compared (Figure~S1).
+\renewcommand{\thefigure}{S1}
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\linewidth]{fig7_mvg.pdf}
+\caption{The \Nmvgrec{} same-data medical-versus-general comparisons, by stratum: the property tested
+(coding-sheet family and sub-group) crossed with the model object compared (from the locus), split by the
+coded outcome. \emph{med.\ $>$ gen.}: the medical model shows more of the tested property or performs better;
+\emph{gen.\ $\geq$ med.}: the general model matches or exceeds it; \emph{mixed}: the result differs across
+tasks or models; \emph{shared}: the property is present in both kinds of model; \emph{differs}: it is present
+in one kind only; \emph{not compared}: the general model is measured only on a quantity other than the coded
+property, such as zero-shot accuracy. The properties are not commensurable and the strata are not summed;
+F10 and F11 in \S7 of the article inventory these records without an aggregate direction. Records
+whose study carries a critical defect touching their claim appear as \emph{defect-touched}, the same
+defect screen the article uses. Most strata hold one to five records,
+which is why no pooled effect is reported (supplement S6b). The three ordered outcomes use the
+navy-to-pale ramp of Fig.~7 of the article; green and orange mark the two nominal outcomes and never an
+ordered level.}
+\label{fig:mvg}
+\end{figure*}
+\FloatBarrier
+
+\section*{Screening flow and the validity-test rubric}
+The screening flow of the frozen protocol, from retrieved hits to core studies (Table~S13), and the full
+validity-test rubric (Table~S14): for each of the \Vnclasses{} classes, what the design already supports
+without it, and what the class adds and does not add; and the defect screen (Table~S15), the five recorded
+result-invalidating defect kinds behind the flagged records, which the article marks rather than removes
+(the screen as a sensitivity is in S6). The article's Table~\ref{tab:vcov} carries the
+one-clause version with the record counts; the per-record codes are in \texttt{notes/validity\_control.csv}.
+\renewcommand{\thetable}{S13}\input{tables/tab_searchflow}
+\renewcommand{\thetable}{S14}\input{tables/tab_rubric}
+\renewcommand{\thetable}{S15}\input{tables/tab_defects}
+\FloatBarrier
+
+\section*{Design of the dictionary-learning studies}
+The design of every dictionary-learning study in the corpus (Table~S16), extracted from the full texts: the
+model and locus, the token and layer decomposed, the method and width, how features were named, how the
+names were validated, whether reproducibility was checked, and the reconstruction quality reported.
+\renewcommand{\thetable}{S16}\input{tables/tab_saedesign}
+% flush every table before the reference list: tables must not interleave with it
+\FloatBarrier
+\clearpage
+\bibliographystyle{elsarticle-num-np}
+\bibliography{refs,refs_extra}
+\end{document}

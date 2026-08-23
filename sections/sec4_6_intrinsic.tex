@@ -1,0 +1,71 @@
+\subsection{Intrinsic and concept-aligned designs built on foundation models}
+\label{sec:intrinsic}
+
+Intrinsic designs constrain part of a representation to be interpretable by construction, a model
+property; analysis stays in the preceding families. Eligible designs carry the intrinsic-design tag and are
+coded in the supporting family, decoding except for one discovery-coded prototype design (supplementary
+Table~S6).
+
+\textbf{Concept bottlenecks on frozen medical encoders.} Concept bottleneck models (CBMs) predict
+human-defined concepts, then labels from concepts alone, $\hat c=g_c(z_\lambda(x))$ and $\hat y=g_y(\hat c)$,
+so labels depend on the representation only through inspectable $\hat c$~\cite{koh2020concept}; concept
+embedding models relax the bottleneck to a vector per concept to recover accuracy~\cite{zarlenga2022concept}.
+Post-hoc and label-free variants attach to pre-trained encoders, language models proposing and vision--language models
+scoring concepts~\cite{yuksekgonul2022post,oikarinen2023label,yang2022language}. GPT-4 concepts scored by
+a vision--language model give classifiers across eight medical datasets~\cite{yan2023robust}, textbook-
+and PubMed-derived concept spaces degrade less than black-box fine-tuning on constructed confound-reversed
+splits, a shortcut test rather than a natural external shift~\cite{yang2024textbook}, and stronger
+intermediate- than final-layer associations motivate multi-layer bottlenecks~\cite{wang2025mvp}.
+Applications reach volumetric, slide and ultrasound
+encoders~\cite{rojas2026echopcbm,tushar2026distilling,gao2025evaluating,sun2025label}: frozen-CT ridge
+concept heads recover lung-nodule attributes ($R^2\le 0.24$) yet generalise externally better than
+embedding probes, and pathology-encoder graph heads feed thirty kidney-cancer concepts to a survival
+model. Distribution shift degrades frozen-feature bottlenecks, partly recovered by concept-layer
+adaptation~\cite{choi2024adaptive}; VLM-supervised concepts can differ from expert annotations, and
+concept accuracy relates weakly to quality~\cite{debole2025if} (\S\ref{sec:eval-what}).
+
+\textbf{Concept-based vision--language models and report-grounded bottlenecks.} Here the concept layer
+sits inside a medical VLM, where radiologist-style observation probabilities yield zero-shot
+diagnoses~\cite{pellegrini2023xplainer}. Elicited criteria become textual anchors in a VLM's joint
+space~\cite{gao2024aligning} or explainable prompts~\cite{bie2024xcoop}, and large VLMs classify from
+their own answers to concept questions, a contextual output-level procedure~\cite{patricio2025cbvlm}; a two-step
+variant reads dermoscopic concepts off frozen MONET image--text similarity and passes them to a language model,
+beating a trained bottleneck on three datasets, with ground-truth concepts adding 5--21 points and BiomedCLIP concepts
+at chance~\cite{patricio2025twostep}. Report-derived concepts
+in a chest-radiograph joint embedding provide counterfactuals~\cite{sadashivaiah2024explaining}, and
+guideline text supports conformant classification in a general CLIP model~\cite{harmanani2026vision}. A radiology foundation model projects chest radiographs into
+language-model concept space, trained on more than 0.87M image--report pairs and validated on
+physician-annotated cohorts~\cite{han2026clear}.
+
+\textbf{Prototype and part-based models on foundation features.} Case- and part-prototype models explain by
+similarity to exemplars~\cite{chen2019thislooks,barnett2021case,kim2021xprotonet}; foundation-model versions
+summarise slide patch embeddings into morphological prototypes~\cite{song2024morphological} or
+give patch-level prototypes interactive concept meaning~\cite{huy2025interactive}, a self-interpretable
+multiple-instance model pairs handcrafted and deep branches~\cite{kapse2023si}, region-additive logistic heads on
+frozen BrainIAC and NeuroFM embeddings of anatomically masked volumes match fine-tuning while randomised
+embeddings fall to chance~\cite{zhang2026regionfm}, and
+attribute-regularised or concept-whitened spaces align axes with clinical
+attributes~\cite{cetin2022attri,hou2024concept}, the medical instances of concept whitening~\cite{chen2020concept}. Being feature-space
+points and directions, they are evaluated by decoding and discovery.
+
+\textbf{Critiques.} Bottleneck intervention requires labels to depend only on concepts, yet predictors may
+ignore relevant regions~\cite{margeloiu2021do} and soft scores leak non-concept information~\cite{havasi2022addressing}. Random concept projections match learned accuracy, so
+accuracy cannot certify meaning~\cite{srivastava2024vlg,schmalwasser2026faithfulness};
+information-theoretic measures quantify leakage~\cite{parisini2025leakage,makonnen2025measuring}, and
+intervenability extends beyond bottlenecks~\cite{marcinkevics2024beyond}. Inconsistent dermoscopy annotations cap
+hard-bottleneck accuracy~\cite{napoles2026concept}, and concept accuracy can
+conceal a meaningless layer~\cite{han2026loss}. A sparse autoencoder before a linear
+bottleneck~\cite{rao2024discover} inherits discovery instability
+(\S\ref{sec:discovery}).
+
+
+\subsubsection{Summary and discussion}
+
+Intrinsic designs make concept layers auditable and intervenable at task accuracy competitive with the same
+backbone without the concept layer, where that comparison is reported, but
+faithfulness requires valid concepts and controlled leakage, which accuracy cannot show. \Vintrany{} of the
+\Vintrn{} intrinsic-design records report a control on the concept layer (Table~\ref{tab:vcov}), an embedding-randomisation
+null~\cite{zhang2026regionfm} and the replacement of predicted concepts by ground
+truth~\cite{patricio2025twostep}; comparisons of the same frozen encoder with and without an intrinsic
+head, and interventions on $\hat c$ with an expert-validated $g_c$ and measured leakage, are rarely
+reported together.

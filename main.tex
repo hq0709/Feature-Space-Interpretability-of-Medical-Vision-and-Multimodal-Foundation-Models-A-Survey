@@ -1,0 +1,139 @@
+%% Feature-Space Interpretability of Medical Foundation Models: A Survey
+%% Neurocomputing, VSI: Foundation Model Reviews  (elsarticle template)
+%% Build:  latexmk -pdf main.tex
+\documentclass[final,3p,times,twocolumn,number,sort&compress]{elsarticle}
+%% For the double-spaced review layout use: \documentclass[preprint,review,12pt,number,sort&compress]{elsarticle}
+
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{plainpages=false,pdfpagelabels=true}   % the highlights page and page 1 of the article both carry the label 1
+% elsarticle's highlights page and the first article page both set the arabic counter to 1, which makes
+% hyperref emit two page.1 destinations. Suppressing the page anchor over the highlights page removes the
+% duplicate; nothing links to that page.
+\AtBeginDocument{\hypersetup{pageanchor=false}}
+\usepackage{url}
+\usepackage{pifont}
+\usepackage{lineno}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{enumitem}
+\usepackage{rotating}   % sidewaystable*: the supplement tables
+\usepackage{placeins}   % \FloatBarrier: keep floats inside the section that introduces them
+\usepackage{needspace}  % \Needspace: no section heading stranded at the foot of a column
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+%% float placement: let wide floats fill pages instead of being deferred to the end
+\renewcommand{\topfraction}{0.9}\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\dbltopfraction}{0.9}\renewcommand{\dblfloatpagefraction}{0.85}
+%% float pages sit at the top rather than vertically centred, so a page that carries one wide table
+%% does not show white space above and below it
+\makeatletter
+\g@addto@macro\@floatplacement{\setlength{\@fptop}{0pt}\setlength{\@fpbot}{0pt plus 1fil}}
+\g@addto@macro\@dblfloatplacement{\setlength{\@fptop}{0pt}\setlength{\@fpbot}{0pt plus 1fil}}
+\makeatother
+\renewcommand{\floatpagefraction}{0.66}\renewcommand{\textfraction}{0.08}
+\setcounter{topnumber}{3}\setcounter{dbltopnumber}{3}\setcounter{totalnumber}{5}
+%% tighter float separation: the defaults leave 20pt above and below every float, which over sixteen
+%% floats costs about a page and leaves visible gaps between a table and the text that reads it
+\setlength{\textfloatsep}{10pt plus 2pt minus 3pt}
+\setlength{\dbltextfloatsep}{10pt plus 2pt minus 3pt}
+\setlength{\floatsep}{8pt plus 2pt minus 2pt}
+\setlength{\dblfloatsep}{8pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
+\setlength{\abovecaptionskip}{4pt}
+\setlength{\belowcaptionskip}{0pt}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\pmark}{$\circ$}
+%% Placeholder that renders visibly; must be empty at freeze.
+\newcommand{\tbd}[1]{\textcolor{red}{\textbf{[#1]}}}
+%% Figure request placeholder for user-drawn figures.
+\newcommand{\figplaceholder}[2]{\fbox{\parbox{#1}{\centering\vspace{2.2cm}\textcolor{gray}{\textbf{Figure placeholder}}\\[2pt]\textcolor{gray}{\small #2}\vspace{2.2cm}}}}
+
+\input{sections/counts}
+\input{sections/chain_counts}
+\input{sections/frozen_counts}
+\input{sections/pubmed_counts}
+\input{sections/findings_counts}
+\input{sections/vclass_counts}
+\journal{Neurocomputing}
+
+\begin{document}
+\begin{frontmatter}
+
+\title{Feature-Space Interpretability of Medical Vision and Multimodal Foundation Models: A Survey}
+
+%% Author block withheld from the working draft; to be supplied at submission.
+%% \author[a]{Given Name Surname\corref{cor1}} \ead{email}
+%% \affiliation[a]{organization={},city={},country={}}
+%% \cortext[cor1]{Corresponding author.}
+
+\begin{abstract}
+\input{sections/abstract}
+\end{abstract}
+
+\begin{highlights}
+\item Record-level coding of \Ncore{} medical foundation-model interpretability studies
+\item More records here measure what representations encode than what models use
+\item Same-data comparisons report selected properties in both medical and general models
+\item In this corpus no controlled evidence identifies an effect of medical pre-training
+\item Connector and text encoder almost unmeasured; dictionary stability rarely tested
+\end{highlights}
+\hypersetup{pageanchor=true}
+
+\begin{keyword}
+Foundation models \sep Medical image analysis \sep Interpretability \sep Representation learning \sep Sparse autoencoders \sep Concept-based explanation \sep Multimodal large language models
+\end{keyword}
+
+\end{frontmatter}
+
+
+\input{sections/sec1_introduction}
+\input{sections/sec2_background}
+\input{sections/sec2_protocol}
+\input{sections/sec3_taxonomy}
+\input{sections/sec4_methods}
+\input{sections/sec5_evaluation}
+\input{sections/sec4_8_findings}
+\FloatBarrier
+\input{sections/sec6_applications}
+\input{sections/sec7_future}
+\input{sections/sec8_conclusion}
+% nothing from the body may float past the appendix heading
+\FloatBarrier
+
+
+\section*{Declaration of generative AI and AI-assisted technologies in the writing process}
+During the preparation of this work, the authors used large language models to assist with literature retrieval and screening, with the extraction of coded fields from the full texts of the core studies (the coding sheet, design and quality tables and eligibility table were drafted by language-model-assisted passes under the released briefs and were then reviewed and corrected by the authors), with the organisation of the reviewed material and with language editing. No independent duplicate coding was performed (\S\ref{sec:method}). After using these tools, the authors reviewed and edited the content as needed and take full responsibility for the content of the publication.
+
+\section*{CRediT authorship contribution statement}
+\tbd{To be completed at submission.}
+
+\section*{Data availability}
+The coded corpus (coding sheet, quality, probe-design, dictionary-design, eligibility and comparison-outcome sheets), the search and chaining logs with the archived raw API responses, the screening briefs, the per-record evidence tables (Tables S1--S6) and every script that regenerates the tables, figures and counts of this article are released as an online supplement, archived at \tbd{repository DOI to be assigned at submission}.
+
+\section*{Declaration of competing interest}
+The authors declare that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+
+\section*{Acknowledgements}
+\tbd{To be completed at submission.}
+
+
+%% 499 references at body size run to about 30 of the 67 pages; the reference list is set one step
+%% smaller, with tighter item separation, which is common practice and costs no information
+\makeatletter
+\let\@oldthebibliography\thebibliography
+\renewcommand{\thebibliography}[1]{%
+  \@oldthebibliography{#1}%
+  \footnotesize\linespread{0.97}\selectfont\setlength{\itemsep}{0pt}\setlength{\parsep}{0pt}\setlength{\parskip}{0pt}\setlength{\topsep}{0pt}\setlength{\partopsep}{0pt}}
+\makeatother
+\bibliographystyle{elsarticle-num-np}
+\bibliography{refs,refs_extra}
+
+\end{document}

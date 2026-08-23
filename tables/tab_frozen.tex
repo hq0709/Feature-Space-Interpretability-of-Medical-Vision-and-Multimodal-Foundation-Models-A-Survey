@@ -1,0 +1,21 @@
+\begin{table*}[!tbp]
+\centering\scriptsize\setlength\tabcolsep{3pt}\renewcommand{\arraystretch}{0.95}
+\caption{The frozen, replayable search protocol run on 17--18 August 2026 (supplement S1g; \texttt{notes/frozen/search\_protocol.json}, the search script, the screening script): eight query families, each conjoined with a medical-domain and a foundation-model term group, run on Semantic Scholar bulk search (two sort orders, caps 2,000 and 1,000), OpenAlex (cap 1,000) and the arXiv API (cap 600); the caps bound the largest queries and several arXiv runs failed on rate limits before a slower re-run, both logged per query in the summary file. Fetched: records returned per source. Unique: distinct records after de-duplication by DOI, arXiv id and normalised title (a record can match several families, so the family rows do not sum to the total). In corpus / seen: already in the corpus or already screened by the original searches or the chaining waves. Filtered: unseen records failing the released keyword, medical-content or foundation-model filters. Screened: unseen records read by title and abstract with a coarse exclusion code each (\texttt{notes/frozen/screen\_part*.csv}). Core (abs.): core on abstract screening; core (strict): confirmed on strict verification against the eligibility, benchmark-tier and instrumental-measurement rules and de-duplicated against the corpus; coded: confirmed on full-text reading and added to the corpus. The protocol retrieves 94 of the 119 core studies of the corpus assembled by the original searches and chaining (excluding its own additions); of the strict-verified core candidates, sixteen were confirmed on full-text reading and added, two were found on reading to be an accuracy benchmark and a method paper, and one thesis with an inaccessible full text was not admitted.}
+\label{tab:frozen}
+\begin{tabular}{@{}lrrrrrrrrrrrr@{}}
+\toprule
+Family & Queries & S2 & OpenAlex & arXiv & Unique & In corpus & Seen & Filtered & Screened & Core (abs.) & Core (strict) & Coded \\
+\midrule
+probing & 3 & 5,841 & 3,000 & 980 & 7,408 & 92 & 522 & 5,167 & 1,627 & 20 & 5 & 5 \\
+geometry & 3 & 2,064 & 3,000 & 1,045 & 4,075 & 57 & 521 & 2,044 & 1,453 & 18 & 7 & 5 \\
+discovery & 2 & 3,204 & 2,000 & 151 & 4,276 & 35 & 83 & 3,625 & 533 & 8 & 1 & 1 \\
+tracing & 2 & 1,165 & 2,000 & 0 & 1,779 & 25 & 235 & 806 & 713 & 7 & 1 & 0 \\
+intervention & 2 & 3,650 & 2,000 & 49 & 4,827 & 39 & 298 & 3,269 & 1,221 & 11 & 3 & 3 \\
+intrinsic & 1 & 502 & 1,000 & 0 & 1,044 & 38 & 267 & 475 & 264 & 6 & 3 & 3 \\
+evaluation & 2 & 2,928 & 1,856 & 631 & 3,368 & 109 & 763 & 1,461 & 1,035 & 24 & 9 & 7 \\
+adaptation & 1 & 178 & 445 & 598 & 907 & 15 & 226 & 185 & 481 & 6 & 3 & 1 \\
+\midrule
+all (unique) & 16 & 19,532 & 15,301 & 3,454 & 23,353 & 216 & 2,038 & 15,250 & 5,849 & 68 & 19 & 16 \\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -1,0 +1,38 @@
+\begin{table*}[!tbp]
+\centering\scriptsize\setlength\tabcolsep{2pt}\renewcommand{\arraystretch}{0.78}
+\caption{Intrinsic and concept-aligned designs built on medical foundation models: claim records carrying the intrinsic-design tag (the decoding-family records; the one discovery-family record carrying the tag is listed only in Table~S3, so no record is printed twice) (table 1 of 2). Core medical studies only; columns and symbols as in Table~S1.}
+\label{tab:intrinsic}
+\begin{tabular}{@{}L{2.7cm}L{2.2cm}L{1.4cm}L{0.8cm}L{0.8cm}C{0.5cm}C{0.6cm}C{0.6cm}C{0.6cm}L{4.2cm}@{}}
+\toprule
+Study & Model(s) & Modality & Locus & Prov. & Ev. & Base. & Multi. & 2nd & Main finding \\
+\midrule
+\multicolumn{10}{@{}l}{\emph{Concept-aligned designs (intrinsic)}} \\
+\cite{pellegrini2023xplainer} (2023) \newline {\tiny\texttt{pellegrini2023xplainer}~[SP]} & contrastive CXR VLM (Xplainer) & CXR & Joint & expert & O & \xmark & \pmark & -- & Descriptive observations prompted from a VLM yield explainable zero-shot diagnosis \\
+\cite{yan2023robust} (2023) \newline {\tiny\texttt{yan2023robust}~[SP]} & medical VLM + GPT-4 concepts & multi & Joint & model & O & \cmark & \cmark & -- & LLM-queried concepts scored by a VLM give interpretable classifiers on eight datasets \\
+\cite{gao2024aligning} (2024) \newline {\tiny\texttt{gao2024aligning}~[SP]} & pre-trained VLM (Explicd) & derm; multi & Joint & model & O & \cmark & \cmark & -- & Diagnostic criteria as textual anchors in the joint space \\
+\cite{yang2024textbook} (2024) \newline {\tiny\texttt{yang2024textbook}~[SP]} & foundation features (KnoBo) & CXR; derm & Enc & text & O & \cmark & \cmark & -- & Retrieved knowledge priors as concept space; more robust to shift than black-box fine-tuning \\
+\cite{gao2025evaluating} (2025) \newline {\tiny\texttt{gao2025evaluating}~[SP]} & HIPT; UNI; CONCH; CHIEF & pathology & Enc & expert & O & \xmark & \pmark & -- & GNN concept heads on FM tile features predict 30 TNM/report-derived kidney concepts (UNI+CBM top-10 AUC 0.789, mean 0.661); concepts feed an explainable survival model \\
+\cite{patricio2025twostep} (2025) \newline {\tiny\texttt{patricio2025twostep}~[RP]} & MONET; BiomedCLIP; ExpLICD; CBI-VLM (vs CLIP) & derm & Joint & text & O & \cmark & \cmark & -- & Dermoscopic concepts read off frozen image-text similarity then passed to an LLM: balanced accuracy 85.1/79.8/75.0 on PH2/Derm7pt/HAM10000 against 70.1/77.6/70.8 for a trained CBM, but BiomedCLIP concepts sit at chance \\
+\cite{patricio2025twostep} (2025) \newline {\tiny\texttt{patricio2025twostep}~[RP]} & MONET; BiomedCLIP; ExpLICD; CBI-VLM (vs CLIP) & derm & Joint & text & I & \xmark & \pmark & -- & Replacing all MONET-predicted concepts by ground truth at inference raises balanced accuracy by 10.9/20.6/19.0 points with MMed-Llama3 and 6.2/4.7/4.5 with Mistral on the three dermoscopy sets, bounding the concept read-out \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[!tbp]
+\centering\scriptsize\setlength\tabcolsep{2pt}\renewcommand{\arraystretch}{0.78}
+\caption{Intrinsic and concept-aligned designs built on medical foundation models: claim records carrying the intrinsic-design tag (the decoding-family records; the one discovery-family record carrying the tag is listed only in Table~S3, so no record is printed twice) (table 2 of 2; continued from Table~\ref{tab:intrinsic}). Columns and symbols as in Table~S1.}
+\label{tab:intrinsic2}
+\begin{tabular}{@{}L{2.7cm}L{2.2cm}L{1.4cm}L{0.8cm}L{0.8cm}C{0.5cm}C{0.6cm}C{0.6cm}C{0.6cm}L{4.2cm}@{}}
+\toprule
+Study & Model(s) & Modality & Locus & Prov. & Ev. & Base. & Multi. & 2nd & Main finding \\
+\midrule
+\multicolumn{10}{@{}l}{\emph{Concept-aligned designs (intrinsic)}} \\
+\cite{sun2025label} (2025) \newline {\tiny\texttt{sun2025label}~[SP]} & CONCH & pathology & Joint & model & O & \xmark & \pmark & -- & Concept MIL: GPT-4o concepts scored by CONCH image-text similarity on top-K patches; AUC >0.9 on Camelyon16 and PANDA; 87.1\%/85.3\% of top-20 patches in tumour \\
+\cite{wang2025mvp} (2025) \newline {\tiny\texttt{wang2025mvp}~[SP]} & VLM-based CBM & multi & Enc & model & O & \cmark & \pmark & -- & Concepts associate with intermediate visual layers; multi-layer bottleneck \\
+\cite{han2026clear} (2026) \newline {\tiny\texttt{han2026clear}~[SP]} & CLEAR (radiology FM) & CXR & Joint & text & O & \cmark & \cmark & -- & Concept-defined space trained on 0.87M image-report pairs; validated on external cohorts \\
+\cite{rojas2026echopcbm} (2026) \newline {\tiny\texttt{rojas2026echopcbm}~[SP]} & EchoCLIP & echo & Joint & text & O & \xmark & \xmark & -- & Post-hoc CBM fitted adaptively to an echocardiography CLIP model \\
+\cite{tushar2026distilling} (2026) \newline {\tiny\texttt{tushar2026distilling}~[SP]} & CT-FM; FMCIB & CT & Enc & expert & O & \xmark & \cmark & -- & Ridge concept heads on frozen CT-FM/FMCIB recover LIDC nodule attributes weakly (R2 <=0.24; FMCIB>CT-FM); CBM external AUROC 0.72-0.73 vs 0.60/0.67 embedding probes \\
+\cite{zhang2026regionfm} (2026) \newline {\tiny\texttt{zhang2026regionfm}~[RP]} & BrainIAC; NeuroFM & MRI & Enc & expert & O & \xmark & \pmark & -- & Region-additive logistic heads on frozen BrainIAC and NeuroFM embeddings of FastSurfer-masked volumes match fine-tuning on OASIS-1 (test AUROC 0.751 vs 0.759; 0.717 vs 0.645); randomised embeddings fall to 0.475-0.505 \\
+\bottomrule
+\end{tabular}
+\end{table*}

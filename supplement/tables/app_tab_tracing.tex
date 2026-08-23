@@ -1,0 +1,36 @@
+\begin{table*}[!tbp]
+\centering\scriptsize\setlength\tabcolsep{2pt}\renewcommand{\arraystretch}{0.78}
+\caption{Representation attribution, localisation and tracing studies (table 1 of 2). Core medical studies only; columns and symbols as in Table~S1.}
+\label{tab:tracing}
+\begin{tabular}{@{}L{2.7cm}L{2.2cm}L{1.4cm}L{0.8cm}L{0.8cm}C{0.5cm}C{0.6cm}C{0.6cm}C{0.6cm}L{4.2cm}@{}}
+\toprule
+Study & Model(s) & Modality & Locus & Prov. & Ev. & Base. & Multi. & 2nd & Main finding \\
+\midrule
+\multicolumn{10}{@{}l}{\emph{Attention visual tokens and connectors}} \\
+\cite{mcinerney2022that} (2022) \newline {\tiny\texttt{mcinerney2022that}~[CP]} & GLoRIA (+7 retrained variants; modified UNITER) & CXR & Joint & label & O & \xmark & \pmark & geo & GLoRIA local attention on Chest ImaGenome (1,000 annotated pairs): AUROC 69.1, IOU@30\% 20.1, but swapping left/right or substituting random sentences barely moves it; only random bounding boxes lower it \\
+\cite{hashmi2024towards} (2024) \newline {\tiny\texttt{hashmi2024towards}~[RP]} & MedCLIP & CXR & Joint & text & O & \xmark & \xmark & -- & Gradient, occlusion, integrated-gradients and Grad-Shapley maps of MedCLIP on 2,000 MIMIC-CXR scans look alike across methods and classes and mark pixels outside the body; per-dimension maps weighted by the text embedding localise \\
+\cite{injarabian2025interpreting} (2025) \newline {\tiny\texttt{injarabian2025interpreting}~[RP]} & CT-CLIP (CT-ViT encoder; CT-RATE) & CT & Enc & text & O & \xmark & \xmark & -- & Five attribution methods on frozen CT-CLIP: attention and rollout are diffuse and edge-biased, Grad-CAM works only off the VQ layer, Integrated Gradients fires on background, and occlusion maps do not separate by prompt \\
+\cite{akanova2026interpreting} (2026) \newline {\tiny\texttt{akanova2026interpreting}~[RP]} & EchoPrime (MViT video encoder) & echo & Enc & label & O & \xmark & \xmark & -- & Gradient attributions through the frozen encoder and probe on three MIMIC studies give AUFC ratios of 0.52-4.09 over random masking (Integrated Gradients best, Input Gradient below 1 twice) for a probe with r about 0 \\
+\cite{bors2026benchmarking} (2026) \newline {\tiny\texttt{bors2026benchmarking}~[CP]} & RETFound (17 fine-tunes) & retina & Enc & label & O & \xmark & \pmark & -- & Four attention attributions over 17 RETFound fine-tunes disagree on the same model and target; gradient-weighted rollout is most faithful under patch deletion/insertion (best in 11 of 17); vessel-type models separate arteries from veins (d -2.65 / +1.33) whereas a randomly initialised RETFound gives d near 0 \\
+\cite{chen2026vihd} (2026) \newline {\tiny\texttt{chen2026vihd}~[CP]} & Hulu-Med-4B; Lingshu-7B & multi & Dec & none & O & \xmark & \cmark & int & The share of decoder attention sent to visual tokens varies with depth and identifies a contiguous window of visually dominant layers; intervening in that window rather than everywhere adds 1.36 AUC on VQA-RAD \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[!tbp]
+\centering\scriptsize\setlength\tabcolsep{2pt}\renewcommand{\arraystretch}{0.78}
+\caption{Representation attribution, localisation and tracing studies (table 2 of 2; continued from Table~\ref{tab:tracing}). Columns and symbols as in Table~S1.}
+\label{tab:tracing2}
+\begin{tabular}{@{}L{2.7cm}L{2.2cm}L{1.4cm}L{0.8cm}L{0.8cm}C{0.5cm}C{0.6cm}C{0.6cm}C{0.6cm}L{4.2cm}@{}}
+\toprule
+Study & Model(s) & Modality & Locus & Prov. & Ev. & Base. & Multi. & 2nd & Main finding \\
+\midrule
+\multicolumn{10}{@{}l}{\emph{Attention visual tokens and connectors}} \\
+\cite{idaji2026beyond} (2026) \newline {\tiny\texttt{idaji2026beyond}~[CP]} & UNI2-h; Virchow2 (AttnMIL; TransMIL; MambaMIL) & pathology & Enc & none & O & \xmark & \cmark & -- & Patch-flipping faithfulness over frozen UNI2 and Virchow2 tile embeddings in 60 MIL settings: perturbation (mean rank 1.8), LRP (2.1) and integrated gradients (2.8) beat attention and gradient maps (4.4-5.9), which sit with random \\
+\cite{sadanandan2026attention} (2026) \newline {\tiny\texttt{sadanandan2026attention}~[SP]} & medical VLMs & CXR & Dec & label & O & \cmark & \cmark & -- & Attention maps of medical VLMs fail faithfulness criteria (occlusion used as validation instrument) \\
+\cite{srikanthan2026do} (2026) \newline {\tiny\texttt{srikanthan2026do}~[CP]} & CONCH v1.5; UNI v2; Virchow2; GigaPath; H-Optimus-1 & pathology & Enc & label & O & \pmark & \cmark & -- & Attention over frozen features of five pathology FMs (18 Visium GBM samples, 87 signatures) enriches five-fold more for pathways (d=0.329) than genes (d=0.055); ResNet50 is smoothest (Moran I 0.595) but weakest (d=0.161) \\
+\cite{xiong2026rethinking} (2026) \newline {\tiny\texttt{xiong2026rethinking}~[CP]} & MedGemma-4B; MedGemma1.5-4B (vs Qwen2.5-VL; Gemma3) & CXR & Dec & expert & O & \cmark & \cmark & -- & On 1,880 counterfactually verified CXR-VQA items, internal attributions of six LVLMs miss the causal evidence region (attention rollout IoU 2.7, LRP 5.7, GradCAM 34.5, gradient-weighted attention 39.2 at precision 39.3) \\
+\cite{zhu2026lost} (2026) \newline {\tiny\texttt{zhu2026lost}~[SP]} & 14 open medical MLLMs & multi & Path & label & O & \xmark & \cmark & -- & Class-label probes at successive loci (encoder; connector; LLM layers) on 3 datasets; connector fidelity loss is one of four failure modes \\
+\bottomrule
+\end{tabular}
+\end{table*}

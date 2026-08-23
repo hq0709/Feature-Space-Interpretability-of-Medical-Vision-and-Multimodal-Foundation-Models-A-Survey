@@ -1,0 +1,27 @@
+\begin{table*}[!tb]
+\centering\footnotesize\setlength\tabcolsep{3pt}\renewcommand{\arraystretch}{1.02}
+\caption{The \Vnclasses{} validity-test classes, an author-proposed descriptive audit taxonomy rather than a validated instrument: what each adds to the base reading its design already supports, what it does not add, and how many records whose design can carry it report it, as $k/n$ (strict all-outcome count and any-outcome upper bound where they differ; a design with no fitted decoder is not scored against the two classes that refit one). No class is a prerequisite for the base reading, so a row of \S\ref{sec:findings} lacking one is narrower, not uncontrolled, and the classes are never summed. The last block gives four study-level context domains. Full rubric with the base reading per class: supplementary Table~S14; per-record codes: \texttt{notes/validity\_control.csv}.}
+\label{tab:vcov}
+\begin{tabular}{@{}L{3.0cm}L{2.7cm}L{8.8cm}L{1.15cm}@{}}
+\toprule
+Class \emph{(applies to)} & Tests coded & What the class adds, and what it does not & $k/n$ \\
+\midrule
+Sample-level permutation control (\emph{perm}; fitted probes and concept vectors; intrinsic designs) & sample-level label permutation with refit (3) & the value exceeds what the whole refitted pipeline returns on labels permuted across examples; it does not hold the task structure fixed, nor show what the readout tracks & 3/69 \\
+Reference-distribution calibration (\emph{ncal}; all decoding designs; intrinsic designs; structural and geometric) & chance, shuffled or null reference (4) & the statistic is placed on a scale (analytical chance, a hypergeometric null, unrelated pairs); it does not bound what the fitting procedure could extract & 4--5/110 \\
+Randomized control task (\emph{ctrl}; fitted probes and concept vectors; intrinsic designs) & none reported & the readout is selective rather than expressive: a fixed random label per input type, the same probe refitted, selectivity as the gap; the construction needs repeated input types, which medical images seldom have, so its applicability is unresolved and no denominator is claimed (\S\ref{sec:future}) & 0 \\
+Matched-object control (\emph{mobj}; all decoding designs; intrinsic designs) & matched-object control (1) & the quantity follows the fitted object rather than any object of that size (a rank-matched direction, equal-size random units, a no-encoder baseline); it does not say what the readout tracks & 1/80 \\
+Planted ground truth (\emph{plant}; all decoding designs; intrinsic designs) & planted ground truth (4) & the operator returns the known answer on a condition built to have one; it carries to real data only where the planted condition resembles it & 3--4/80 \\
+Learned-representation attribution (\emph{lrn}; all decoding designs; intrinsic designs; geometry; tracing) & randomly initialised encoder (4), embedding-randomisation control (1) & the structure is a product of training, since an untrained encoder of the same shape does not afford it & 3--5/121 \\
+Comparison model (\emph{comp}; structural and geometric) & comparison model (16) & the value differs from another model's under the same measurement; it does not show that the value is unusual in absolute terms & 13--16/30 \\
+Semantic validation (\emph{sem}; feature decomposition and discovery) & label validation (10), clinician validation (7), clinician and label validation (1) & the unit corresponds to the concept it is named for, as judged by clinicians or structured labels rather than by the analyst's reading of its exemplars & 15--18/25 \\
+Input-space corroboration (\emph{inp}; attribution, localisation and tracing) & perturbation confirmation (4), counterfactual confirmation (1), occlusion confirmation (1) & the output depends on the region the map highlights (occlusion, deletion, flipping, a counterfactual); it does not show that any internal component carries the behaviour & 5--6/11 \\
+Internal-component perturbation (\emph{int}; tracing; intrinsic designs) & activation patching or masking (1), intervention on the concept layer (1) & the output changes when the component is masked, patched or replaced; a perturbation, not an identified on-manifold intervention, and specificity needs a matched control & 2/24 \\
+Intervention specificity (\emph{spc}; representation intervention, targeted operations only) & matched control (3) & the change follows the targeted direction, feature, unit or token rather than the act of perturbing a representation of that size & 2--3/8 (13 n/a) \\
+\midrule
+Study-level context & split stated & a patient-, slide- or subject-level split is stated & 67/135 \\
+Study-level context & data unused for fitting & evaluation on a cohort or dataset unused for probe, dictionary or intervention fitting & 47/132 \\
+Study-level context & uncertainty reported & seeds, repeated runs, intervals or tests accompany the main result & 81/133 \\
+Study-level context & dictionary stability & any reproducibility check of a dictionary (seeds, cohorts, training sets), over the dictionary studies & 6/18 \\
+\bottomrule
+\end{tabular}
+\end{table*}

@@ -1,0 +1,45 @@
+\begin{table*}[!t]
+\centering\small\setlength\tabcolsep{2pt}\renewcommand{\arraystretch}{1.05}
+\caption{What this corpus reports, and what it does not. Five conclusions, each with what the corpus reports,
+the claim it stops short of, the property that limits it most, and the experiment that would
+test it. Row labels refer to the statements of \S\ref{sec:findings}; counts are on all records of the corpus. This is the authors' synthesis of \S\ref{sec:methods}--\S\ref{sec:future}, not a coded field.}
+\label{tab:synthesis}
+\begin{tabular}{@{}L{2.2cm}L{3.9cm}L{3.4cm}L{3.1cm}L{3.2cm}@{}}
+\toprule
+Question & Reported in this corpus & Not established & Principal limitation & Experiment that would test it \\
+\midrule
+Availability against use & Clinical findings, anatomy, demographic and acquisition attributes are reported
+recoverable from frozen encoders in at least one study in each of four to seven modalities (F1a--F1c, F2,
+F2b) & That the output uses them:
+\Vspca{}--\Vspc{} of the \Vspcn{} applicable intervention records report a matched control, none meets the
+criterion of \S\ref{sec:methods} for a concept-specific causal contribution (F9a) & Breadth is breadth over records, and the safeguards pooled into
+one control are not equivalent & Pair a probe with a matched intervention or erasure at the same locus and
+behavioural end-point (\S\ref{sec:future}, item 2) \\
+Acquisition and site structure & Centre, scanner and acquisition structure is recoverable from pathology and
+brain-MRI embeddings (F2b, F3a, F3c) & That removing it restores generalisation: the downstream effect is
+operation-specific, and post-hoc harmonisation raising invariance is an operation-specific observation, not
+a general finding & F3b rests on five records from five studies, two of them flagged by the defect screen; pathology dominates & Report the downstream end-point, not only invariance, after
+harmonisation on a held-out site \\
+Meaning of discovered features & \Nsaeval{} of the \Nsae{} dictionary studies attempt semantic
+confirmation of feature meaning against clinicians or structured labels, all encoder-side (F7) & Cross-seed identity of features or names, which no
+study establishes; feature completeness or causal meaning, which semantic agreement does not show; and any
+confirmation of a decoder-residual dictionary & The row selects the studies that
+attempted validation, so it records how validation was done, not how often it succeeds & Train two
+differently seeded dictionaries on one encoder; report matched-feature fraction and validate names against
+region annotations (\S\ref{sec:future}, item 3) \\
+Medical against general pre-training & In the same-data comparisons of this corpus, selected geometric and
+shortcut properties are reported in both kinds of model (F10, F11) & An effect of medical pre-training:
+better clinical decodability in the medical model appears only in uncontrolled comparisons & \Nmvgrec{} same-data comparisons
+from \Nmvgstud{} studies vary architecture, objective, scale and data together; most strata hold one to
+five records & Paired training over matched but non-identical corpora, with volume, modality mix, objective, architecture and compute held fixed; or a mixture design varying the medical fraction of a fixed-size corpus in pre-specified steps, read as a dose--response
+\\
+Where to measure & The connector output and text encoder of multimodal models are almost unmeasured as loci
+of their own (\S\ref{sec:loci}, F8b) & That apparent decodability depends on the readout and the locus,
+which three heterogeneous studies suggest but none tests directly; and any ordering of the contributions of
+model, depth and pooling, which no design compares in one experiment & The readout evidence is three
+studies varying different things, and the locus evidence one uncontrolled successive-locus probe of class
+labels & Probe one finding across encoder, connector output and every language-model layer of one report
+generator (\S\ref{sec:future}, item 1) \\
+\bottomrule
+\end{tabular}
+\end{table*}

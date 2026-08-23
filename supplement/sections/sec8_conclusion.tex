@@ -1,0 +1,44 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+Table~\ref{tab:synthesis}, at the head of \S\ref{sec:findings}, states what this corpus reports, what it
+stops short of, what limits each conclusion and the experiment that would test it. How firmly each of its
+five conclusions is supported differs, and is stated here rather than compressed into a grade.
+\emph{Availability against use} rests on the widest spread of distinct first authors in the corpus
+--- the decodability rows draw on \Fdecgrpmin{} to \Fdecgrpmax{} distinct first authors over four to seven
+modalities --- but on records that almost never test selectivity, so the firm part is that a readout
+recovers the target, not that the model uses it. \emph{Acquisition and site structure} is the property
+most repeatedly reported in the corpus, by many groups and in several modalities, but not the
+best controlled: a comparison model appears in a minority of the records carrying F3a and F3c, and one
+modality dominates. \emph{Meaning of discovered features} rests on \Nsae{} dictionaries of which
+\Nsaeval{} report a semantic validation and \Nsaestab{} any reproducibility check, so the negative half of
+the conclusion, that cross-seed identity is unestablished, is firmer than the positive half.
+\emph{Medical against general pre-training} is the weakest: the comparisons are uncontrolled by
+construction, so the conclusion is an absence of identification rather than a finding. \emph{Where to
+measure} rests on three heterogeneous studies and one successive-locus probe and is offered as a
+hypothesis. Two qualifications apply to all five: \Pctpreprint\% of the corpus is preprints,
+and no formal risk-of-bias instrument was applied, so the appraisal is the reporting audit of
+Fig.~\ref{fig:findings} rather than a certainty grade. Three consequences for a reader who studies or
+deploys a medical foundation model follow.
+
+\emph{Breadth is not control.} The checks these studies run are not interchangeable, so they are counted
+in \Vnclasses{} classes, each stated with what it licenses and what it does not (Table~\ref{tab:vcov}).
+A statement that lacks a class is narrower, not refuted. A probe establishes that a readout recovers
+the target, and no observational control alone makes it establish use; a control task adds selectivity and a random encoder
+adds attribution to training, each a different, still weaker statement than use. A dictionary feature is
+a clinical concept only after clinician or structured-label validation, however it was named, and a
+steering effect is direction-selective only against matched controls; no medical study in this corpus
+meets the criterion of \S\ref{sec:methods} for a concept-specific causal contribution.
+
+\emph{What to measure.} Recovery is reported broadly and use is barely measured, and reported broadly is
+not the same as established: \Fsensrefemptyn{} rows lose every record when the analysis is restricted
+to peer-reviewed studies, only \Nminvalid{} of the \Ncore{} studies state an independent split, evaluate
+on unused data and report uncertainty, and capacity and representation-attribution controls on probes
+are rare, with no validated image-domain analogue of the linguistic randomized control task yet
+established. A new audit should therefore not add another probe: it should pair one with a
+matched intervention or an erasure at the same locus and report both.
+
+\emph{Where to measure.} The readout, whether pooling, depth or the direction chosen, can change what
+appears recoverable, and the connector output and text encoder of multimodal models remain almost
+unmeasured as loci of their own; a locus should be named before a model is praised. Whether medical
+pre-training itself changes any of this is unidentified in the same-data comparisons that exist.

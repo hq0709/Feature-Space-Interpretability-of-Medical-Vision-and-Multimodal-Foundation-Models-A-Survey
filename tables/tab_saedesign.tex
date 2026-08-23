@@ -1,0 +1,29 @@
+\begin{sidewaystable*}[p]
+\centering\scriptsize\setlength\tabcolsep{3.5pt}\renewcommand{\arraystretch}{0.92}
+\caption{Design of the core dictionary-learning studies (supplementary Table~S16; the factorisation, dissection and activation-atlas studies are not dictionaries and are omitted), extracted from the full texts. Activations: model, token type and layer the dictionary is trained on. Method: ReLU/L1 = standard sparse autoencoder; TopK/BatchTopK, Matryoshka and gated variants as named by the authors. Width: expansion factor (dictionary size). Naming: how features are named. Validation: how names or features are validated (expert = clinician reading of the features or their names, with the number of readers where stated; label agreement = agreement with structured labels or regions; LLM judge = an independent language or vision--language model); the \Nsaeval{} of the \Nsae{} studies carry expert or label validation and are what finding F7 selects (\S\ref{sec:findings}); the remaining six (LLM judge only, downstream only, causal check only, planned, or a reader study of generated reports) carry none. The table lists every dictionary study in the corpus, so it has as many rows as there are dictionary studies. Stability: any reproducibility reported (seeds, cohorts, training sets, architectures). Recon.: reconstruction quality (EV/FVE = explained variance; $R^2$; cosine). n.r. = not reported.}
+\label{tab:saedesign}
+\begin{tabular}{@{}L{2.80cm}L{3.85cm}L{2.51cm}L{1.73cm}L{2.26cm}L{2.93cm}L{1.73cm}L{1.46cm}@{}}
+\toprule
+Study & Activations & Method & Width & Naming & Validation & Stability & Recon. \\
+\midrule
+\cite{le2024learning} & PLUTO (path.); CLS; output & ReLU/L1 & 8$\times$ (1--32 swept) & manual + label match & label agreement ($\rho$ 0.70) & cross-set match ($\rho$ 0.96) & n.r. \\
+\cite{abdulaal2024an} & RAD-DINO (CXR); CLS; output & gated SAE & 64$\times$ (49k) & auto-LLM from reports & reader study of generated reports (1 radiologist) + RadFact; features not directly validated & n.r. & EV 84\% \\
+\cite{renzulli2025medsae} & MedCLIP (CXR); pooled; last & ReLU/L1 & 16$\times$ (8k) & auto-LLM (MedGemma) & LLM judge + label agreement & n.r. & FVE 0.98 \\
+\cite{tang2025cxrlanic} & BiomedCLIP classifier (CXR); pooled & TopK transcoder ($\times$100) & 15k each & auto-LLM (planned) & planned only & n.r. & n.r. \\
+\cite{nakka2025mammosae} & Mammo-CLIP (mammo.); patch; final & ReLU/L1 & 8$\times$ (16k) & label match & label agreement (mAP); AUC drop $<$2\% & n.r. & downstream \\
+\cite{dasdelen2025cytosae} & DinoBloom (cytology); patch+CLS; L11 & ReLU/L1 & 64$\times$ (49k) & manual (1 expert) & expert (n=1) & 3 seeds & n.r. \\
+\cite{sun2025prototypebased} & CONCH (path.); tile; output & ReLU/L1 & 4$\times$ (2k) & manual (pathologists) & expert (75--86\% monosemantic) & n.r. & n.r. \\
+\cite{bouzid2025insights} & MAIRA-2 LLM; residual token; L15/32 & Matryoshka + BatchTopK & 4$\times$ (16k) & auto-LLM (GPT-4o) & LLM judge & n.r. & n.r. \\
+\cite{kim2026dissecting} & Virchow2 (path.); tile; output & TopK ($k$=30) & 32$\times$ (41k) & manual (2 pathologists) & expert (2) + downstream & n.r. & EV $>$0.8 \\
+\cite{wesp2026sparse} & BiomedParse, DINOv3 (CT/MRI); pooled & Matryoshka + BatchTopK & nested 128--8k & auto-LLM (MedGemma) & LLM judge + label agreement & n.r. & $R^2$ 0.89--0.94 \\
+\cite{nerrise2026geosae} & BrainIAC (MRI); CLS; all 12 layers & TopK ($k$=16) + manifold & 2$\times$ (1.5k) & label match (partial corr.) & label agreement + downstream & cross-cohort & EV $>$99\% \\
+\cite{yan2026a} & PanDerm (derm.); pooled; output & ReLU/L1 & 8$\times$ & text matching & label agreement (P@50 0.94) & n.r. & n.r. \\
+\cite{nooralahzadeh2026universal} & RadVLM LLM; residual token; 10 layers & TopK ($K$=64) & 8$\times$ (33k) & none (causal selection) & downstream only & cross-arch.\ overlap & cos.\ 0.97--0.99 \\
+\cite{sadanandan2026mechanistically} & MedGemma LLM; residual token; L17 & Gemma Scope 2 (reused) & n.r. & manual (1 feature) & causal patching & n.r. & $R^2$ 0.997 \\
+\cite{haque2026medconcept} & Merlin (CT); volume emb.; output & ReLU/L1 & 2$\times$ & text matching (UMLS) & LLM judge & n.r. & n.r. \\
+\cite{zhao2026compositional} & UNI (path.); tile emb.; output & ReLU + L0 target & 64$\times$ (66k) & manual (pathologists) & expert (several) + CyCIF & partial (feature scores) & L2 loss reported \\
+\cite{bisson2026unsupervised} & CONCH v1.5 (path.); tile emb.; output & L1 (activation n.r.) & 1$\times$ (768) & manual (3 pathologists) & expert (3) + downstream & n.r. & n.r. \\
+\cite{redlich2026explainable} & Virchow2 (path.); tile emb.; output & TopK ($K$=8) & 6$\times$ (7.7k) & manual (3 neuropathologists) & expert (3; 21/24 patterns) & partial (activation diff.) & n.r. \\
+\bottomrule
+\end{tabular}
+\end{sidewaystable*}

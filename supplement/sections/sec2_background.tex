@@ -1,0 +1,97 @@
+\section{Background}
+\label{sec:background}
+
+\subsection{Medical foundation models}
+\label{sec:models}
+
+%% [written after the `models' literature bucket is in; see notes/lit_models.md]
+\input{sections/sec2_1_models}
+
+\subsection{Interpretability preliminaries and notation}
+\label{sec:prelim}
+
+\textbf{Terminology.} \emph{Feature space}, \emph{representation} and \emph{internal representation}
+are synonyms here, and \emph{feature-space interpretability} means measuring or intervening on them.
+Beyond that the words \emph{interpretability} and \emph{explainability} are not distinguished, as in
+several surveys~\cite{wan2025survey}; the properties they are sometimes used to separate --- faithfulness,
+plausibility and intrinsic transparency --- are distinguished explicitly where they matter
+(\S\ref{sec:evaluation})~\cite{lipton2016mythos,rudin2018stop,rudin2021interpretable}.
+\emph{Post-hoc} methods analyse an unchanged trained model; \emph{intrinsic} designs make part of its
+computation interpretable by construction~\cite{rudin2018stop,rudin2021interpretable}.
+A \emph{local} explanation concerns one input, a \emph{global} explanation a model or population;
+feature-space interpretability is mostly global and post hoc. Input-attribution methods (saliency, class activation maps~\cite{selvaraju2017gradcam}, LIME~\cite{ribeiro2016why},
+SHAP~\cite{lundberg2017unified}, integrated gradients~\cite{sundararajan2017axiomatic}, layer-wise relevance
+propagation~\cite{bach2015pixel}) return per-input maps silent about the representation and enter only
+where they test a representation-level claim (\S\ref{sec:evaluation}).
+
+\textbf{Notation.} A medical foundation model receives an image, volume or slide $x$ and optionally a
+text $t$. A vision encoder $f_v$ produces patch-level features and a pooled embedding; a dual encoder
+adds a text encoder $f_t$, both mapped into a shared space. In a multimodal LLM, a connector $\pi$
+produces visual tokens and the language model hidden states $h^{(\ell)}$ at every layer and position. We
+write $z_\lambda(x)$ for the representation at locus $\lambda$ (\S\ref{sec:loci}), $c$ for a concept
+with externally defined value $c(x)$ and $g$ for a decoder from $z_\lambda$ to $c$. An intervention
+replaces $z_\lambda$ with $\tilde z_\lambda$ and measures a pre-specified behavioural functional $B$ (a
+logit, probability, report-quality score or downstream metric), with generated text mapped to $B$ and
+decoding fixed or averaged.
+
+\textbf{Two questions, two kinds of evidence.} \emph{What does the representation encode?} is addressed
+observationally, by fitting $g$, computing similarities, decomposing $z_\lambda$ and locating information
+along the path; \emph{what does the model use?} by intervening on $z_\lambda$ and observing $B$. The
+two are not interchangeable: a concept can be linearly decodable from a representation the output never
+uses, so probing accuracy overstates use, as control tasks~\cite{hewitt2019designing}, amnesic
+probing~\cite{elazar2020amnesic}, linear concept erasure~\cite{ravfogel2020null,belrose2023leace} and
+direct tests of whether probe accuracy entails task relevance~\cite{ravichander2021probing,ivanova2021probing}
+established for language models (\S\ref{sec:decoding}, \S\ref{sec:intervention}). An uncontrolled
+intervention that changes behaviour shows causal
+sensitivity, not that the direction means what it was named; \S\ref{sec:taxonomy} tags the two apart.
+
+\textbf{Concepts.} A concept here is any property of the input, the report or the acquisition that a human
+can name and, in principle, label: a finding or anatomical structure, but also a relational or temporal
+property, a report-level attribute, or a nuisance factor such as scanner or site. Features discovered
+without a prior vocabulary acquire concept status only through the naming step, which is why provenance is
+coded separately from the concept itself. Concepts enter through
+five routes (\S\ref{sec:taxonomy}), and the route fixes how validity is checked: label-schema concepts
+inherit their annotation's reliability, imperfect for report-extracted radiology
+labels~\cite{irvin2019chexpert,smit2020chexbert}; text-mined and model-generated banks scale but need
+clinician validation (\S\ref{sec:evaluation}); and discovered features acquire meaning through a
+labelling step of studied stability (\S\ref{sec:discovery}).
+
+\subsection{Loci along the computational path}
+\label{sec:loci}
+
+Fig.~\ref{fig:overview} places the six loci on the three architectural templates of
+\S\ref{sec:models}. A unimodal encoder offers the vision encoder alone; a dual encoder adds a text
+encoder and the projected joint space, where zero-shot classification and retrieval take place; a
+multimodal LLM adds the connector output and a residual stream at each layer and token position,
+written into by attention heads and MLP blocks. The pre-readout representation is the final
+hidden state before the unembedding; its logits and tokens are end-points, not loci. A locus is
+therefore a coordinate $\lambda=(\text{stage},\ell,p,\text{pooling})$ --- the stage of the path, the
+layer, the token or patch position, and the pooling applied --- and the six labels are its stage-level
+bins, not disjoint sets of states: the pre-readout representation is the decoder residual stream at its
+final layer and target position, and it is kept as a label because the studies that measure it treat it
+as a distinct object. Within the vision encoder the coding records the pooling coordinate as a
+\emph{sublocus} (pooled or class token, tile, patch, slide aggregate, volume pool), which
+\S\ref{sec:findings} shows often decides what is recoverable; a study that repeats one measurement at
+several loci is coded once, with the label ``Path'' marking a multi-locus record (\S\ref{sec:taxonomy}).
+
+Two properties recur. First, findings do not transfer across loci: what is decodable from
+the encoder need not survive the connector, and what is in the residual stream at one token position
+need not influence the logit at another. Second, the language model contributes a prior of its own, so
+any measurement after fusion mixes visual evidence with linguistic expectation: the confound is absent
+from image-only encoders, attenuated in a dual encoder's joint space and strongest after fusion.
+
+\textbf{Modality-specific structure.} Two-dimensional radiographs and photographs are processed as one
+image. Three-dimensional CT and MRI models tokenise volumes or slices and often train their own
+encoders~\cite{hamamci2024ctrate,blankemeier2024merlin}, so a ``patch'' is a sub-volume, slice or slab
+and pooling to a volume-level representation is a design choice studies rarely state. Whole-slide
+pathology models stack an aggregator on frozen tile encoders, so ``the representation'' may
+mean a tile or slide embedding or the aggregator's attention
+weights~\cite{chen2024generalpurpose,xu2024wholeslide}. Multi-image settings add token positions
+carrying temporal information the encoder alone cannot represent~\cite{bannur2024maira2}.
+Results on two-dimensional chest radiographs, which dominate the corpus, do not extend automatically.
+
+\subsection{Related surveys}
+\label{sec:related}
+
+%% [written after the `surveys' literature bucket is in]
+\input{sections/sec2_5_related}

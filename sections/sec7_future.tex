@@ -1,0 +1,114 @@
+\Needspace{8\baselineskip}
+\section{Challenges and future directions}
+\label{sec:future}
+
+\input{tables/tab_practice}
+
+Nine problems follow from the findings of \S\ref{sec:findings} and the evaluation gaps of
+\S\ref{sec:evaluation}; several are the medical instance of open problems the general-domain field has
+stated for itself~\cite{sharkey2025open}, and the first is a problem for evidence synthesis in this area
+rather than for modelling, which constrains everything after it.
+
+\textit{(0) An atomic unit for representation-level claims.} The record of \S\ref{sec:findings} (study
+$\times$ family $\times$ evidence type $\times$ locus) is the finest unit the reviewed papers report
+consistently, and it is not atomic, which is why the statements name disagreeing records rather than
+count directions. What is needed is a reporting convention: a paper that reports a representation-level result should state, per concept,
+model, dataset and end-point, the quantity, the comparison it is read against, and the validity test run on
+\emph{that} outcome. A sheet in that form, released beside the paper, would let a later synthesis count
+outcomes rather than records. The same convention needs a probe control that medical images do not yet
+have. A control task in the sense of Hewitt and Liang~\cite{hewitt2019designing} assigns each input
+\emph{type} a fixed random label, so that a probe with capacity but no selectivity scores as well on the
+control as on the task; language has recurring types and medical images usually do not, and under a
+patient-level split a type has to cross the split --- scanner, site, protocol, view or an annotated patch
+class --- or the control measures nothing. Supplement S8c sets out the three designs that should be kept
+apart (chance calibration, a control task proper, a memorisation test); none is a citation one can simply
+apply, so the selectivity of a medical probe is at present unreported rather than poor.
+
+\textit{(1) Concept preservation across the connector.} Medical multimodal LLMs pass visual evidence through a
+connector, where general-domain work finds distinct token geometry and uneven language-model use
+(\S\ref{sec:tracing}). One study probes class labels at encoder, connector and language model in fourteen
+models, finding fidelity loss~\cite{zhu2026lost}; none compares named-concept decodability or
+controllability across it. A solution should measure identical concepts on both sides and test whether
+upstream interventions reach reports: probe the same finding across RAD-DINO features, MAIRA-2
+projector output and every language-model layer on MIMIC-CXR.
+
+\textit{(2) From decodable to used: paired evidence and validity standards.} High within-study decoding
+accuracy is reported throughout (\S\ref{sec:decoding}); interventions are input-dependent, model-specific or null
+(\S\ref{sec:intervention}). Only frozen-encoder designs pair probes with residualisation or channel
+knockout~\cite{kim2026encoding,nooralahzadeh2026sparse}; no multimodal LLM study combines same-locus probing
+and controlled steering with one behavioural end-point, though random directions cause sizeable
+changes~\cite{korznikov2025the} and steering vectors are
+unidentifiable~\cite{venkatesh2026nonident}. We therefore propose a screening diagnostic for direction-selective sensitivity, an authors'
+proposal awaiting benchmarking rather than a validated standard: the steering effect along a direction
+$v_c$ built for concept $c$ (\S\ref{sec:methods}, Eq.~(\ref{eq:effect})) should exceed the 95th
+percentile of the effects of $K$ pre-specified control directions matched to $v_c$ in locus, norm and
+activation scale, each averaged over held-out inputs disjoint from those that built $v_c$, with the
+randomisation $p$-value carried only by the label-permuted control family refit through the same
+pipeline. The construction, the choice of $K$, the magnitude--sign grid, the patient-level resampling
+and a worked example are in supplement S8b; anything short of a pre-registered primary cell or a
+grid-maximum statistic is an exploratory screen and should be labelled one.
+
+Supplement S8b lists the fields a steering design should report; the further checks a concept-specific
+causal contribution requires are set out in \S\ref{sec:methods}, and no reviewed medical study reports them
+all. The paired probe-and-steer design is the natural first test, and the connector experiment of item (1)
+its natural setting.
+
+\textit{(3) Reproducible discovery.} SAE features and factorised directions are unstable: absorption and
+splitting are structural~\cite{chanin2024a} and only a minority recur across
+seeds~\cite{paulo2025sparse,sainsbury2026sparse}. A feature that does not survive retraining cannot be an audit identifier, so progress needs cross-seed
+matching, name validation and stable identifiers; universal and concept-anchored dictionaries and crosscoders
+across seeds or checkpoints are the starting
+points~\cite{thasarathan2025universal,nasirisarvi2025sparc,minder2025overcoming}. An experiment could train two
+differently seeded dictionaries on UNI or Virchow features, report the matched-feature fraction and validate
+names against CAMELYON regions.
+
+\textit{(4) Shared concept resources and evaluation standards.} Concept banks are rarely clinician-validated
+(\S\ref{sec:eval-what}), and protocols vary by dataset, split, label, decoder, width, sparsity and end-point
+(\S\ref{sec:eval-compare}). A shared benchmark should define ontology-aligned vocabularies with inter-rater agreement, cover
+confounders, shortcuts and findings, fix splits and decoders across public encoders and multimodal LLMs, and
+score faithfulness, stability and specificity separately, reporting selectivity rather than accuracy; without
+new annotation a first version could probe RAD-DINO and MedGemma with VinDr-CXR and PadChest labels, UNI and
+CONCH with CAMELYON regions and MONET with SkinCon. Two reporting cards would make results commensurable, one for
+decoding and one for discovery, fixing decoder, split and locus on one side and dictionary, naming,
+validation, stability and reconstruction on the other; supplementary Table~S2 and
+Table~S16 give the fields.
+
+\textit{(5) Interpretability of adaptation.} Medical foundation models are rarely used as released, and the
+evidence on what adaptation changes is thin (\S\ref{sec:geometry}), with checkpoint similarity and cross-model
+dictionaries only beginning to reach
+medicine~\cite{minder2025overcoming,ahmed2026medseglens}. Which directions survive site transfer, and what
+low-rank updates create or destroy, matters for deployment monitoring: an experiment could adapt a public
+encoder to a new site, report per-layer similarity and probe drift, and train a crosscoder to name the changes.
+
+\textit{(6) Prospective human and regulatory evaluation.} Medical-device guidance requires declared inputs and
+outputs, performance measures, bias sources and traceable
+documentation~\cite{fda2025aiguidance,euaiact2024}. Feature-space methods could document encoded attributes
+for bias assessment, but no reviewed study links such a measurement to a decision and reader studies are rare
+(\S\ref{sec:eval-bench}). A trial could show or withhold a shortcut audit from developers choosing
+encoders, recording their choices and the deployed models' subgroup performance.
+
+\textit{(7) Aggregator, volumetric and multi-image loci.} The loci of \S\ref{sec:loci} follow the
+two-dimensional single-image path, yet whole-slide aggregators supply the commonest pathology explanations
+(\S\ref{sec:tracing}), volumetric encoders pool sub-volumes before probing, and multi-image report generators
+encode time at positions unseen by the encoder. None of the three is separately controlled, which is where the
+sublocus regularity of \S\ref{sec:findings} bites: future coding should add an aggregator locus and a pooling
+declaration, and test aggregator attention against occlusion, attention-MIL weights on UNI or TITAN features
+against CAMELYON tiles~\cite{sadanandan2026attention}.
+
+\textit{(8) The text side and the linguistic prior.} The text encoder is one of the two loci with almost no
+single-locus core claim (\S\ref{sec:taxonomy}), and the language prior remains unmeasured after fusion. Decoder
+dictionaries can reveal report templates, and paraphrase sensitivity is measurable as text-encoder geometry
+rather than zero-shot accuracy. An experiment could feed blank or shuffled images to a public CheXpert report
+generator and report, per finding, the decodability that survives image removal.
+
+None of the eight experiments needs new instruments: open suites, closed-form linear
+erasure~\cite{belrose2023leace}, released dictionaries~\cite{abdulaal2024an,nooralahzadeh2026universal},
+the expert-verified scorers of \S\ref{sec:eval-data}~\cite{kim2024transparent} and the models of
+Table~\ref{tab:models} suffice. Table~\ref{tab:practice} maps the seven recurring practitioner questions to
+a locus, family, validity and transport controls and licensed claim, and supplementary Table~S12 assembles
+them into a minimum audit of one attribute, with the inputs, splits, nulls and stopping criteria of each
+step. What is feasible depends on access: embeddings alone support permutation- and chance-calibrated probing on a
+patient-level split, geometry and site measurement, and erasure before a downstream evaluation; open
+encoder weights add a randomly initialised baseline and layer- and pooling-resolved probes, so a sublocus
+can be named; and only an open encoder--connector--language-model stack supports tracing, patching and the
+direction-selectivity screen, the one tier that licenses a statement about use.

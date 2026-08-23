@@ -1,0 +1,59 @@
+\begin{table*}[!tbp]
+\centering\scriptsize\setlength\tabcolsep{2pt}\renewcommand{\arraystretch}{0.78}
+\caption{Supervised concept mapping and decodability studies, part 2: demographic and acquisition attributes (continued from Table~S2) (table 1 of 3). Core medical studies only; columns and symbols as in Table~S1. Ctrl: the validity-test classes the record reports, in the codes of article Table~9 (\emph{perm} pipeline permutation control, \emph{ncal} reference-distribution calibration, \emph{ctrl} randomized control task, \emph{mobj} matched-object control, \emph{plant} planted ground truth, \emph{lrn} learned-representation attribution, \emph{int} internal-component intervention); blank means none of them is reported. The classes are not interchangeable and are never summed, so this column deliberately does not reduce to a single tick.}
+\label{tab:decodingb}
+\begin{tabular}{@{}L{2.4cm}L{1.8cm}L{1.1cm}L{0.8cm}L{0.8cm}C{0.5cm}C{0.6cm}C{0.6cm}C{0.6cm}C{0.6cm}L{5.0cm}@{}}
+\toprule
+Study & Model(s) & Modality & Locus & Prov. & Ev. & Base. & Multi. & 2nd & Ctrl & Main finding \\
+\midrule
+\multicolumn{11}{@{}l}{\emph{Demographic and acquisition attributes}} \\
+\cite{glocker2022risk} (2022) \newline {\tiny\texttt{glocker2022risk}~[SL]} & published CXR foundation model & CXR & Enc & label & O & \xmark & \xmark & -- & -- & Feature audit for sex and race distribution shifts \\
+\cite{weber2023posthoc} (2023) \newline {\tiny\texttt{weber2023posthoc}~[CP]} & CXR Foundation; CheSS & CXR & Enc & label & O & \pmark & \cmark & int & -- & Protected attributes are linearly recoverable from frozen CXR-FM embeddings (CFM sex AUC 0.979, race 0.848-0.871, age MAE 8.0 y) and shift pathology logits (age and race coefficients p<2e-16 for pleural effusion) \\
+\cite{jin2024fairmedfm} (2024) \newline {\tiny\texttt{jin2024fairmedfm}~[SP]} & 20 FMs (medical and general) & multi & Enc & label & O & \cmark & \cmark & -- & -- & Fairness benchmark over 17 datasets with sensitive attributes \\
+\cite{komen2024do} (2024) \newline {\tiny\texttt{komen2024do}~[SP]} & histopathology FMs & pathology & Enc & label & O & \xmark & \cmark & -- & -- & Hospital signatures dominate feature-space distances and survive stain normalisation \\
+\cite{murchan2024deep} (2024) \newline {\tiny\texttt{murchan2024deep}~[CP]} & CTransPath; RetCCL (vs ImageNet ResNet50) & pathology & Enc & label & O & \pmark & \cmark & int & -- & Tissue-source site is decodable from frozen CTransPath, RetCCL and ImageNet-ResNet50 patch embeddings at mean OvR AUROC >0.95 in TCGA-COAD and TCGA-STAD and survives Macenko normalisation; race reaches 0.835/0.813 \\
+\cite{tariq2024self} (2024) \newline {\tiny\texttt{tariq2024self}~[RP]} & chest-CT SSL encoders (5 strategies, 15M Mayo slices) & CT & Enc & label & O & \xmark & \pmark & -- & {\tiny lrn} & Linear heads on frozen embeddings of eight chest-CT SSL encoders (held-out Mayo patients): race AUROC 0.72-0.74 (0.68 for next-slice), about 10\% above a randomly initialised encoder, while age and sex gain nothing \\
+\cite{zheng2024demographic} (2024) \newline {\tiny\texttt{zheng2024demographic}~[SP]} & 3D CT foundation embeddings & CT & Enc & label & O & \xmark & \xmark & -- & -- & Sex AUROC 0.998; age RMSE 3.8 y; race AUROC 0.878 from frozen embeddings \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[!tbp]
+\centering\scriptsize\setlength\tabcolsep{2pt}\renewcommand{\arraystretch}{0.78}
+\caption{Supervised concept mapping and decodability studies, part 2: demographic and acquisition attributes (continued from Table~S2) (table 2 of 3; continued from Table~\ref{tab:decodingb}). Columns and symbols as in Table~S1.}
+\label{tab:decodingb2}
+\begin{tabular}{@{}L{2.4cm}L{1.8cm}L{1.1cm}L{0.8cm}L{0.8cm}C{0.5cm}C{0.6cm}C{0.6cm}C{0.6cm}C{0.6cm}L{5.0cm}@{}}
+\toprule
+Study & Model(s) & Modality & Locus & Prov. & Ev. & Base. & Multi. & 2nd & Ctrl & Main finding \\
+\midrule
+\multicolumn{11}{@{}l}{\emph{Demographic and acquisition attributes}} \\
+\cite{dejong2025current} (2025) \newline {\tiny\texttt{dejong2025current}~[SP]} & ten pathology FMs & pathology & Enc & label & O & \xmark & \cmark & -- & -- & Medical centre predicted from embeddings more accurately than tissue or cancer type; robustness index >1 for one model \\
+\cite{lin2025beyond} (2025) \newline {\tiny\texttt{lin2025beyond}~[SP]} & UNI; Prov-GigaPath; Virchow (+CONCH) & pathology & Enc & label & O & \xmark & \cmark & -- & -- & Age, sex, race and institution inferable from PFM embeddings (26 curated datasets); institution signal drives OOD disparities; SSL encodes more institution than supervised training \\
+\cite{mayer2025lossy} (2025) \newline {\tiny\texttt{mayer2025lossy}~[CP]} & CTransPath; Virchow; Virchow2 (vs ImageNet ResNet18) & pathology & Enc & label & O & \pmark & \cmark & -- & -- & Frozen CTransPath, Virchow and Virchow2 features separate original MRXS tiles from DICOM-converted ones at up to 99.5\% accuracy over 50 patient-stratified repeats; paired distance 0.10-0.42 vs 3.5+-0.5 within a slide \\
+\cite{saueressig2025histology} (2025) \newline {\tiny\texttt{saueressig2025histology}~[CP]} & Prov-GigaPath; UNI; Virchow; H0-mini; MUSK & pathology & Enc & label & O & \xmark & \cmark & geo & -- & A linear probe reads the dataset of origin (TCGA, EBRAINS, TUM) off frozen patch embeddings of all five FMs at balanced accuracy 0.992-1.000; Macenko normalisation barely helps (0.96-0.99), random convolutions cut it to 0.81-0.84 \\
+\cite{sourget2025fairness} (2025) \newline {\tiny\texttt{sourget2025fairness}~[SP]} & six CLIP-based CXR models & CXR & Joint & label & O & \xmark & \cmark & -- & -- & Worse pneumothorax performance without chest drains (shortcut); demographics classifiable from embeddings \\
+\cite{zhang2025hospital} (2025) \newline {\tiny\texttt{zhang2025hospital}~[CP]} & UNI; UNI2-H; Prov-GigaPath; CONCH; TITAN; MUSK; Phikon-v2 & pathology & Enc & label & O & \pmark & \pmark & int & -- & An MLP probe on frozen embeddings of ten PFMs plus an ImageNet ResNet-50 identifies the source hospital of 4,029 TCGA-BRCA patches from four hospitals at AUC 0.82-0.99 (Phikon-v2 0.99, UNI 0.95, ResNet-50 0.83, TITAN 0.82) \\
+\cite{cajas2026shortkit} (2026) \newline {\tiny\texttt{cajas2026shortkit}~[SL]} & RAD-DINO; MedSigLIP (vs DINOv2; ViT-B; ResNet-50; DenseNet-121) & CXR & Enc & label & O & \cmark & \cmark & -- & {\tiny perm, plant} & 13 embedding-space detectors on CheXpert/MIMIC-CXR embeddings: sex flagged by 6-8/13 methods across backbones; race by non-probe detectors only; persists within diagnosis-matched cohorts \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\begin{table*}[!tbp]
+\centering\scriptsize\setlength\tabcolsep{2pt}\renewcommand{\arraystretch}{0.78}
+\caption{Supervised concept mapping and decodability studies, part 2: demographic and acquisition attributes (continued from Table~S2) (table 3 of 3; continued from Table~\ref{tab:decodingb}). Columns and symbols as in Table~S1.}
+\label{tab:decodingb3}
+\begin{tabular}{@{}L{2.4cm}L{1.8cm}L{1.1cm}L{0.8cm}L{0.8cm}C{0.5cm}C{0.6cm}C{0.6cm}C{0.6cm}C{0.6cm}L{5.0cm}@{}}
+\toprule
+Study & Model(s) & Modality & Locus & Prov. & Ev. & Base. & Multi. & 2nd & Ctrl & Main finding \\
+\midrule
+\multicolumn{11}{@{}l}{\emph{Demographic and acquisition attributes}} \\
+\cite{encin2026comparative} (2026) \newline {\tiny\texttt{encin2026comparative}~[SP]} & AnatCL; BrainIAC; 3D-Neuro-SimCLR; SwinBrain & MRI & Enc & label & O & \xmark & \cmark & -- & -- & Frozen-feature probes on 4 sMRI FMs (PPMI, HBN, NKI): 3D-Neuro-SimCLR and AnatCL beat FreeSurfer morphometrics for sex/age/BMI; others inconsistent; features correlate differently with cortical measures \\
+\cite{hajishafiezahramini2026dataset} (2026) \newline {\tiny\texttt{hajishafiezahramini2026dataset}~[CP]} & Mammo-CLIP & mammography & Enc & label & O & \xmark & \pmark & -- & -- & Frozen Mammo-CLIP features separate NLBSD, CBIS-DDSM and CMMD by dataset of origin at macro-AUC 0.9998 (per-class F1 >0.98) under identical preprocessing; adding external abnormal-enriched positives lowers screening AUC from 0.737 to 0.62-0.64 (Holm-corrected p<=0.015) \\
+\cite{kim2026encoding} (2026) \newline {\tiny\texttt{kim2026encoding}~[SP]} & six CXR models (nine with three CXR-specialised additions) & CXR & Enc & label & O & \cmark & \cmark & -- & -- & Sex encoded at AUROC 0.942 in frozen CXR embeddings (24 attributes; 6 models) \\
+\cite{kmen2026robust} (2026) \newline {\tiny\texttt{kmen2026robust}~[SP]} & 20 pathology FMs (PathoROB; incl. UNI2-h; Virchow2; CONCH; H-optimus-0; Prov-GigaPath; Phikon) & pathology & Enc & label & O & \xmark & \cmark & int & -- & Robustness index 0.45-0.86 across 20 pathology FMs: 14-55\% of embedding neighbourhoods defined by medical centre; only Virchow2 and Atlas Pareto-optimal \\
+\cite{li2026acquisition} (2026) \newline {\tiny\texttt{li2026acquisition}~[RP]} & RETFound (vs DINOv3 ViT-S/B, ConvNeXt; DINOv2 ViT-S/L) & retina & Enc & label & O & \cmark & \cmark & int & {\tiny perm} & Patient-grouped probes on frozen embeddings: RETFound age MAE 5.47 y (95\% CI 5.35-5.59) vs DINOv3 7.62, sex AUROC 0.81 vs 0.73; both read the BRSET camera at AUROC 0.992-0.993 within one cohort (0.995 external) \\
+\cite{rahbar2026frozen} (2026) \newline {\tiny\texttt{rahbar2026frozen}~[SP]} & brain-MRI FMs & MRI & Enc & label & O & \xmark & \pmark & -- & {\tiny mobj} & Frozen embeddings encode acquisition site as a large component \\
+\cite{zhang2026auditing} (2026) \newline {\tiny\texttt{zhang2026auditing}~[SP]} & CONCH; TITAN & pathology & Enc & label & O & \xmark & \pmark & geo & -- & Tissue-source site linearly decodable from frozen slide embeddings (macro AUROC 0.955 CONCH-v1, 0.980 TITAN; stratified 70/30 split); patient re-identification from the same embeddings \\
+\bottomrule
+\end{tabular}
+\end{table*}

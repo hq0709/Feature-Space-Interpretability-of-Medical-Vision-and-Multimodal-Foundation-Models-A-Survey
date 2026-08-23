@@ -1,0 +1,74 @@
+\section{Introduction}
+\label{sec:intro}
+
+Foundation models pre-trained at scale on medical images or image--text pairs are an increasingly common
+starting point for medical image analysis. Self-supervised encoders for
+radiology~\cite{perezgarcia2024scalable}, computational pathology~\cite{chen2024generalpurpose,xu2024wholeslide,vorontsov2024model} and
+ophthalmology~\cite{zhou2023model} --- most of them trained by the DINOv2
+recipe~\cite{oquab2024dinov2}, which is also the general comparator most of the studies reviewed here use
+--- are reused frozen across dozens of tasks;
+dual-encoder vision--language models (VLMs) built on the CLIP recipe~\cite{radford2021learning}, such as
+BiomedCLIP~\cite{zhang2023biomedclip} and CONCH~\cite{lu2024visuallanguage}, support zero-shot
+classification and retrieval; multimodal large
+language models (MLLMs) such as LLaVA-Med~\cite{li2023llavamed} and MedGemma~\cite{sellergren2025medgemma}
+answer image questions; and MAIRA-2~\cite{bannur2024maira2} drafts reports
+(Table~\ref{tab:models}, Fig.~\ref{fig:overview}). Reuse
+across institutions, modalities and tasks is what makes them foundation models~\cite{bommasani2021opportunities}.
+
+This reuse makes \emph{what internal representations encode} consequential. Self-reported race decodable
+from medical images~\cite{banerjee2021ai} and from a frozen foundation-model encoder~\cite{zheng2024demographic}
+is available, in principle, to any downstream model that reads those features; a chest-radiograph vision--language system can answer accurately
+without the image~\cite{lotfinia2026vision}; and a clinically named concept present in a
+representation need not be used~\cite{basu2026interpretability}. Regulatory guidance asks device
+developers to declare bias sources and system dependencies~\cite{fda2025aiguidance,euaiact2024}.
+Input-pixel attribution, dominant in medical explainable AI, does not characterise feature content and fails
+faithfulness criteria in medical-image protocols~\cite{arun2021trustworthiness,sadanandan2026attention},
+whereas feature-space interpretability targets the representations themselves.
+
+Linear probing~\cite{alain2016understanding}, concept activation vectors~\cite{kim2018interpretability},
+network dissection~\cite{bau2017network} and representational similarity analysis~\cite{kriegeskorte2008representational}
+came from convolutional networks and language models and were applied to medical classifiers~\cite{lucieri2020interpretability}.
+Since 2023, work has expanded to medical image--text embedding geometry~\cite{restrepo2026cone},
+demographic probing of foundation-model embeddings~\cite{zheng2024demographic}, sparse autoencoders
+for pathology, radiology and mammography encoders and medical-MLLM residual streams~\cite{bouzid2025insights,nakka2025mammosae,wesp2026sparse},
+and steering, editing and patching of medical multimodal models~\cite{nooralahzadeh2026universal,zhu2026evaluating,sadanandan2026mechanistically},
+most of it from 2025 onwards (Fig.~\ref{fig:corpus}a) and spread across machine-learning, medical-imaging and clinical
+venues.
+
+Existing surveys cover medical XAI, medical foundation models, or general interpretability separately; none
+reviews representation-level evidence across medical foundation models (Table~\ref{tab:surveys}).
+
+\textbf{Scope.} This survey covers measurements of and interventions on internal representations in
+medical vision, vision--language and multimodal foundation models, including their language
+decoders, and the general-domain methods they build on. Clinical language models, foundation models for
+electronic health records (EHR), physiological signals and omics, and generative medical image models
+fall outside the core scope and enter only as marked anchors or instruments; input attribution enters
+only when it tests a representation-level claim (\S\ref{sec:method}). Terminology follows \S\ref{sec:prelim}.
+
+\textbf{Contributions.} The contributions are fourfold. \textit{First}, a taxonomy of feature-space
+interpretability methods by methodology, locus and concept provenance, with boundary-case rules
+(\S\ref{sec:taxonomy}). It is applied through record-level coding of \Ncore{} core studies, one record per
+study, family, evidence type and locus (\S\ref{sec:method}); \Npreprint{} preprints are among them, \Nrepstudies{} are returned by a
+logged, replayable retrieval, and the supplement lists every record
+(Tables~S1--S6) and every finding's evidence profile (Tables~S9--S11). \textit{Second}, a family-by-family
+review of what each family can and cannot establish, and of their requirements, maturity and combinations
+(\S\ref{sec:methods}). \textit{Third}, consolidated datasets, concept resources, benchmarks and protocols,
+with an assessment of evidence comparability and study quality (\S\ref{sec:evaluation}); a
+protocol-bounded evidence map of that corpus, \Fnrows{} cross-family statements in three classes, each
+read against \Vnclasses{} validity-test classes
+that state what a test licenses beyond the design's base reading and what it does not
+(\S\ref{sec:findings}, Table~\ref{tab:vcov}); and a review of experimental uses
+(\S\ref{sec:applications}). \textit{Fourth}, open problems and what each solution must demonstrate
+(\S\ref{sec:future}).
+
+\begin{figure*}[!tbp]
+\centering
+\includegraphics[width=0.98\linewidth]{fig1_overview_draft.pdf}
+\caption{Overview. Medical vision and multimodal foundation models share a computational path from a
+vision encoder, through an optional connector and language model, to a readout. Six loci mark where a
+representation can be taken (\S\ref{sec:loci}). Five method families (\S\ref{sec:methods}) interrogate
+these representations. Evidence type is a property of each claim rather than of a family: most
+claims in the first four families are observational (what is encoded), most claims in the fifth are
+interventional (what is used), and a study may contribute both.}
+\label{fig:overview}
+\end{figure*}

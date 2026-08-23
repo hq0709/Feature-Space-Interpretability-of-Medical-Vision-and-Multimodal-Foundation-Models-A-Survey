@@ -1,0 +1,106 @@
+\section{Taxonomy}
+\label{sec:taxonomy}
+
+The taxonomy has three dimensions and one tag (Fig.~\ref{fig:taxonomy}), organised around the inferential
+claim a study makes: \textbf{methodology} is primary and fixes the section in which a study is discussed, while
+\textbf{locus}, \textbf{concept provenance} and the \textbf{evidence type} tag are recorded per core
+study in supplementary Tables~S1--S6. The scheme maps the field's target space, not the medical
+corpus alone: the tracing family, two loci and two provenance categories are populated by
+general-domain work but by eleven, zero and thirteen core medical records, sparse cells kept as gaps in the coverage map (Fig.~\ref{fig:corpus}b). The unit of coding is the claim: one row with one evidence
+type. Table~\ref{tab:boundary} resolves boundary cases.
+
+\begin{figure*}[!tbp]
+\centering
+\includegraphics[width=0.96\linewidth]{fig3_taxonomy.pdf}
+\caption{Taxonomy of feature-space interpretability methods for medical vision and multimodal foundation
+models: the methodology dimension and the intrinsic-design tag. Methodology, the primary dimension, is
+assigned by the study's inferential claim and its sub-groups follow \S\ref{sec:methods}; the other two
+dimensions, locus and concept provenance, and the evidence-type tag are not drawn here but recorded per
+study in supplementary Tables~S1--S6.}
+\label{fig:taxonomy}
+\end{figure*}
+
+\textbf{Methodology.} Five families are assigned by \emph{primary inferential claim}, not algorithm,
+because one algorithm can support different claims. \emph{Structural and geometric analysis}
+(\S\ref{sec:geometry}) characterises the shape of the space rather than a decoded concept, through
+image--text distance, spread, cross-model similarity, adaptation-induced change or acquisition-metadata
+structure. \emph{Supervised concept mapping and decodability}
+(\S\ref{sec:decoding}) recovers an external concept from labelled data using a decoder, direction or
+similarity structure. \emph{Feature decomposition and discovery} (\S\ref{sec:discovery}) decomposes
+representations into units, neurons, directions or dictionary features named afterwards.
+\emph{Representation attribution, localisation and tracing} (\S\ref{sec:tracing}) observationally
+assigns representational content or output to a component, layer, token position or training example.
+\emph{Causal intervention and representation control} (\S\ref{sec:intervention}) changes a
+representation and measures behaviour, the strength of the claim set by the controls
+(\S\ref{sec:methods}) and coded one row per claim (\S\ref{sec:eval-compare}). Intrinsically interpretable
+designs are model properties: they take an \emph{intrinsic-design} tag and their claims stay in the
+analytic family, concept-layer decodability in every case but one prototype design
+(\S\ref{sec:intrinsic}).
+
+\begin{table*}[!tb]
+\centering\small
+\caption{Boundary cases and their assignment. \emph{Primary} determines the section in which a study is
+discussed; \emph{secondary} is recorded in the coded evidence tables (column 2nd) and in the coding sheet.}
+\label{tab:boundary}
+\setlength\tabcolsep{4pt}\begin{tabular}{@{}L{4.52cm}L{2.95cm}L{2.35cm}L{5.72cm}@{}}
+\toprule
+Method as used in a study & Primary family & Secondary & Rule applied \\
+\midrule
+PCA/ICA/NMF of embeddings, directions then named & Discovery (\S\ref{sec:discovery}) & Geometry & Claim is about interpretable units, not about the shape of the space \\
+PCA/effective rank/intrinsic dimension as a summary of the space & Geometry (\S\ref{sec:geometry}) & --- & No unit is interpreted \\
+Representational similarity analysis against a concept-labelled stimulus set & Decoding (\S\ref{sec:decoding}) & Geometry & An external concept is decoded through the similarity structure \\
+Cross-model CKA/RSA without concept labels & Geometry & --- & Structure only \\
+Network dissection with a labelled concept dataset & Decoding & Discovery & Units are scored against supplied concepts \\
+Sparse-autoencoder features that are then steered & Discovery (features) and Intervention (steering) & each other & Two claims, two sections, two evidence tags; each row records the other family as secondary \\
+Concept erasure (iterative nullspace projection, INLP; least-squares concept erasure, LEACE) with a behavioural end-point & Intervention (\S\ref{sec:intervention}) & Decoding & Effect on behaviour is the claim \\
+Concept erasure used only to test decodability & Decoding & --- & No behavioural end-point \\
+Post-hoc concept bottleneck on a frozen encoder & Decoding & --- & Concept-layer decodability is the claim; the intrinsic-design tag records the model property (\S\ref{sec:intrinsic}) \\
+Logit lens / tuned lens on decoder states & Tracing (\S\ref{sec:tracing}) & --- & Observational localisation of information across layers \\
+Attention weights over image tokens & Tracing & --- & Component-level observation, not intervention (contextual when instrumental to a model or training-method paper, \S\ref{sec:method}) \\
+Attention or token knockout & Intervention & Tracing & The representation is changed \\
+Post-hoc operation on frozen embeddings (whitening, harmonisation, projection, transport, unlearning) with a downstream end-point & Intervention (inventory F9b) & Geometry or Decoding & The stored representation is changed and re-evaluated; a method that changes the encoder's training or weights only (fine-tuning, adversarial training) is contextual \\
+Saliency map used to test a representation-level claim & Evaluation (\S\ref{sec:evaluation}) & --- & Readout-level instrument, not a feature-space method \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\textbf{Locus.} A locus is the position along the computational path at which a representation is
+taken. Six are placed on the architectural templates of \S\ref{sec:loci}
+and Fig.~\ref{fig:overview}: vision encoder, text encoder, the projected joint space of a dual
+encoder, the connector output of a multimodal LLM, the decoder residual stream and its components, and
+the pre-readout representation. A study is coded by the locus at which it measures or intervenes, not
+by where its claim is directed. A study that repeats one measurement at several loci is coded once, as
+a transition record with the derived locus label ``Path'' --- not a seventh locus but a marker that the
+record spans several of the six --- so connector-level counts are not inflated by transition claims.
+
+The pre-readout representation, the connector output and the text encoder carry almost no single-locus core
+claim (Fig.~\ref{fig:corpus}b). All six loci are kept, deliberately coarse, since that sparseness is itself a
+finding (\S\ref{sec:future}). Within the encoder the coding also records the readout granularity (field
+\emph{sublocus}), which often decides what is decodable (\S\ref{sec:findings}), so \S\ref{sec:future} argues
+for promoting it, and the connector's fusion mechanism, to loci.
+
+\textbf{Concept provenance.} Five sources are distinguished: \emph{expert- or ontology-defined}
+vocabularies such as RadLex, SNOMED and the seven-point dermoscopy checklist; \emph{structured labels}
+such as CheXpert and VinDr-CXR; \emph{corpus- or text-mined} report or literature concepts;
+\emph{model-generated} banks of class attributes; and \emph{none} when units are discovered before
+optional labelling, which post-hoc labelling flags.
+
+\textbf{Evidence type.} A claim is \emph{observational} when it rests on measuring the representation
+as the model computes it, \emph{interventional} when it rests on a deliberate change, following the first two levels of the causal
+hierarchy~\cite{bareinboim2022pearl}. The tag cuts across methodology and separates the two most conflated statements in this literature, ``the model encodes $c$'' and ``the model uses $c$'', which rest on
+different evidence~\cite{hewitt2019designing,elazar2020amnesic,ravfogel2020null}.
+
+Fig.~\ref{fig:example} traces a hypothetical chest radiograph along the loci, a schematic of what each
+family would report rather than a summary of any one study, since only one repeats a measurement at
+successive loci of the same model~\cite{zhu2026lost}.
+
+\begin{figure*}[!tbp]
+\centering
+\figplaceholder{0.95\linewidth}{Author-drawn figure (worked example; see FIGURE\_REQUESTS.md): a hypothetical chest radiograph traced along the loci with the artefact each family would return.}
+\caption{Hypothetical worked example. A single chest radiograph is followed along the path of a medical
+multimodal LLM; at each locus the panel lists what each method family would report, with the evidence
+type of that claim (observational or interventional). Illustrative only: values are not measured, and
+the reviewed literature contains one study that probes class labels at successive loci of the same
+models~\cite{zhu2026lost} and none that does so for named concepts with an intervention.}
+\label{fig:example}
+\end{figure*}

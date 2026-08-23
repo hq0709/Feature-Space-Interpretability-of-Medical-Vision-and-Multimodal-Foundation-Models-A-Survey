@@ -1,0 +1,106 @@
+\emph{Foundation model} (FM) keeps its original operational sense~\cite{bommasani2021opportunities,moor2023generalist}:
+pre-training at scale on broad medical data and reuse, frozen or adapted, across several downstream
+tasks. Three decisions are kept apart in the eligibility coding. \emph{Foundation-model status} is the
+definition above, operationalised for sampling as pre-training on at least $10^{5}$ images or image--text
+pairs, $10^{3}$ whole slides or $10^{4}$ volumetric scans from more than one anatomical site or finding
+class, and reuse across at least three reported tasks. The thresholds compare information units that are
+not equivalent (an image, a slide and a volume differ by orders of magnitude in content), so they are
+sampling boundaries rather than part of the definition; excluding the six studies they admit as
+borderline changes no corpus-breadth tier of \S\ref{sec:findings}, and excluding the seventeen admitted by
+the volumetric rule as well empties F3c and lowers F2 and F8a$''$ (supplement S6). Medical adaptations of general foundation models
+qualify, as do their component encoders. \emph{Representation access} is whether the analysed study could
+reach embeddings or activations at all; it is a requirement of this review rather than a property of the
+model, and it biases the corpus towards openly released weights, since API-only models enter only through
+embedding-level analyses and are marked borderline in the eligibility table. \emph{Claim eligibility} is
+whether the study makes a representation-level claim about such a model (\S\ref{sec:method}). One family
+carries a stricter version of it: a geometry study enters only if it connects its statistic to
+decodability, retrieval, transfer or shortcut behaviour (\S\ref{sec:geometry}), so the structural family
+is reviewed as \emph{task-linked geometry}, and purely descriptive or negative geometry results are
+under-represented here relative to the literature. A study enters if at least one analysed model passes
+the first two decisions and the study the third; ineligible comparators are named in the evidence tables
+and support no finding alone. Per-study eligibility grades are in supplement S9. The reviewed models fall
+into three architectural templates (Fig.~\ref{fig:overview}, Table~\ref{tab:models}).
+
+\textbf{Unimodal vision encoders} are self-supervised on images alone and reused frozen: chest-radiograph
+encoders~\cite{sellergren2022simplified,perezgarcia2024scalable}, pathology tile encoders pre-trained on
+$10^{8}$--$10^{9}$ whole-slide image (WSI)
+tiles~\cite{chen2024generalpurpose,vorontsov2024model,xu2024wholeslide,zimmermann2024virchow2,filiot2024phikon},
+retinal~\cite{zhou2023model} and volumetric CT~\cite{blankemeier2024merlin} encoders, and slide-level models
+that add weakly supervised stages with interpretable attention over frozen
+tiles~\cite{wang2024pathology,ding2024whole}. Promptable segmenters
+qualify~\cite{ma2023anything,zhao2024foundation} but are analysed only as encoders, their mask decoders
+unstudied (\S\ref{sec:discovery}). Frozen and public, these carry most decoding and discovery studies
+(\S\ref{sec:methods}).
+
+\textbf{Dual encoders} align image and text encoders on image--report or caption pairs for zero-shot
+classification and retrieval. Chest radiography has the deepest line, from ConVIRT and GLoRIA to CheXzero,
+MedCLIP, BioViL and KAD~\cite{zhang2020visual,huang2021gloria,tiu2022detection,wang2022medclip,boecking2022most,zhang2023visuallanguage},
+and the recipe transfers wherever paired text exists: BiomedCLIP on 15M PubMed Central figure--caption pairs,
+CONCH and PLIP in pathology, and Mammo-CLIP, EchoCLIP and CT-CLIP in mammography, echocardiography and
+volumetric CT~\cite{zhang2023biomedclip,lu2024visuallanguage,huang2023visual,ghosh2024mammoclip,christensen2024vision,hamamci2024ctrate}.
+Their joint spaces carry the modality-gap and concept-scoring studies of \S\ref{sec:geometry} and
+\S\ref{sec:decoding}.
+
+\textbf{Multimodal large language models} feed encoder features through a projector, resampler or
+cross-attention connector into a text-generating LLM. The reviewed models range from adapted general assistants to bespoke medical stacks
+(Table~\ref{tab:models} gives their connectors, data and weight
+availability)~\cite{li2023llavamed,moor2023medflamingo,bannur2024maira2,chen2024model,chaves2024clinically,wu2023model,chen2024huatuogptvision,tu2023biomedical,sellergren2025medgemma,team2025lingshu}. The inherited vision encoder is usually frozen, so its contents remain available though not
+necessarily used, and the connector does not merely change the representational medium: it transforms the
+encoder representation, and may compress or discard part of it, before the language model reads it
+(\S\ref{sec:loci}).
+
+\begin{table*}[!tb]
+\centering\footnotesize\renewcommand{\arraystretch}{0.95}
+\caption{Representative medical foundation models in the reviewed corpus, by architectural template (CXR: chest radiograph): the models
+that recur across the coded records, plus the first model of each template, one to three per modality.
+Models analysed by a single core study are named in the per-record tables of the supplement.
+\emph{Connector}: MLP (linear or multilayer projector), resampler (query-based Perceiver or Q-Former),
+x-attn (gated cross-attention). \emph{Year}: first public appearance, which may precede the cited version.
+\emph{Weights}: released (\cmark), gated (\pmark) or not released (\xmark) at the time of writing.
+Entries marked --- are not stated in the source.}
+\label{tab:models}
+\setlength\tabcolsep{4pt}\begin{tabular}{@{}L{2.8cm}cL{1.9cm}L{2.5cm}L{2.1cm}L{3.4cm}c@{}}
+\toprule
+Model & Year & Modality & Vision encoder & Connector & Pre-training data & Weights \\
+\midrule
+\multicolumn{7}{@{}l}{\emph{Unimodal vision encoders (including slide-level and segmentation models)}} \\
+CXR Foundation~\cite{sellergren2022simplified} & 2022 & CXR & EfficientNet-L2 (supervised + contrastive) & --- & large multi-site CXR corpora & \xmark\ (API) \\
+RAD-DINO~\cite{perezgarcia2024scalable} & 2024 & CXR & ViT (DINOv2 recipe) & --- & image-only CXR & \cmark \\
+UNI~\cite{chen2024generalpurpose} & 2024 & pathology & ViT-L (DINOv2) & --- & $>$100M tiles, $>$100k WSIs & \pmark \\
+Virchow~\cite{vorontsov2024model} & 2024 & pathology & ViT-H & --- & 1.5M WSIs & \pmark \\
+Prov-GigaPath~\cite{xu2024wholeslide} & 2024 & pathology & ViT-g + slide encoder & --- & 1.3B tiles, 171k WSIs & \pmark \\
+RETFound~\cite{zhou2023model} & 2023 & retina & ViT-L (MAE) & --- & 1.6M retinal images & \cmark \\
+Merlin~\cite{blankemeier2024merlin} & 2024 & CT & 3-D CNN & --- & 15k CTs + EHR codes/reports & \cmark \\
+Virchow2~\cite{zimmermann2024virchow2} & 2024 & pathology & ViT-H (DINOv2, mixed magnification) & --- & 3.1M WSIs & \pmark \\
+Phikon-v2~\cite{filiot2024phikon} & 2024 & pathology & ViT-L (DINOv2) & --- & 460M public tiles & \cmark \\
+CHIEF~\cite{wang2024pathology} & 2024 & pathology (slide) & tile encoder + weakly supervised slide model & --- & 60.5k WSIs & \cmark \\
+TITAN~\cite{ding2024whole} & 2024 & pathology (slide) & slide ViT over CONCH tile features & --- & 336k WSIs + reports/captions & \pmark \\
+MedSAM~\cite{ma2023anything} & 2024 & multi (segmentation) & ViT-B (SAM) + mask decoder & --- & 1.57M image--mask pairs & \cmark \\
+BiomedParse~\cite{zhao2024foundation} & 2024 & multi (segmentation) & image encoder + text-prompted decoder & --- & $>$6M image--mask--text triples & \cmark \\
+\midrule
+\multicolumn{7}{@{}l}{\emph{Dual encoders (image--text contrastive)}} \\
+ConVIRT~\cite{zhang2020visual} & 2020 & CXR & ResNet-50 & --- & image--report pairs & \cmark \\
+GLoRIA~\cite{huang2021gloria} & 2021 & CXR & ResNet-50 & --- & CheXpert reports & \cmark \\
+CheXzero~\cite{tiu2022detection} & 2022 & CXR & ViT-B (CLIP) & --- & MIMIC-CXR pairs & \cmark \\
+MedCLIP~\cite{wang2022medclip} & 2022 & CXR & Swin / ResNet & --- & unpaired images and texts & \cmark \\
+BioViL~\cite{boecking2022most} & 2022 & CXR & ResNet-50 & --- & MIMIC-CXR pairs & \cmark \\
+BiomedCLIP~\cite{zhang2023biomedclip} & 2023 & multi & ViT-B & --- & PMC-15M (15M pairs) & \cmark \\
+CONCH~\cite{lu2024visuallanguage} & 2024 & pathology & ViT-B & --- & 1.17M image--caption pairs & \pmark \\
+PLIP~\cite{huang2023visual} & 2023 & pathology & ViT-B (CLIP) & --- & OpenPath (Twitter) & \cmark \\
+Mammo-CLIP~\cite{ghosh2024mammoclip} & 2024 & mammography & EfficientNet & --- & mammogram--report pairs & \cmark \\
+CT-CLIP~\cite{hamamci2024ctrate} & 2024 & CT & 3-D ViT & --- & CT-RATE (25.7k volumes) & \cmark \\
+\midrule
+\multicolumn{7}{@{}l}{\emph{Multimodal LLMs (encoder--connector--LLM)}} \\
+LLaVA-Med~\cite{li2023llavamed} & 2023 & multi & CLIP ViT-L & linear & PMC figure--caption + instructions & \cmark \\
+Med-Flamingo~\cite{moor2023medflamingo} & 2023 & multi & CLIP ViT-L & resampler + x-attn & interleaved medical image--text & \cmark \\
+MAIRA-2~\cite{bannur2024maira2} & 2024 & CXR & RAD-DINO & MLP & MIMIC-CXR, PadChest, USMix & \pmark \\
+CheXagent~\cite{chen2024model} & 2024 & CXR & own CXR encoder & resampler & CheXinstruct & \cmark \\
+LLaVA-Rad~\cite{chaves2024clinically} & 2024 & CXR & domain-adapted CLIP & MLP (adapter) & 697k image--text pairs & \cmark \\
+RadFM~\cite{wu2023model} & 2023 & 2-D/3-D radiology & 3-D ViT & resampler & MedMD (16M scans) & \cmark \\
+HuatuoGPT-Vision~\cite{chen2024huatuogptvision} & 2024 & multi & CLIP ViT-L & MLP & PubMedVision (1.3M VQA) & \cmark \\
+Med-PaLM M~\cite{tu2023biomedical} & 2023 & multi & PaLM-E ViT & token fusion & MultiMedBench & \xmark \\
+MedGemma~\cite{sellergren2025medgemma} & 2025 & multi & MedSigLIP & linear (pooled) & medical image--text + instructions & \pmark \\
+Lingshu~\cite{team2025lingshu} & 2025 & multi & Qwen2.5-VL ViT & MLP & curated medical multimodal + text corpus & \cmark \\
+\bottomrule
+\end{tabular}
+\end{table*}

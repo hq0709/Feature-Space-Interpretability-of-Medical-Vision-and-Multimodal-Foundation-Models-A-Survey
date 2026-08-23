@@ -1,0 +1,25 @@
+\begin{table}[!tbp]
+\centering\scriptsize\setlength\tabcolsep{2pt}\renewcommand{\arraystretch}{1.0}
+\caption{How the core corpus was assembled, in temporal order (dates 2026). Logged: whether query strings, seeds, page counts
+and per-record screening decisions were preserved. Core: core studies each stage contributed that the corpus still retains, so
+the column sums to \Ncore{}; the original searches and the unlogged pass are not separable and are reported together.
+\Nrecoded{} studies admitted at these stages were later recoded contextual under the benchmark-tier rule of
+\S\ref{sec:models} (\texttt{wen2025multimededit}, \texttt{wu2025hierarchy}, \texttt{xu2025medmkeb},
+\texttt{zhu2026evaluating}: output-level editing and unlearning benchmarks with no representation-level measurement) and are
+not counted here, which is why the gross additions quoted in the Records column exceed the Core column. The last stage searches MEDLINE directly rather than through the aggregators; it contributed no core study, which is reported here rather than omitted. Details in supplement
+S0--S1j, with the per-wave and per-family tables S7 and S8.}
+\label{tab:searchflow}
+\begin{tabular}{@{}L{2.05cm}L{0.95cm}L{1.45cm}L{2.25cm}r@{}}
+\toprule
+Stage & Date & Logged & Records & Core \\
+\midrule
+Original searches: twelve query families on Semantic Scholar, OpenAlex, arXiv & 15--16 Aug & partly: raw responses archived; several query strings and all exclusion reasons not preserved & 10,137 archived, ${\approx}$4,900 screened; 699 retained cumulatively (560 matched to the archived responses, 139 added by identifier look-up during the later stages) & \multirow{2}{*}{\Nstageorig{}} \\
+Unlogged forward pass from ${\approx}$25 method seeds & 16 Aug & no: seed list not preserved & -- & \\
+Citation chaining, five waves (S1b--S1f) & 17 Aug & yes (S1b--S1f) & \chainFetchedAll{} fetched, \chainScreenedAll{} screened, \chainStudiesAdded{} admitted at the time & \Nstagechain{} \\
+Frozen replayable protocol, eight families (S1g) & 17--18 Aug & yes, replayable (S1g) & \frozenFetched{} fetched, \frozenUnique{} unique, \frozenScreened{} unseen screened; recall \frozenRecall{}/\frozenPreCore{}, \frozenCoreCoded{} admitted & \Nstagefrozen{} \\
+Direct MEDLINE/PubMed protocol, \pmFamilies{} families (S1j) & 21 Aug & yes, replayable (S1j) & \pmRaw{} fetched, \pmUnique{} unique, \pmCandidates{} unseen screened; recall \pmRecall{}/\pmCoreTotal{} & 0 \\
+\midrule
+Core corpus at cutoff & & & \Nclaims{} claim records & \Ncore{} \\
+\bottomrule
+\end{tabular}
+\end{table}

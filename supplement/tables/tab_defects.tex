@@ -1,0 +1,18 @@
+\begin{table}[!t]
+\centering\footnotesize\setlength\tabcolsep{3pt}\renewcommand{\arraystretch}{1.08}
+\caption{The defect screen: the five recorded result-invalidating defect kinds behind the records that the article marks as flagged. A record is flagged when its study carries one of these defects \emph{and} the defect touches that record's own claim (or its applicability is uncertain); a defect concerning another record of the same study leaves this one unmarked. The screen is the review's own rule, fixed before the findings were assembled; it is not a risk-of-bias instrument, and the article counts every record, flagged or not, reporting in S6 what setting the flagged records aside changes. Per-record judgements: \texttt{notes/defect\_applicability.csv} and S5e.}
+\label{tab:defects}
+\begin{tabular}{@{}L{2.05cm}L{2.55cm}L{2.15cm}r@{}}
+\toprule
+Defect & What it is & Why it invalidates the quantity & Rec. \\
+\midrule
+resubstitution & a probe or dictionary is fitted and scored on the same data & the reported quantity is an optimistically biased estimate of held-out performance, by an amount the data do not reveal & 8 \\
+leakage across split units & a slide, patient or site appears on both sides of the split & the score is a within-unit score reported as an across-unit one & 7 \\
+circular estimation & the quantity is estimated from a dependence the design created & the estimate is a property of the pipeline, not of the representation & 6 \\
+selection on the reported metric & the configuration is chosen on the number reported & the number is a maximum over choices, reported as a single draw & 2 \\
+single-case fitting & the fitting block is one case & nothing separates the case from the property & 1 \\
+\midrule
+Total & records with a recorded defect of these kinds & 19 touched, 1 uncertain, 4 left in & 24 \\
+\bottomrule
+\end{tabular}
+\end{table}
