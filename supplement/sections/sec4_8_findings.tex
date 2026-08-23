@@ -15,57 +15,42 @@ reported across multiple studies, \Fnsingle{} single-study or single-group signa
 conditional or descriptive inventories, the last being rows conditional on the selection defining them
 (F7 selects the dictionaries that attempted validation; F9b, F10 and F11 list heterogeneous records).
 Every statement describes this corpus; none is a claim about the size or composition of the literature.
-The rows are a curated evidence map~\cite{miakelye2016evidencemap}, not an output of the coding: a row is a proposition that the
-finding statements of at least one record assert, split where records assert strictly different claims
-(F1b, F1b$'$ and F1b$''$ separate held-out recovery, gradient association and labelled correspondence;
-F8a, F8a$'$ and F8a$''$ separate an instrumented failure, a disagreement and an implausibility), and the
-supplement S7 states the rule that assigns every record to its rows, and the labels F1a to F11 index the rows in the supplementary tables. For every row, supplementary section S7c states what the studies report, as ranges and, where the records disagree, with the disagreement stated rather than averaged, and the limit that most restricts it; the synthesis is descriptive, and no direction of effect is
-counted across records.
+A row is a proposition that the finding statements of at least one record assert, split where records
+assert strictly different claims (F1b, F1b$'$ and F1b$''$ separate held-out recovery, gradient
+association and labelled correspondence; F8a, F8a$'$ and F8a$''$ separate an instrumented failure, a
+disagreement and an implausibility); of the \Nclaims{} records \Fnorow{} support no row and \Fmultirow{} are counted in more than one, \Fmultithree{} of them in three. The synthesis is descriptive: where records disagree, the disagreement is stated rather than averaged, and no direction of
+effect is counted across records.
 
 Three conventions govern every number. A record is one study $\times$ family $\times$ evidence type
-$\times$ locus (\S\ref{sec:method}) and can bundle several concepts, models, datasets or end-points.
-Counts are taken on all \Nclaims{} records. \Fflagrec{} of them, from \Fdefstud{} studies, carry a recorded defect of one of five result-invalidating kinds, namely resubstitution, leakage across split units, circular estimation, selection on the reported metric and single-case fitting (supplement S5e; the first two are the commonest leakage errors of machine-learning-based science~\cite{kapoor2023leakage}), and are marked wherever they appear rather than removed; setting them aside changes the corpus-breadth tier of
-\Fscrtier{} rows (supplement S6). And the counts weight neither
-sample size nor effect size, so they estimate neither prevalence nor certainty; datasets and lineages recur, CheXpert, MIMIC-CXR and TCGA running through F1a, F2, F2b and F3a alone. Fig.~\ref{fig:findings}
-gives, for every row, the validity tests its records report, as $k/n$; the full profiles, with the
-corpus-breadth tier of each row, are in supplementary Tables~S7--S9.
+$\times$ locus (\S\ref{sec:method}) and can bundle several concepts, models, datasets or end-points, so a
+validity test recorded on it need not cover every outcome inside it; Table~\ref{tab:vcov} and
+Fig.~\ref{fig:findings} print the strict all-outcome count and the any-outcome bound wherever the two
+differ. Counts are taken on all \Nclaims{} records. \Fflagrec{} of them, from \Fdefstud{} studies, carry a recorded defect of one of five result-invalidating kinds (resubstitution, leakage across split units, circular estimation, selection on
+the reported metric or single-case fitting, the first two being the commonest leakage errors of
+machine-learning-based science~\cite{kapoor2023leakage}) and are marked wherever they appear rather than removed. And the counts weight neither sample size nor effect size, so they estimate neither prevalence
+nor certainty; datasets and lineages recur, CheXpert, MIMIC-CXR and TCGA running through F1a, F2, F2b and
+F3a alone, and only \Nminvalid{} of the \Ncore{} studies state a patient-, slide- or subject-level split,
+evaluate on data unused for fitting and report seeds, intervals or tests. Breadth is therefore reported as
+a description of this corpus and not as a weight, and the conclusions of Table~\ref{tab:synthesis} rest on
+the corpus as reported, not on a validated subset of it.
 
 How well a row's evidence is safeguarded is a separate question from how much of it there is, and no
-grade combines the two. Table~\ref{tab:vcov} pairs each of the \Vnclasses{} test classes with the statement it licenses beyond the base reading its design already supports (held-out performance above the study-stated reference) and with what it does not license. A test validates the measurement, not
-the proposition, so two tested records are not a replication of the finding, and a share is comparable
-within a class, never across classes.
-
-On these counts the corpus is thinner than any pooled figure suggests. Capacity and representation-attribution controls on probes are rare, a permutation null appearing in \Vperm{} of \Vpermn{} records and a randomly initialised encoder in \Vlrn{} of \Vlrnn{}, and the randomized control task of
-Hewitt and Liang~\cite{hewitt2019designing} is reported in no record (its construction needs repeated
-input types that medical images seldom have, so no applicability denominator is given,
-\S\ref{sec:future}). \Vspca{}--\Vspc{} of \Vspcn{} targeted interventions report a matched control (the
-strict all-outcome count and the any-outcome bound), and a comparison model appears in \Vcomp{} of
-\Vcompn{} geometry records. A test recorded on a record need not cover every outcome inside it: in
-\Voutall{} of the \Voutcred{} credited records it covers every outcome the statement
-asserts, in \Voutpartial{} a proper subset, and Table~\ref{tab:vcov} and Fig.~\ref{fig:findings} print
-the strict and the upper-bound count wherever the two differ. The sensitivity analyses of supplement S6 (peer-reviewed records only, full texts only, the eligibility boundary, the benchmark tier, and one record per study, per last-author group and per model lineage) change the corpus-breadth tier (\emph{broad}:
-at least five distinct first authors, two modalities and three peer-reviewed records; \emph{moderate}: at
-least two groups and either three groups or two modalities; \emph{narrow}: otherwise) of at most
-\Fsensrefn{} rows (the peer-reviewed restriction, in a corpus \Pctpreprint\% preprints) and of at most
-\Fsenslinn{} under any other, and the wording of no statement. One restriction is sharper than a
-sensitivity and is stated as such: only \Nminvalid{} of the \Ncore{} studies state a patient-, slide- or
-subject-level split, evaluate on data unused for fitting and report seeds, intervals or tests, and on
-that strict subset alone \Fsensminemptyn{} of the twenty-one non-inventory rows keep no record,
-\Fsensminfalln{} fall by a tier and \Fsensminkeep{} keeps its tier. Breadth is therefore reported as a description of this corpus
-and not as a weight, and the conclusions of Table~\ref{tab:synthesis} rest on the corpus as reported,
-not on a validated subset of it.
-
-
+grade combines the two. Table~\ref{tab:vcov} pairs each of the \Vnclasses{} test classes with the
+statement it licenses beyond the base reading its design already supports (held-out performance above
+the study-stated reference) and with what it does not license. A test validates the measurement, not the
+proposition, so two tested records are not a replication of the finding, and a share is comparable within
+a class, never across classes. On these counts the corpus is thinner than any pooled figure suggests.
+Capacity and representation-attribution controls on probes are rare, a permutation null appearing in
+\Vperm{} of \Vpermn{} records and a randomly initialised encoder in \Vlrn{} of \Vlrnn{}, and the
+randomized control task of Hewitt and Liang~\cite{hewitt2019designing} is reported in no record (its
+construction needs repeated input types that medical images seldom have, so no applicability denominator
+is given, \S\ref{sec:future}). \Vspca{}--\Vspc{} of \Vspcn{} targeted interventions report a matched
+control (the strict all-outcome count and the any-outcome bound), and a comparison model appears in
+\Vcomp{} of \Vcompn{} geometry records.
 
 \input{tables/tab_statements}
 
 \input{tables/tab_vcov}
-
-
-
-The rows partition propositions, not records: of the \Nclaims{} records \Fnorow{} support no row and
-\Fmultirow{} are counted in more than one, \Fmultithree{} of them in three. Supplement S7 and S7b list
-both sets and the rows each record joins.
 
 The evidence behind the five conclusions of Table~\ref{tab:synthesis} reads as follows.
 
@@ -84,7 +69,7 @@ which selects an operating point rather than characterising a response. The effe
 not compared, from under 0.02 AUROC for a post-hoc gap shift~\cite{restrepo2026cone} and under 0.001 for
 residualising a demographic attribute~\cite{kim2026encoding}$^{\dagger}$ to the collapse of a finding's
 own AUROC when the roughly ten channels that decode it are zeroed~\cite{nooralahzadeh2026sparse}
-(per-record end-points in supplementary Table~S5). Post-hoc operations on frozen embeddings (F3b, F5, F6,
+Post-hoc operations on frozen embeddings (F3b, F5, F6,
 F9b) are the only interventions with more than a handful of records.
 
 \emph{Acquisition and site structure.} Centre, scanner and device are recoverable from pathology and
@@ -97,15 +82,14 @@ reports the downstream end-point after harmonisation on a held-out site.
 named feature can still be validated. The \Nsaeval{} dictionaries with a reported semantic check share one property, the locus: all read encoder-side pooled, tile or patch representations, and none of the three
 trained on decoder residual streams is checked against clinicians or structured labels. The two sides
 also report different feature types, which we state as a hypothesis, that residual-stream dictionaries of report generators surface report-level rather than image-level concepts, confounded by model, layer,
-dictionary design and naming, and testable by the matched design of \S\ref{sec:future}. Supplementary
-Table~S13 gives the naming and validation route of every dictionary in the corpus. Of the \Nsaeval{} with a
+dictionary design and naming, and testable by the matched design of \S\ref{sec:future}. Of the \Nsaeval{} with a
 clinician- or label-based check, \Nsaemanual{} are named manually, \Nsaelabmatch{} by label matching,
 \Nsaellm{} by a language model and \Nsaetext{} by text matching, so an automatic naming route does not
 prevent validation and a manual one does not supply it. \Nsaestab{} of the \Nsae{} report any
 reproducibility check, and none establishes cross-seed identity of its features.
 
 \emph{Medical against general pre-training.} \Nmvgrec{} core records from \Nmvgstud{} studies compare a
-medical with a general foundation model on the same data (supplementary Fig.~S1); seventeen further
+medical with a general foundation model on the same data; seventeen further
 records compare only with an ImageNet- or task-supervised classifier and are excluded. F10 collects the
 decoding records and F11 those in which a property is shared or differs; three records are marked not
 compared, because the general model is measured only on zero-shot accuracy rather than on the coded

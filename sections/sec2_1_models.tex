@@ -6,8 +6,7 @@ pairs, $10^{3}$ whole slides or $10^{4}$ volumetric scans from more than one ana
 class, and reuse across at least three reported tasks. The thresholds compare information units that are
 not equivalent (an image, a slide and a volume differ by orders of magnitude in content), so they are
 sampling boundaries rather than part of the definition; excluding the six studies they admit as
-borderline changes no corpus-breadth tier of \S\ref{sec:findings}, and excluding the seventeen admitted by
-the volumetric rule as well empties F3c and lowers F2 and F8a$''$ (supplement S6). Medical adaptations of general foundation models
+borderline changes no corpus-breadth tier of \S\ref{sec:findings}, and excluding the seventeen admitted by the volumetric rule as well empties F3c and lowers F2 and F8a$''$. Medical adaptations of general foundation models
 qualify, as do their component encoders. \emph{Representation access} is whether the analysed study could
 reach embeddings or activations at all; it is a requirement of this review rather than a property of the
 model, and it biases the corpus towards openly released weights, since API-only models enter only through
@@ -18,7 +17,7 @@ decodability, retrieval, transfer or shortcut behaviour (\S\ref{sec:geometry}), 
 is reviewed as \emph{task-linked geometry}, and purely descriptive or negative geometry results are
 under-represented here relative to the literature. A study enters if at least one analysed model passes
 the first two decisions and the study the third; ineligible comparators are named in the evidence tables
-and support no finding alone. Per-study eligibility grades are in supplement S9. The reviewed models fall
+and support no finding alone. The reviewed models fall
 into three architectural templates (Fig.~\ref{fig:overview}, Table~\ref{tab:models}).
 
 \textbf{Unimodal vision encoders} are self-supervised on images alone and reused frozen: chest-radiograph
@@ -53,7 +52,7 @@ encoder representation, and may compress or discard part of it, before the langu
 \centering\footnotesize\renewcommand{\arraystretch}{0.95}
 \caption{Representative medical foundation models in the reviewed corpus, by architectural template (CXR: chest radiograph): the models
 that recur across the coded records, plus the first model of each template, one to three per modality.
-Models analysed by a single core study are named in the per-record tables of the supplement.
+Models analysed by a single core study are named where that study is discussed.
 \emph{Connector}: MLP (linear or multilayer projector), resampler (query-based Perceiver or Q-Former),
 x-attn (gated cross-attention). \emph{Year}: first public appearance, which may precede the cited version.
 \emph{Weights}: released (\cmark), gated (\pmark) or not released (\xmark) at the time of writing.

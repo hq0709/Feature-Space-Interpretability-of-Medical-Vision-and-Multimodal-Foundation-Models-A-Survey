@@ -1,38 +1,38 @@
 \begin{table*}[!tb]
-\centering\small\setlength\tabcolsep{4pt}\renewcommand{\arraystretch}{1.02}
-\caption{The \Fnrows{} evidence statements, in three classes: the proposition, the number of studies behind it (Stud.), how many of those the defect screen of supplement S5e flags (Flag.), and the modalities they span (Mod.). Fig.~\ref{fig:findings} gives the validity tests their records report; supplementary section S7c cites every study behind each row and states what its records show, the disagreements among them and the limit that most restricts it.}
+\centering\small\setlength\tabcolsep{3pt}\renewcommand{\arraystretch}{1.02}
+\caption{The \Fnrows{} evidence statements, in three classes: the proposition, the number of studies behind it (Stud.), how many of those carry a recorded result-invalidating defect (Flag.), the modalities they span (Mod.) and the studies themselves. Fig.~\ref{fig:findings} gives the validity tests their records report.}
 \label{tab:statements}
-\begin{tabular}{@{}lL{11.8cm}ccc@{}}
+\begin{tabular}{@{}lL{6.6cm}cccL{4.8cm}@{}}
 \toprule
-Row & Statement & Stud. & Flag. & Mod. \\
+Row & Statement & Stud. & Flag. & Mod. & Studies \\
 \midrule
-\multicolumn{5}{@{}l}{\emph{Reported across multiple studies}} \\
-F1a & Clinical findings and anatomy decodable (linear readouts) & 18 & 1 & 7 \\
-F1a$'$ & The same, plus cell types and expression (non-linear readouts) & 15 & 3 & 5 \\
-F1b & Held-out concept recovery by fixed text-anchored scorers & 6 & 0 & 4 \\
-F1b$'$ & Concept-vector gradient association & 2 & 1 & 2 \\
-F1b$^{\prime\prime}$ & Labelled representational correspondence & 5 & 2 & 3 \\
-F1c & Concept layers on foundation features & 12 & 0 & 7 \\
-F2 & Sex, age or race decodable & 9 & 2 & 5 \\
-F2b & Acquisition site and device decodable & 12 & 0 & 4 \\
-F3a & Centre and scanner structure in pathology & 17 & 0 & 1 \\
-F3b & Post-hoc harmonisation raises invariance & 5 & 2 & 2 \\
-F3c & Site and artefact structure in brain MRI & 3 & 0 & 1 \\
-F5b & Medical encoders share structure; representations group by objective in one stratified matrix & 4 & 0 & 3 \\
-F8a & Attribution sets fail an instrumented faithfulness test & 6 & 1 & 4 \\
-F8a$'$ & Attribution methods disagree on the same model and target & 3 & 0 & 3 \\
-F8a$^{\prime\prime}$ & Attribution maps are anatomically implausible on inspection & 2 & 0 & 2 \\
-F9a & Targeted interventions report changed outputs & 8 & 0 & 4 \\
-\multicolumn{5}{@{}l}{\emph{Single-study or single-group signals}} \\
-F4 & Sex redundant for a refitted probe & 1 & 0 & 1 \\
-F5 & Anisotropy and the effect of whitening & 1 & 0 & 1 \\
-F6 & Modality gap; best separation is task-dependent & 1 & 0 & 3 \\
-F8b & Labels less decodable after the connector & 1 & 0 & 1 \\
-\multicolumn{5}{@{}l}{\emph{Conditional or descriptive inventories}} \\
-F7 & Reported semantic validation of dictionary features & 12 & 2 & 7 \\
-F9b & Inventory: post-hoc transformation, editing, unlearning & 14 & 3 & 6 \\
-F10 & Inventory: medical versus general decodability & 20 & 2 & 7 \\
-F11 & Inventory: properties shared by, or differing between, medical and general models & 19 & 1 & 7 \\
+\multicolumn{6}{@{}l}{\emph{Reported across multiple studies}} \\
+F1a & Clinical findings and anatomy decodable (linear readouts) & 18 & 1 & 7 & {\scriptsize\cite{beyeler2024comparing,chevli2026frozenct,demir2025downstream,farquhar2026pretraining,germani2025bias,goetze2025prediction,jung2026foundation,kasireddy2025explainable,li2025featurequality,liang2026cheap,lin2026transparent,marza2025thunder,muthyala2026frozen,pedersen2026look,sadman2025interpreting,steiner2026when,svatko2026deep,zhou2025generalist}} \\
+F1a$'$ & The same, plus cell types and expression (non-linear readouts) & 15 & 3 & 5 & {\scriptsize\cite{aerts2025foundation,akanova2026interpreting,cui2026translating,denner2024leveraging,gustafsson2024evaluating,howard2024generative,hu2026probing,jamzad2026p3ca,li2025embeddings,neidlinger2025benchmark,nooralahzadeh2026sparse,peng2025benchmarking,ramchandani2026benchmarking,tamura2025patch,vadori2025mind}} \\
+F1b & Held-out concept recovery by fixed text-anchored scorers & 6 & 0 & 4 & {\scriptsize\cite{bertolini2025strengths,kim2024transparent,luo2025xbench,mensah2026interpretable,nie2025explainable,patricio2023conceptbased}} \\
+F1b$'$ & Concept-vector gradient association & 2 & 1 & 2 & {\scriptsize\cite{hieromnimon2025analysis,nicolson2024textcavs}} \\
+F1b$^{\prime\prime}$ & Labelled representational correspondence & 5 & 2 & 3 & {\scriptsize\cite{arasteh2026candor,bakhta2026frozen,mishra2025comparing,vig2026do,zhao2026benchmarking}} \\
+F1c & Concept layers on foundation features & 12 & 0 & 7 & {\scriptsize\cite{gao2024aligning,gao2025evaluating,han2026clear,patricio2025twostep,pellegrini2023xplainer,rojas2026echopcbm,sun2025label,tushar2026distilling,wang2025mvp,yan2023robust,yang2024textbook,zhang2026regionfm}} \\
+F2 & Sex, age or race decodable & 9 & 2 & 5 & {\scriptsize\cite{cajas2026shortkit,encin2026comparative,kim2026encoding,li2026acquisition,lin2025beyond,sourget2025fairness,tariq2024self,weber2023posthoc,zheng2024demographic}} \\
+F2b & Acquisition site and device decodable & 12 & 0 & 4 & {\scriptsize\cite{dejong2025current,hajishafiezahramini2026dataset,kmen2026robust,komen2024do,li2026acquisition,lin2025beyond,mayer2025lossy,murchan2024deep,rahbar2026frozen,saueressig2025histology,zhang2025hospital,zhang2026auditing}} \\
+F3a & Centre and scanner structure in pathology & 17 & 0 & 1 & {\scriptsize\cite{carloni2025pathology,dejong2025current,esbri2025benchmarking,gustafsson2024evaluating,jung2026foundation,kmen2026robust,komen2024do,lin2025beyond,mayer2025lossy,mishra2025comparing,murchan2024deep,saueressig2025histology,shafique2026investigating,thiringer2026scanner,wolflein2023benchmarking,zhang2025hospital,zhang2026auditing}} \\
+F3b & Post-hoc harmonisation raises invariance & 5 & 2 & 2 & {\scriptsize\cite{carloni2025pathology,donle2026featmap,kmen2026robust,murchan2024deep,zhang2025hospital}} \\
+F3c & Site and artefact structure in brain MRI & 3 & 0 & 1 & {\scriptsize\cite{mielcarz2026do,navarrogonzalez2026crossscanner,rahbar2026frozen}} \\
+F5b & Medical encoders share structure; representations group by objective in one stratified matrix & 4 & 0 & 3 & {\scriptsize\cite{aerts2025foundation,arasteh2026candor,folco2025semantic,tayebiarasteh2026self}} \\
+F8a & Attribution sets fail an instrumented faithfulness test & 6 & 1 & 4 & {\scriptsize\cite{akanova2026interpreting,bors2026benchmarking,idaji2026beyond,mcinerney2022that,sadanandan2026attention,xiong2026rethinking}} \\
+F8a$'$ & Attribution methods disagree on the same model and target & 3 & 0 & 3 & {\scriptsize\cite{bors2026benchmarking,idaji2026beyond,injarabian2025interpreting}} \\
+F8a$^{\prime\prime}$ & Attribution maps are anatomically implausible on inspection & 2 & 0 & 2 & {\scriptsize\cite{hashmi2024towards,injarabian2025interpreting}} \\
+F9a & Targeted interventions report changed outputs & 8 & 0 & 4 & {\scriptsize\cite{bouzid2025insights,chen2026vihd,farina2026translating,nooralahzadeh2026sparse,nooralahzadeh2026universal,sadanandan2026mechanistically,sadashivaiah2024explaining,zeng2026easylens}} \\
+\multicolumn{6}{@{}l}{\emph{Single-study or single-group signals}} \\
+F4 & Sex redundant for a refitted probe & 1 & 0 & 1 & {\scriptsize\cite{kim2026encoding}} \\
+F5 & Anisotropy and the effect of whitening & 1 & 0 & 1 & {\scriptsize\cite{garciahidalgo2026embedding}} \\
+F6 & Modality gap; best separation is task-dependent & 1 & 0 & 3 & {\scriptsize\cite{restrepo2026cone}} \\
+F8b & Labels less decodable after the connector & 1 & 0 & 1 & {\scriptsize\cite{zhu2026lost}} \\
+\multicolumn{6}{@{}l}{\emph{Conditional or descriptive inventories}} \\
+F7 & Reported semantic validation of dictionary features & 12 & 2 & 7 & {\scriptsize\cite{bisson2026unsupervised,dasdelen2025cytosae,kim2026dissecting,le2024learning,nakka2025mammosae,nerrise2026geosae,redlich2026explainable,renzulli2025medsae,sun2025prototypebased,wesp2026sparse,yan2026a,zhao2026compositional}} \\
+F9b & Inventory: post-hoc transformation, editing, unlearning & 14 & 3 & 6 & {\scriptsize\cite{arora2026semantic,balogh2026regularization,carloni2025pathology,donle2026featmap,folco2025semantic,garciahidalgo2026embedding,kim2026encoding,kmen2026robust,li2026acquisition,murchan2024deep,restrepo2026cone,sadashivaiah2024explaining,weber2023posthoc,zhang2025hospital}} \\
+F10 & Inventory: medical versus general decodability & 20 & 2 & 7 & {\scriptsize\cite{bakhta2026frozen,denner2024leveraging,farquhar2026pretraining,germani2025bias,han2026clear,kim2024transparent,li2025featurequality,luo2025xbench,marza2025thunder,mensah2026interpretable,nie2025explainable,patricio2023conceptbased,patricio2025twostep,peng2025benchmarking,svatko2026deep,vadori2025mind,vig2026do,yan2023robust,zhao2026benchmarking,zhou2025generalist}} \\
+F11 & Inventory: properties shared by, or differing between, medical and general models & 19 & 1 & 7 & {\scriptsize\cite{arasteh2026candor,bertolini2025strengths,cajas2026shortkit,farquhar2026pretraining,folco2025semantic,garciahidalgo2026embedding,germani2025bias,jin2024fairmedfm,kim2026encoding,li2026acquisition,mishra2025comparing,muthyala2026frozen,ouaari2026assessing,restrepo2026cone,sadanandan2026attention,tayebiarasteh2026crossmodal,tayebiarasteh2026self,xiong2026rethinking,zoellin2024block}} \\
 \bottomrule
 \end{tabular}
 \end{table*}

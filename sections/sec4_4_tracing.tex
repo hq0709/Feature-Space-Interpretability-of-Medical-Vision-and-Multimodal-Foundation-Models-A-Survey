@@ -33,8 +33,7 @@ space~\cite{lee2026more,venhoff2025visual} and hallucinate when
 text-over-aligned~\cite{fan2026visual,venhoff2025too,saini2026when}; dermatology fine-tuning
 improves the projection but not its domain specificity~\cite{verma2024cross}.
 
-Eleven core records from eleven studies, nine of which take tracing as their primary family
-(Table~S4; \S\ref{sec:method}), read attention or attribution maps of medical models; \Vtrany{} test them against
+Eleven core records from eleven studies, nine of which take tracing as their primary family (\S\ref{sec:method}), read attention or attribution maps of medical models; \Vtrany{} test them against
 perturbation, occlusion or counterfactual evidence, and where tested against a perturbation or counterfactual, the maps often fail, and the result is benchmark- and end-point-dependent. Four attribution methods disagree under patch deletion and insertion across 17 RETFound
 models, gradient-weighted rollout winning in 11 of 17~\cite{bors2026benchmarking}, and internal
 attributions of six vision--language models miss the counterfactually verified evidence region on
@@ -75,8 +74,7 @@ none is confirmed by patching.
 
 \subsubsection{Example- and training-data-based attribution}
 
-Frozen embeddings support content-based retrieval over 1.6 million radiological images
-(Table~S2)~\cite{denner2024leveraging}, and foundation-feature prototypes (\S\ref{sec:intrinsic})
+Frozen embeddings support content-based retrieval over 1.6 million radiological images~\cite{denner2024leveraging}, and foundation-feature prototypes (\S\ref{sec:intrinsic})
 turn nearest-neighbour structure into explanation. Text-based decomposition attributes CLIP
 representations to layers, heads and
 patches~\cite{gandelsman2023interpreting,balasubramanian2024decomposing}, with no medical instance.
@@ -94,5 +92,5 @@ language models the layer that causal tracing singles out is not the layer at wh
 best~\cite{hase2023does}. The medical records that test their maps find them unreliable or
 method-dependent, and image use weak. \Vtrany{} of the \Vtrn{} records
 \emph{test} their map, by occlusion, perturbation, patching or counterfactual evidence, and the test
-corroborates the map in some and refutes it in others (supplement S5d); localisation itself remains a hypothesis, and artefact tokens threaten the
+corroborates the map in some and refutes it in others; localisation itself remains a hypothesis, and artefact tokens threaten the
 patch-level analyses reviewed here.

@@ -4,23 +4,9 @@
 
 \input{tables/tab_practice}
 
-Nine problems follow from the findings of \S\ref{sec:findings} and the evaluation gaps of
+Eight problems follow from the findings of \S\ref{sec:findings} and the evaluation gaps of
 \S\ref{sec:evaluation}; several are the medical instance of open problems the general-domain field has
-stated for itself~\cite{sharkey2025open}, and the first is a problem for evidence synthesis in this area
-rather than for modelling, which constrains everything after it.
-
-\textit{(0) An atomic unit for representation-level claims.} The record of \S\ref{sec:findings} (study
-$\times$ family $\times$ evidence type $\times$ locus) is the finest unit the reviewed papers report
-consistently, and it is not atomic, which is why the statements name disagreeing records rather than
-count directions. A reporting convention is needed: a paper that reports a representation-level result should state, per concept,
-model, dataset and end-point, the quantity, the comparison it is read against, and the validity test run on
-\emph{that} outcome. A table in that form, published with the paper, would let a later synthesis count outcomes rather than records. The same convention needs a probe control that medical images do not yet
-have. A control task in the sense of Hewitt and Liang~\cite{hewitt2019designing} assigns each input
-\emph{type} a fixed random label, so that a probe with capacity but no selectivity scores as well on the
-control as on the task; language has recurring types and medical images usually do not, and under a
-patient-level split a type has to cross the split (scanner, site, protocol, view or an annotated patch class) or the control measures nothing. Supplement S8c sets out the three designs that should be kept
-apart (chance calibration, a control task proper, a memorisation test); none is a citation one can simply
-apply, so the selectivity of a medical probe is at present unreported rather than poor.
+stated for itself~\cite{sharkey2025open}.
 
 \textit{(1) Concept preservation across the connector.} Medical multimodal LLMs pass visual evidence through a
 connector, where general-domain work finds distinct token geometry and uneven language-model use
@@ -30,9 +16,7 @@ controllability across it. A solution should measure identical concepts on both 
 upstream interventions reach reports: probe the same finding across RAD-DINO features, MAIRA-2
 projector output and every language-model layer on MIMIC-CXR.
 
-\textit{(2) From decodable to used: paired evidence and validity standards.} High within-study decoding
-accuracy is reported throughout (\S\ref{sec:decoding}); interventions are input-dependent, model-specific or null
-(\S\ref{sec:intervention}). Only frozen-encoder designs pair probes with residualisation or channel
+\textit{(2) From decodable to used: paired evidence and validity standards.} High within-study decoding accuracy is reported throughout (\S\ref{sec:decoding}), but the probe control that separates a selective readout from an expressive one is missing: a control task in the sense of Hewitt and Liang~\cite{hewitt2019designing} assigns each input \emph{type} a fixed random label, language has recurring types and medical images usually do not, and under a patient-level split a type has to cross the split (scanner, site, protocol, view or an annotated patch class) or the control measures nothing, so the selectivity of a medical probe is at present unreported rather than poor. Interventions are input-dependent, model-specific or null (\S\ref{sec:intervention}). Only frozen-encoder designs pair probes with residualisation or channel
 knockout~\cite{kim2026encoding,nooralahzadeh2026sparse}; no multimodal LLM study combines same-locus probing
 and controlled steering with one behavioural end-point, though random directions cause sizeable
 changes~\cite{korznikov2025the} and steering vectors are
@@ -42,13 +26,10 @@ $v_c$ built for concept $c$ (\S\ref{sec:methods}, Eq.~(\ref{eq:effect})) should 
 percentile of the effects of $K$ pre-specified control directions matched to $v_c$ in locus, norm and
 activation scale, each averaged over held-out inputs disjoint from those that built $v_c$, with the
 randomisation $p$-value carried only by the label-permuted control family refit through the same
-pipeline. The construction, the choice of $K$, the magnitude--sign grid, the patient-level resampling
-and a worked example are in supplement S8b; anything short of a pre-registered primary cell or a
+pipeline. Anything short of a pre-registered primary cell or a
 grid-maximum statistic is an exploratory screen and should be labelled one.
 
-Supplement S8b lists the fields a steering design should report; the further checks a concept-specific
-causal contribution requires are set out in \S\ref{sec:methods}, and no reviewed medical study reports them
-all. The paired probe-and-steer design is the natural first test, and the connector experiment of item (1)
+The further checks a concept-specific causal contribution requires are set out in \S\ref{sec:methods}, and no reviewed medical study reports them all. The paired probe-and-steer design is the natural first test, and the connector experiment of item (1)
 its natural setting.
 
 \textit{(3) Reproducible discovery.} SAE features and factorised directions are unstable: absorption and
@@ -67,9 +48,7 @@ confounders, shortcuts and findings, fix splits and decoders across public encod
 score faithfulness, stability and specificity separately, reporting selectivity rather than accuracy; without
 new annotation a first version could probe RAD-DINO and MedGemma with VinDr-CXR and PadChest labels, UNI and
 CONCH with CAMELYON regions and MONET with SkinCon. Two reporting cards would make results commensurable, one for
-decoding and one for discovery, fixing decoder, split and locus on one side and dictionary, naming,
-validation, stability and reconstruction on the other; supplementary Table~S2 and
-Table~S13 give the fields.
+decoding and one for discovery, fixing decoder, split and locus on one side and dictionary, naming, validation, stability and reconstruction on the other.
 
 \textit{(5) Interpretability of adaptation.} Medical foundation models are rarely used as released, and the
 evidence on what adaptation changes is thin (\S\ref{sec:geometry}), with checkpoint similarity and cross-model
@@ -102,9 +81,7 @@ None of the eight experiments needs new instruments: open suites, closed-form li
 erasure~\cite{belrose2023leace}, released dictionaries~\cite{abdulaal2024an,nooralahzadeh2026universal},
 the expert-verified scorers of \S\ref{sec:eval-data}~\cite{kim2024transparent} and the models of
 Table~\ref{tab:models} suffice. Table~\ref{tab:practice} maps the seven recurring practitioner questions to
-a locus, family, validity and transport controls and licensed claim, and supplementary Table~S10 assembles
-them into a minimum audit of one attribute, with the inputs, splits, nulls and stopping criteria of each
-step. Feasibility depends on access: embeddings alone support permutation- and chance-calibrated probing on a
+a locus, family, validity and transport controls and licensed claim. Feasibility depends on access: embeddings alone support permutation- and chance-calibrated probing on a
 patient-level split, geometry and site measurement, and erasure before a downstream evaluation; open
 encoder weights add a randomly initialised baseline and layer- and pooling-resolved probes, so a sublocus
 can be named; and only an open encoder--connector--language-model stack supports tracing, patching and the
