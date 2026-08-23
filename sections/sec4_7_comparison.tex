@@ -4,21 +4,21 @@
 \begin{table*}[!tb]
 \centering\footnotesize\setlength\tabcolsep{4pt}\renewcommand{\arraystretch}{1.12}
 \caption{What each method family shows on its own, what it does not, the tests that license a stronger
-reading (none a prerequisite; Table~\ref{tab:vcov}), and where this corpus stops, with the record counts
-of \S\ref{sec:findings}. Geometry is task-linked geometry only (\S\ref{sec:models}). The sub-types of
+reading (none a prerequisite; Table~\ref{tab:vcov}), and where this corpus stops, with $k/n$ over the family's own records (the cross-family
+counts are Table~\ref{tab:vcov}). Geometry is task-linked geometry only (\S\ref{sec:models}). The sub-types of
 decoding and intervention have their own rows in supplementary Table~S17.}
 \label{tab:families}
 \begin{tabular}{@{}L{2.3cm}L{3.4cm}L{2.8cm}L{3.25cm}L{3.25cm}@{}}
 \toprule
 Family & Shows on its own & Does not show & Stronger reading needs & In this corpus \\
 \midrule
-\textbf{Structural and geometric} (task-linked) & the shape of the space: gap, alignment, effective rank, similarity & what any direction means; no concept & comparison model; random-initialised or shuffled baseline & comparison model \Vcomp{}/\Vcompn{}; calibration \Vncal{}/\Vncaln{} \\
+\textbf{Structural and geometric} (task-linked) & the shape of the space: gap, alignment, effective rank, similarity & what any direction means; no concept & comparison model; random-initialised or shuffled baseline & comparison model \Vcomp{}/\Vcompn{}; calibration \Vncalgeo{}/\Vncalgeon{} \\
 \addlinespace[3pt]
-\textbf{Supervised concept mapping and decodability} & a concept can be read out of $z_\lambda$ by a decoder (Eq.~\ref{eq:probe}) & that the model uses it & permuted labels; random encoder; control task; fixed decoder class & permutation null \Vperm{}/\Vpermn{}; random encoder \Vlrn{}/\Vlrnn{}; selectivity not yet measurable \\
+\textbf{Supervised concept mapping and decodability} & a concept can be read out of $z_\lambda$ by a decoder (Eq.~\ref{eq:probe}) & that the model uses it & permuted labels; random encoder; control task; fixed decoder class & permutation null \Vpermdec{}/\Vpermdecn{}; random encoder \Vlrndec{}/\Vlrndecn{}; selectivity not yet measurable \\
 \addlinespace[3pt]
 \textbf{Feature decomposition and discovery} & a unit's activation tracks the named content (Eq.~\ref{eq:sae}) & that the unit is stable, complete or used & validated names; cross-seed matching; reconstruction & semantic validation \Vsem{}/\Vsemn{}; cross-seed identity none \\
 \addlinespace[3pt]
-\textbf{Attribution, localisation and tracing} & where information is decodable or attended ($\ell$, $p$, $h$) & that the location is used & occlusion or patching confirmation; random-component comparison & input corroboration \Vinp{}/\Vinpn{}; component perturbation \Vint{}/\Vintn{} \\
+\textbf{Attribution, localisation and tracing} & where information is decodable or attended ($\ell$, $p$, $h$) & that the location is used & occlusion or patching confirmation; random-component comparison & input corroboration \Vinp{}/\Vinpn{}; component perturbation \Vinttr{}/\Vinttrn{} \\
 \addlinespace[3pt]
 \textbf{Representation intervention and control} & the output is sensitive to $z_\lambda$ (Eq.~\ref{eq:effect}) & that the named concept, not a correlated direction, caused the change & matched control directions; equal-size random units; sham transformations & matched control \Vspca{}--\Vspc{}/\Vspcn{}; no dose--response test \\
 \midrule
