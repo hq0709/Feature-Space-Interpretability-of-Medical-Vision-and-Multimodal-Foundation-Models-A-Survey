@@ -96,11 +96,20 @@ successive loci of the same model~\cite{zhu2026lost}.
 
 \begin{figure*}[!tbp]
 \centering
-\figplaceholder{0.95\linewidth}{Author-drawn figure (worked example; see FIGURE\_REQUESTS.md): a hypothetical chest radiograph traced along the loci with the artefact each family would return.}
-\caption{Hypothetical worked example. A single chest radiograph is followed along the path of a medical
-multimodal LLM; at each locus the panel lists what each method family would report, with the evidence
-type of that claim (observational or interventional). Illustrative only: values are not measured, and
-the reviewed literature contains one study that probes class labels at successive loci of the same
-models~\cite{zhu2026lost} and none that does so for named concepts with an intervention.}
+\includegraphics[width=\linewidth]{fig5.png}
+\caption{Hypothetical worked example. A chest radiograph with subtle blunting of the right costophrenic
+angle passes through a frozen vision encoder and connector into visual tokens, which join the prompt
+``Describe the findings'' in the language model's residual stream and reach the pre-readout state and
+the generated report. Each panel shows the artefact one family would return at its locus, the evidence
+type of that claim and the controls it needs: (1) the geometry of the joint space (image and text cones,
+a modality gap, a same-site cluster); (2) a linear probe on the visual tokens returning a concept score
+for right pleural effusion and a direction $v_c$ --- available is not used; (3) a sparse dictionary
+returning a candidate feature that fires on the costophrenic angle; (4) a map of which visual tokens
+and which layers carry the signal that reaches the report token ``effusion''; (5) the only
+interventional panel, adding $\pm\alpha v_c$ to the residual stream at a late layer and reading the
+change in the report against equal-norm random and unrelated-concept directions, sham edits, both signs
+and several magnitudes. Illustrative only: no value is measured, and the reviewed literature contains
+one study that probes class labels at successive loci of the same models~\cite{zhu2026lost} and none
+that does so for named concepts with an intervention.}
 \label{fig:example}
 \end{figure*}

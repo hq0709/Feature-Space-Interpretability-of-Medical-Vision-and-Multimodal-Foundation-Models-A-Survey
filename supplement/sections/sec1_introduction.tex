@@ -63,12 +63,16 @@ that state what a test licenses beyond the design's base reading and what it doe
 
 \begin{figure*}[!tbp]
 \centering
-\includegraphics[width=0.98\linewidth]{fig1_overview_draft.pdf}
-\caption{Overview. Medical vision and multimodal foundation models share a computational path from a
-vision encoder, through an optional connector and language model, to a readout. Six loci mark where a
-representation can be taken (\S\ref{sec:loci}). Five method families (\S\ref{sec:methods}) interrogate
-these representations. Evidence type is a property of each claim rather than of a family: most
-claims in the first four families are observational (what is encoded), most claims in the fifth are
-interventional (what is used), and a study may contribute both.}
+\includegraphics[width=0.98\linewidth]{fig1.png}
+\caption{Overview. The three architectural templates of \S\ref{sec:models} share one computational path:
+(A) a unimodal vision encoder feeding a downstream probe or classifier; (B) a dual encoder whose image
+and text encoders meet in a projected joint space used for retrieval and zero-shot classification; (C) a
+multimodal language model, in which a connector $\pi$ turns encoder features into visual tokens that
+join the prompt's text tokens in the decoder's residual stream and end in the pre-readout state before
+the logits, answer or report. The labels along the path are the six loci of \S\ref{sec:loci}. The lower
+strip names the five method families of \S\ref{sec:methods} with representative techniques, and the
+axis beneath them is the evidence-type tag --- observational (what is encoded) against interventional
+(what is used) --- which belongs to each claim rather than to a family: most claims in the first four
+families are observational, most in the fifth interventional, and a study may contribute both.}
 \label{fig:overview}
 \end{figure*}
